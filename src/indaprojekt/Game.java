@@ -63,11 +63,11 @@ public class Game extends BasicGame
     public void update(GameContainer gc, int delta) throws SlickException     
     {
     	for (Player player : players) {
-    		player.doLogic(input);
+    		player.doLogic(input, delta);
     	}
     	
     	for (Projectile proj : projectiles) {
-    		proj.doLogic();
+    		proj.doLogic(delta);
     	}
     	
     	//for each player, if the player have thrown a projectile,

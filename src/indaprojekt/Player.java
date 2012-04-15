@@ -39,22 +39,22 @@ public class Player extends Mover
 	 * @param input		a reference to an Input object, describing input
 	 * @throws SlickException
 	 */
-	public void doLogic(Input input) throws SlickException 
+	public void doLogic(Input input, int delta) throws SlickException 
 	{	
     	if (input.isKeyDown(controls.keyDown)) {
-    		move(0, 5);
+    		move(0, delta/2);
     	} if (input.isKeyDown(controls.keyUp)) {
-    		move(0, -5);
+    		move(0, -delta/2);
     	} if (input.isKeyDown(controls.keyLeft)) {
-    		move(-5, 0);
+    		move(-delta/2, 0);
     	} if (input.isKeyDown(controls.keyRight)) {
-    		move(5, 0);
+    		move(delta/2, 0);
     	} if (input.isKeyPressed(controls.keyThrow)) {
     		Image image = new Image("res//bomb.png");
     		
     		//TEMP
     		Animation anim = new Animation(new Image[]{image}, 1);
-    		projectile = new Projectile(x, y, 10, 10, anim);
+    		projectile = new Projectile(x, y, 1, 1, anim);
     	}
 	}
 	

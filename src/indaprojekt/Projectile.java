@@ -22,10 +22,10 @@ public class Projectile extends Mover
 	/**
 	 * Does internal logic things, to be called each update
 	 */
-	public void doLogic()
+	public void doLogic(int delta)
 	{
-		this.x += dx;
-		this.y += dy;
+		this.x += dx*delta;
+		this.y += dy*delta;
 	}
 
 	@Override
