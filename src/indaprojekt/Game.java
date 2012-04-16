@@ -104,6 +104,7 @@ public class Game extends BasicGame
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException 
     {
+    	//
     	background.draw();	
     	for (Player player : players) {
     		player.draw();
