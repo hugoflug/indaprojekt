@@ -17,6 +17,7 @@ public class Player extends Mover
 	private Map<Direction, Animation> animations;
 	private PlayerControls controls;
 	private Projectile projectile;
+	private Direction direction;
 	
 	//TEMP, should later take a bunch of animations as parameters
 	//instead of just one image
@@ -27,6 +28,8 @@ public class Player extends Mover
 		this.animations = animations;
 		
 		activeAnimation = animations.get(Direction.DOWN);
+		
+		setDirection(Direction.DOWN);
 		
 		this.controls = controls;
 	}
@@ -63,7 +66,34 @@ public class Player extends Mover
     		
     		//TEMP
     		Animation anim = new Animation(new Image[]{image}, 1);
-    		projectile = new Projectile(x, y, 1, 1, anim);
+    		
+    		int dx = 0, dy = 0;
+    		if (direction != null) {
+	    		switch (direction) {
+		    		case UP:
+		    			dy = -delta/4;
+		    			dx = 0;
+		    			break;
+		    		case DOWN:
+		    			dy = delta/4;
+		    			dx = 0;
+		    			break;
+		    		case RIGHT:
+		    			dy = 0;
+		    			dx = delta/4;
+		    			break;
+		    		case LEFT:
+		    			dy = 0;
+		    			dx = -delta/4;
+		    			break;
+		    		default:
+		    			dy = 0;
+		    			dx = 0;
+		    			break;
+	    		}
+    		}
+    		
+    		projectile = new Projectile(x, y, dx, dy, anim);
     	}
 	}
 	
@@ -82,5 +112,6 @@ public class Player extends Mover
 	private void setDirection(Direction direction)
 	{
 		activeAnimation = animations.get(direction);
+		this.direction = direction;
 	}
 }
