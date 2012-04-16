@@ -1,14 +1,14 @@
 package indaprojekt;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Describes the keys assigned to various tasks controlling a player
  */
 public class PlayerControls 
 {	
-	public final int keyDown;
-	public final int keyLeft;
-	public final int keyRight;
-	public final int keyUp;
+	public final Map<Direction, Integer> directionMap;
 	public final int keyThrow;
 	
 	public PlayerControls(int keyUp,
@@ -17,10 +17,11 @@ public class PlayerControls
 						  int keyRight,
 						  int keyThrow)
 	{
-		this.keyDown = keyDown;
-		this.keyLeft = keyLeft;
-		this.keyRight = keyRight;
-		this.keyUp = keyUp;
+		directionMap = new HashMap<Direction, Integer>();
+		directionMap.put(Direction.UP, keyUp);
+		directionMap.put(Direction.LEFT, keyLeft);
+		directionMap.put(Direction.RIGHT, keyRight);
+		directionMap.put(Direction.DOWN, keyDown);
 		this.keyThrow = keyThrow;
 	}
 

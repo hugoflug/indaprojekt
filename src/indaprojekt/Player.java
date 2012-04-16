@@ -49,49 +49,22 @@ public class Player extends Mover
 	 */
 	public void doLogic(Input input, int delta) throws SlickException 
 	{	
-    	if (input.isKeyDown(controls.keyDown)) {
-    		setDirection(Direction.DOWN);
-    		move(0, delta/2);
-    	} if (input.isKeyDown(controls.keyUp)) {
-    		setDirection(Direction.UP);
-    		move(0, -delta/2);
-    	} if (input.isKeyDown(controls.keyLeft)) {
-    		setDirection(Direction.LEFT);
-    		move(-delta/2, 0);
-    	} if (input.isKeyDown(controls.keyRight)) {
-    		setDirection(Direction.RIGHT);
-    		move(delta/2, 0);
+		for (Direction dir : Direction.values()) {
+			Integer key = controls.directionMap.get(dir);
+			if (key != null) {
+				if (input.isKeyDown(key)) {
+					setDirection(dir);
+					move(dir.getNormalizedDX()*(delta/2), dir.getNormalizedDY()*(delta/2));
+				}
+			}
     	} if (input.isKeyPressed(controls.keyThrow)) {
     		Image image = new Image("res//bomb.png");
     		
     		//TEMP
     		Animation anim = new Animation(new Image[]{image}, 1);
     		
-    		int dx = 0, dy = 0;
-    		if (direction != null) {
-	    		switch (direction) {
-		    		case UP:
-		    			dy = -delta/4;
-		    			dx = 0;
-		    			break;
-		    		case DOWN:
-		    			dy = delta/4;
-		    			dx = 0;
-		    			break;
-		    		case RIGHT:
-		    			dy = 0;
-		    			dx = delta/4;
-		    			break;
-		    		case LEFT:
-		    			dy = 0;
-		    			dx = -delta/4;
-		    			break;
-		    		default:
-		    			dy = 0;
-		    			dx = 0;
-		    			break;
-	    		}
-    		}
+    		float dx = direction.getNormalizedDX();
+    		float dy = direction.getNormalizedDY(); 
     		
     		projectile = new Projectile(x, y, dx, dy, anim);
     	}
