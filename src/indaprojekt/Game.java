@@ -16,7 +16,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 /**
- * Describes the actual game
+ * Describes the actual game.
  */
 public class Game extends BasicGame
 {
@@ -36,7 +36,7 @@ public class Game extends BasicGame
     	players = new ArrayList<Player>(2);
     	projectiles = new LinkedList<Projectile>();
     	
-    	//TEMP
+    	//TEMP.
     	PlayerControls player1Controls = new PlayerControls(
 											Input.KEY_W,
 											Input.KEY_A,
