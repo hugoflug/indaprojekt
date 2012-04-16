@@ -1,5 +1,7 @@
 package indaprojekt;
 
+import java.util.Map;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
@@ -12,16 +14,19 @@ import org.newdawn.slick.SlickException;
 public class Player extends Mover
 {
 	private Animation activeAnimation;
+	private Map<Direction, Animation> animations;
 	private PlayerControls controls;
 	private Projectile projectile;
 	
 	//TEMP, should later take a bunch of animations as parameters
 	//instead of just one image
-	public Player(float x, float y, PlayerControls controls, Image image) throws SlickException
+	public Player(float x, float y, PlayerControls controls, Map<Direction, Animation> animations) throws SlickException
 	{
 		super(x, y);
 		
-		activeAnimation = new Animation(new Image[]{image}, 1); //TEMP
+		this.animations = animations;
+		
+		activeAnimation = animations.get(Direction.DOWN);
 		
 		this.controls = controls;
 	}
@@ -42,12 +47,16 @@ public class Player extends Mover
 	public void doLogic(Input input, int delta) throws SlickException 
 	{	
     	if (input.isKeyDown(controls.keyDown)) {
+    		setDirection(Direction.DOWN);
     		move(0, delta/2);
     	} if (input.isKeyDown(controls.keyUp)) {
+    		setDirection(Direction.UP);
     		move(0, -delta/2);
     	} if (input.isKeyDown(controls.keyLeft)) {
+    		setDirection(Direction.LEFT);
     		move(-delta/2, 0);
     	} if (input.isKeyDown(controls.keyRight)) {
+    		setDirection(Direction.RIGHT);
     		move(delta/2, 0);
     	} if (input.isKeyPressed(controls.keyThrow)) {
     		Image image = new Image("res//bomb.png");
@@ -68,5 +77,10 @@ public class Player extends Mover
 		Projectile returnProjectile = projectile;
 		projectile = null;
 		return returnProjectile;
+	}
+	
+	private void setDirection(Direction direction)
+	{
+		activeAnimation = animations.get(direction);
 	}
 }

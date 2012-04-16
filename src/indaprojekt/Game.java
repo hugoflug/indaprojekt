@@ -1,9 +1,12 @@
 package indaprojekt;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -41,7 +44,16 @@ public class Game extends BasicGame
 											Input.KEY_D,
 											Input.KEY_Q);
     	Image player1Image = new Image("res//player.png");
-    	players.add(new Player(50, 50, player1Controls, player1Image));
+    	Map<Direction, Animation> animMap1 = new HashMap<Direction, Animation>();
+    	animMap1.put(Direction.UP, new Animation(new Image[]{player1Image}, 1));
+    	animMap1.put(Direction.UPRIGHT, new Animation(new Image[]{player1Image}, 1));
+    	animMap1.put(Direction.RIGHT, new Animation(new Image[]{player1Image}, 1));
+    	animMap1.put(Direction.DOWNRIGHT, new Animation(new Image[]{player1Image}, 1));
+    	animMap1.put(Direction.DOWN, new Animation(new Image[]{player1Image}, 1));
+    	animMap1.put(Direction.DOWNLEFT, new Animation(new Image[]{player1Image}, 1));
+    	animMap1.put(Direction.LEFT, new Animation(new Image[]{player1Image}, 1));
+    	animMap1.put(Direction.UPLEFT, new Animation(new Image[]{player1Image}, 1));
+    	players.add(new Player(50, 50, player1Controls, animMap1));
     	
     	
     	//TEMP
@@ -52,9 +64,18 @@ public class Game extends BasicGame
     										Input.KEY_RIGHT,
     										Input.KEY_RCONTROL);
     	Image player2Image = new Image("res//player2.png");
-    	players.add(new Player(150, 150, player2Controls, player2Image));
-    	
+    	Map<Direction, Animation> animMap2 = new HashMap<Direction, Animation>();
+    	animMap2.put(Direction.UP, new Animation(new Image[]{player2Image}, 1));
+    	animMap2.put(Direction.UPRIGHT, new Animation(new Image[]{player2Image}, 1));
+    	animMap2.put(Direction.RIGHT, new Animation(new Image[]{player2Image}, 1));
+    	animMap2.put(Direction.DOWNRIGHT, new Animation(new Image[]{player2Image}, 1));
+    	animMap2.put(Direction.DOWN, new Animation(new Image[]{player1Image}, 1));
+    	animMap2.put(Direction.DOWNLEFT, new Animation(new Image[]{player2Image}, 1));
+    	animMap2.put(Direction.LEFT, new Animation(new Image[]{player2Image}, 1));
+    	animMap2.put(Direction.UPLEFT, new Animation(new Image[]{player2Image}, 1));
+    	players.add(new Player(150, 150, player2Controls, animMap2));
     	background = new Image("res//classroom.jpg");
+    	
     	
     	input = gc.getInput();
     }
