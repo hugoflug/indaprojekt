@@ -27,7 +27,7 @@ public class Game extends BasicGame
 	
     public Game()
     {
-        super("Awsome Game");
+        super("Awesome Game");
     }
  
     @Override

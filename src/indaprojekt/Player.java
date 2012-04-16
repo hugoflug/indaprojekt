@@ -49,18 +49,14 @@ public class Player extends Mover
 	 */
 	public void doLogic(Input input, int delta) throws SlickException 
 	{	
-    	if (input.isKeyDown(controls.keyDown)) {
-    		setDirection(Direction.DOWN);
-    		move(0, delta/2);
-    	} if (input.isKeyDown(controls.keyUp)) {
-    		setDirection(Direction.UP);
-    		move(0, -delta/2);
-    	} if (input.isKeyDown(controls.keyLeft)) {
-    		setDirection(Direction.LEFT);
-    		move(-delta/2, 0);
-    	} if (input.isKeyDown(controls.keyRight)) {
-    		setDirection(Direction.RIGHT);
-    		move(delta/2, 0);
+		for (Direction dir : Direction.values()) {
+			Integer key = controls.directionMap.get(dir);
+			if (key != null) {
+				if (input.isKeyDown(key)) {
+					setDirection(dir);
+					move(dir.getNormalizedDX()*(delta/2), dir.getNormalizedDY()*(delta/2));
+				}
+			}
     	} if (input.isKeyPressed(controls.keyThrow)) {
     		Image image = new Image("res//bomb.png");
     		
