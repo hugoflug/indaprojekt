@@ -74,7 +74,7 @@ public class Game extends BasicGame
     	animMap2.put(Direction.LEFT, new Animation(new Image[]{player2Image}, 1));
     	animMap2.put(Direction.UPLEFT, new Animation(new Image[]{player2Image}, 1));
     	players.add(new Player(150, 150, player2Controls, animMap2));
-    	background = new Image("res//classroom.png");
+    	background = new Image("res//classroom.jpg");
     	
     	
     	input = gc.getInput();
