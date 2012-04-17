@@ -109,6 +109,9 @@ public class Game extends BasicGame
     	obstacles.add(topWall);
     	entities.add(topWall);
     	
+    	Image itemImage = new Image("res//bomb.png");
+    	Item item = new Item(itemImage, 250, 250, new Rectangle2D.Float(0, 0, 25, 25));
+    	entities.add(item);
     	
     	input = gc.getInput();
     }
@@ -131,7 +134,6 @@ public class Game extends BasicGame
 	    	}
     	}
     	
-    	//in the future, only go through half of list
     	int length = (int)Math.ceil(entities.size()/2);
     	int i = 0;
     	for (Entity entity : entities) {
@@ -178,16 +180,20 @@ public class Game extends BasicGame
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException 
     {
-    	background.draw();	
-    	for (Player player : players) {
-    		player.draw();
+    	background.draw();
+    	
+    	for (Entity entity : entities) {
+    		entity.draw();
     	}
-    	for (Projectile proj : projectiles) {
-    		proj.draw();
-    	}
-    	for (Obstacle obs : obstacles) {
-    		obs.draw();
-    	}
+//    	for (Player player : players) {
+//    		player.draw();
+//    	}
+//    	for (Projectile proj : projectiles) {
+//    		proj.draw();
+//    	}
+//    	for (Obstacle obs : obstacles) {
+//    		obs.draw();
+//    	}
     }
  
     public static void main(String[] args) throws SlickException

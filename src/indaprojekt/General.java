@@ -1,9 +1,13 @@
 package indaprojekt;
 
+/**
+ * A class for things of general usefulness
+ *
+ */
 public class General 
 {
 	/**
-	 * Moves a towards zero with b units
+	 * Moves <code>a</code> towards zero with <code>b</code> units
 	 */
 	public static float towardsZero(float a, float b)
 	{
