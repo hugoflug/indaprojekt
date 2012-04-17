@@ -132,7 +132,13 @@ public class Game extends BasicGame
     	}
     	
     	//in the future, only go through half of list
+    	int length = (int)Math.ceil(entities.size()/2);
+    	int i = 0;
     	for (Entity entity : entities) {
+    		i++;
+    		if (i > length) {
+    			break;
+    		}
     		for (Entity entity2 : entities) {
     			if (entity != entity2) {
     				if (entity.isCollision(entity2)) {

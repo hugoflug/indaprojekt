@@ -104,6 +104,8 @@ public class Player extends Mover
 	public void handleCollision(Entity entity) 
 	{
 		if (entity instanceof Projectile) {
+			System.out.println(entity);
+			System.out.println(lives);
 			lives--;
 		} else {
 				moveBack();
