@@ -1,5 +1,8 @@
 package indaprojekt;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 
@@ -9,9 +12,9 @@ public class Projectile extends Mover
 	private float dx, dy;
 
 	public Projectile(float x, float y, float dx, float dy, 
-						Animation animation) 
+						Rectangle2D.Float hitBox, Animation animation) 
 	{
-		super(x, y);
+		super(x, y, hitBox);
 		
 		this.dx = dx;
 		this.dy = dy;
@@ -32,6 +35,12 @@ public class Projectile extends Mover
 	public void draw() throws SlickException 
 	{
 		animation.draw(x, y);
+	}
+
+	@Override
+	public void handleCollision(Entity entity) 
+	{
+		
 	}
 
 }

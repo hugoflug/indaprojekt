@@ -1,5 +1,7 @@
 package indaprojekt;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
 import org.newdawn.slick.Animation;
@@ -21,9 +23,9 @@ public class Player extends Mover
 	
 	//TEMP, should later take a bunch of animations as parameters
 	//instead of just one image
-	public Player(float x, float y, PlayerControls controls, Map<Direction, Animation> animations) throws SlickException
+	public Player(float x, float y, PlayerControls controls, Rectangle2D.Float hitBox, Map<Direction, Animation> animations) throws SlickException
 	{
-		super(x, y);
+		super(x, y, hitBox);
 		
 		this.animations = animations;
 		
@@ -66,7 +68,8 @@ public class Player extends Mover
     		float dx = direction.getNormalizedDX();
     		float dy = direction.getNormalizedDY(); 
     		
-    		projectile = new Projectile(x, y, dx, dy, anim);
+    		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 10, 10);
+    		projectile = new Projectile(x, y, dx, dy, projRect, anim);
     	}
 	}
 	
@@ -86,5 +89,13 @@ public class Player extends Mover
 	{
 		activeAnimation = animations.get(direction);
 		this.direction = direction;
+	}
+
+	@Override
+	public void handleCollision(Entity entity) 
+	{
+		//TEMP
+		moveBack();
+//		System.out.println("collision");
 	}
 }

@@ -1,5 +1,7 @@
 package indaprojekt;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -53,7 +55,9 @@ public class Game extends BasicGame
     	animMap1.put(Direction.DOWNLEFT, new Animation(new Image[]{player1Image}, 1));
     	animMap1.put(Direction.LEFT, new Animation(new Image[]{player1Image}, 1));
     	animMap1.put(Direction.UPLEFT, new Animation(new Image[]{player1Image}, 1));
-    	players.add(new Player(50, 50, player1Controls, animMap1));
+    	Rectangle2D.Float player1HitBox = new Rectangle2D.Float(0f, 0f, 
+    						player1Image.getWidth()/10f, player1Image.getHeight()/10f);
+    	players.add(new Player(50, 50, player1Controls, player1HitBox, animMap1));
     	
     	
     	//TEMP
@@ -73,7 +77,9 @@ public class Game extends BasicGame
     	animMap2.put(Direction.DOWNLEFT, new Animation(new Image[]{player2Image}, 1));
     	animMap2.put(Direction.LEFT, new Animation(new Image[]{player2Image}, 1));
     	animMap2.put(Direction.UPLEFT, new Animation(new Image[]{player2Image}, 1));
-    	players.add(new Player(150, 150, player2Controls, animMap2));
+    	Rectangle2D.Float player2HitBox = new Rectangle2D.Float(0f, 0f, 
+				player2Image.getWidth()/10f, player2Image.getHeight()/10f);
+    	players.add(new Player(150, 150, player2Controls, player2HitBox, animMap2));
     	background = new Image("res//classroom.jpg");
     	
     	
@@ -85,6 +91,14 @@ public class Game extends BasicGame
     {
     	for (Player player : players) {
     		player.doLogic(input, delta);
+    		
+    		//TEMP
+    		for (Player p2 : players) {
+    			if (player != p2 && player.isCollision(p2)) {
+    				player.handleCollision(p2);
+    				p2.handleCollision(player);
+    			}
+    		}
     	}
     	
     	for (Projectile proj : projectiles) {

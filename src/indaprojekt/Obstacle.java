@@ -1,5 +1,8 @@
 package indaprojekt;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 
@@ -10,9 +13,9 @@ public class Obstacle extends Entity
 {
 	private Animation animation;
 	
-	public Obstacle(float x, float y, Animation animation) 
+	public Obstacle(float x, float y, Rectangle2D.Float hitBox, Animation animation) 
 	{
-		super(x, y);
+		super(x, y, hitBox);
 		
 		this.animation = animation;
 	}
@@ -21,5 +24,11 @@ public class Obstacle extends Entity
 	public void draw() throws SlickException 
 	{
 		animation.draw(x, y);
+	}
+
+	@Override
+	public void handleCollision(Entity entity) 
+	{
+		
 	}
 }
