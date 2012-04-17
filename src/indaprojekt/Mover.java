@@ -46,14 +46,6 @@ public abstract class Mover extends Entity
 	}
 	
 	/**
-	 * @return whether this Mover has moved since the last 
-	 */
-	protected boolean hasMoved()
-	{
-		return x != oldX || y != oldY;
-	}
-	
-	/**
 	 * Does internal logic things, to be called each update
 	 * @param input		a reference to an Input object, describing input
 	 * @throws SlickException

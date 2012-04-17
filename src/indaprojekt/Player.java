@@ -106,9 +106,9 @@ public class Player extends Mover
 		if (entity instanceof Projectile) {
 			lives--;
 		} else {
-			if (hasMoved()) {
 				moveBack();
-			}
+			dx = 0;
+			dy = 0;
 		}
 	}
 	

@@ -96,6 +96,20 @@ public class Game extends BasicGame
     	obstacles.add(obstacle);
     	entities.add(obstacle);
     	
+    	Obstacle leftWall = new Obstacle(0, 0, new Rectangle2D.Float(0, 0, 50, 600), new Animation(new Image[]{obstacleImage}, 1));
+    	Obstacle rightWall = new Obstacle(750, 0, new Rectangle2D.Float(0, 0, 50, 600), new Animation(new Image[]{obstacleImage}, 1));
+    	Obstacle bottomWall = new Obstacle(0, 550, new Rectangle2D.Float(0, 0, 800, 50), new Animation(new Image[]{obstacleImage}, 1));
+    	Obstacle topWall = new Obstacle(0, 0, new Rectangle2D.Float(0, 0, 800, 50), new Animation(new Image[]{obstacleImage}, 1));
+    	obstacles.add(leftWall);
+    	entities.add(leftWall);
+    	obstacles.add(rightWall);
+    	entities.add(rightWall);
+    	obstacles.add(bottomWall);
+    	entities.add(bottomWall);
+    	obstacles.add(topWall);
+    	entities.add(topWall);
+    	
+    	
     	input = gc.getInput();
     }
  
