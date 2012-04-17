@@ -76,9 +76,10 @@ public class Player extends Mover
     		
     		float dx = direction.getNormalizedDX();
     		float dy = direction.getNormalizedDY(); 
-    		
-    		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 32, 32);
-    		projectile = new Projectile(offsetHitBox.x + offsetHitBox.width + 1, offsetHitBox.y, dx, dy, projRect, anim);
+    	
+    		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 10, 10);
+    		projectile = new Projectile(projectileOriginX((float)projRect.getWidth()), 
+    				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim);
     	}
 	}
 	
@@ -126,5 +127,39 @@ public class Player extends Mover
 	public boolean isDead()
 	{
 		return lives <= 0;
+	}
+	
+	/**
+	 * Calculates the appropriate coordinates for the projectile to start at, with according to the projectiles and the player's size.
+	 * 
+	 * @param prjWidth width of the projectile
+	 * @return x coordinates for the projectiles start position
+	 */
+	private float projectileOriginX(float prjWidth) {
+		switch (direction) {
+			case RIGHT:
+				return offsetHitBox.x + (float) offsetHitBox.getWidth()+1;
+			case LEFT:
+				return offsetHitBox.x - prjWidth -1;
+			default:
+				return offsetHitBox.x;		
+		}
+	}
+	
+	/**
+	 * Calculates the appropriate coordinates for the projectile to start at, with according to the projectiles and the player's size.
+	 * 
+	 * @param prjWidth width of the projectile
+	 * @return y coordinates for the projectiles start position
+	 */
+	private float projectileOriginY(float prjWidth) {
+		switch (direction) {
+			case UP:
+				return offsetHitBox.y - prjWidth - 1;
+			case DOWN:
+				return (float)(offsetHitBox.y + offsetHitBox.getHeight() + 1);
+			default:
+				return offsetHitBox.y;
+		}		
 	}
 }
