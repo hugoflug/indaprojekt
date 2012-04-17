@@ -114,6 +114,12 @@ public class Player extends Mover
 		}
 	}
 	
+	@Override
+	public boolean shouldBeRemoved()
+	{
+		return false;
+	}
+	
 	/**
 	 * @return whether the player has died
 	 */

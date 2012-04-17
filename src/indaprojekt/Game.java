@@ -156,12 +156,11 @@ public class Game extends BasicGame
     	}
     	
     	{
-	    	Iterator<Projectile> iterator = projectiles.iterator();
+	    	Iterator<Entity> iterator = entities.iterator();
 	    	while (iterator.hasNext()) {
-	    		Projectile proj = iterator.next();
-	    		if (proj.shouldBeRemoved()) {
+	    		Entity entity = iterator.next();
+	    		if (entity.shouldBeRemoved()) {
 	    			iterator.remove();
-	    			entities.remove(proj);
 	    		}
 	    	}
     	}

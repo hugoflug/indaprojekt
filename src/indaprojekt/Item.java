@@ -34,9 +34,7 @@ public class Item extends Entity
 		remove = true;
 	}
 	
-	/**
-	 * @return		if the item should be removed
-	 */
+	@Override
 	public boolean shouldBeRemoved()
 	{
 		return remove;

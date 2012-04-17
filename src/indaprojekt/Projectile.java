@@ -37,6 +37,7 @@ public class Projectile extends Mover
 		animation.draw(x, y);
 	}
 	
+	@Override
 	public boolean shouldBeRemoved()
 	{
 		return remove;

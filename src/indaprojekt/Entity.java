@@ -43,5 +43,10 @@ public abstract class Entity
 		return this.offsetHitBox.intersects(entity.offsetHitBox);
 	}
 	
+	/**
+	 * @return	whether this entity should be removed from the game
+	 */
+	public abstract boolean shouldBeRemoved();
+	
 	public abstract void handleCollision(Entity entity);
 }
