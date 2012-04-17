@@ -96,6 +96,5 @@ public class Player extends Mover
 	{
 		//TEMP
 		moveBack();
-//		System.out.println("collision");
 	}
 }

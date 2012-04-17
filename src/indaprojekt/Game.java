@@ -24,6 +24,8 @@ public class Game extends BasicGame
 {
 	private List<Player> players;
 	private List<Projectile> projectiles;
+	private List<Obstacle> obstacles;
+	private List<Entity> entities;
 	private Input input;
 	private Image background;
 	
@@ -37,6 +39,8 @@ public class Game extends BasicGame
     {
     	players = new ArrayList<Player>(2);
     	projectiles = new LinkedList<Projectile>();
+    	obstacles = new ArrayList<Obstacle>();
+    	entities = new LinkedList<Entity>();
     	
     	//TEMP.
     	PlayerControls player1Controls = new PlayerControls(
@@ -57,7 +61,9 @@ public class Game extends BasicGame
     	animMap1.put(Direction.UPLEFT, new Animation(new Image[]{player1Image}, 1));
     	Rectangle2D.Float player1HitBox = new Rectangle2D.Float(0f, 0f, 
     						player1Image.getWidth()/10f, player1Image.getHeight()/10f);
-    	players.add(new Player(50, 50, player1Controls, player1HitBox, animMap1));
+    	Player p1 = new Player(50, 50, player1Controls, player1HitBox, animMap1);
+    	players.add(p1);
+    	entities.add(p1);
     	
     	
     	//TEMP
@@ -79,9 +85,16 @@ public class Game extends BasicGame
     	animMap2.put(Direction.UPLEFT, new Animation(new Image[]{player2Image}, 1));
     	Rectangle2D.Float player2HitBox = new Rectangle2D.Float(0f, 0f, 
 				player2Image.getWidth()/10f, player2Image.getHeight()/10f);
-    	players.add(new Player(150, 150, player2Controls, player2HitBox, animMap2));
+    	Player p2 = new Player(150, 150, player2Controls, player2HitBox, animMap2);
+    	players.add(p2);
+    	entities.add(p2);
     	background = new Image("res//classroom.jpg");
     	
+    	Image obstacleImage = new Image("res//bomb.png");
+    	Obstacle obstacle = new Obstacle(100, 100, new Rectangle2D.Float(0, 0, obstacleImage.getWidth(), obstacleImage.getHeight()), 
+    			new Animation(new Image[]{obstacleImage}, 1));
+    	obstacles.add(obstacle);
+    	entities.add(obstacle);
     	
     	input = gc.getInput();
     }
@@ -91,12 +104,15 @@ public class Game extends BasicGame
     {
     	for (Player player : players) {
     		player.doLogic(input, delta);
-    		
-    		//TEMP
-    		for (Player p2 : players) {
-    			if (player != p2 && player.isCollision(p2)) {
-    				player.handleCollision(p2);
-    				p2.handleCollision(player);
+    	} 		
+    	//in the future, only go through half of list
+    	for (Entity entity : entities) {
+    		for (Entity entity2 : entities) {
+    			if (entity != entity2) {
+    				if (entity.isCollision(entity2)) {
+    					entity.handleCollision(entity2);
+    					entity2.handleCollision(entity);
+    				}
     			}
     		}
     	}
@@ -124,6 +140,9 @@ public class Game extends BasicGame
     	}
     	for (Projectile proj : projectiles) {
     		proj.draw();
+    	}
+    	for (Obstacle obs : obstacles) {
+    		obs.draw();
     	}
     }
  

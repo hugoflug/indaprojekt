@@ -41,7 +41,6 @@ public abstract class Entity
 	 */
 	public boolean isCollision(Entity entity)
 	{
-		System.out.println(this.offsetHitBox + " : " + entity.offsetHitBox);
 		return this.offsetHitBox.intersects(entity.offsetHitBox);
 	}
 	
