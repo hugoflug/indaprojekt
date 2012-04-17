@@ -48,7 +48,7 @@ public class Game extends BasicGame
 											Input.KEY_A,
 											Input.KEY_S,
 											Input.KEY_D,
-											Input.KEY_Q);
+											Input.KEY_LCONTROL);
     	Image player1Image = new Image("res//player.png");
     	Map<Direction, Animation> animMap1 = new HashMap<Direction, Animation>();
     	animMap1.put(Direction.UP, new Animation(new Image[]{player1Image}, 1));
@@ -72,7 +72,7 @@ public class Game extends BasicGame
     										Input.KEY_LEFT,
     										Input.KEY_DOWN,
     										Input.KEY_RIGHT,
-    										Input.KEY_RCONTROL);
+    										Input.KEY_L);
     	Image player2Image = new Image("res//player2.png");
     	Map<Direction, Animation> animMap2 = new HashMap<Direction, Animation>();
     	animMap2.put(Direction.UP, new Animation(new Image[]{player2Image}, 1));
