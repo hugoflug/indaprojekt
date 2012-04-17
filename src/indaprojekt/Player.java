@@ -20,20 +20,18 @@ public class Player extends Mover
 	private PlayerControls controls;
 	private Projectile projectile;
 	private Direction direction;
+	private boolean dead;
 	
 	//TEMP, should later take a bunch of animations as parameters
 	//instead of just one image
 	public Player(float x, float y, PlayerControls controls, Rectangle2D.Float hitBox, Map<Direction, Animation> animations) throws SlickException
 	{
 		super(x, y, hitBox);
-		
 		this.animations = animations;
-		
 		activeAnimation = animations.get(Direction.DOWN);
-		
 		setDirection(Direction.DOWN);
-		
 		this.controls = controls;
+		dead = false;
 	}
 
 	@Override
@@ -69,7 +67,7 @@ public class Player extends Mover
     		float dy = direction.getNormalizedDY(); 
     		
     		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 10, 10);
-    		projectile = new Projectile(x, y, dx, dy, projRect, anim);
+    		projectile = new Projectile(x + 50, y + 50, dx, dy, projRect, anim);
     	}
 	}
 	
@@ -94,7 +92,18 @@ public class Player extends Mover
 	@Override
 	public void handleCollision(Entity entity) 
 	{
-		//TEMP
-		moveBack();
+		if (entity instanceof Projectile) {
+			dead = true;
+		} else {
+			moveBack();
+		}
+	}
+	
+	/**
+	 * @return whether the player has died
+	 */
+	public boolean isDead()
+	{
+		return dead;
 	}
 }

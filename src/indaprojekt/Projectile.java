@@ -27,8 +27,7 @@ public class Projectile extends Mover
 	 */
 	public void doLogic(int delta)
 	{
-		this.x += dx*delta;
-		this.y += dy*delta;
+		move(dx*delta, dy*delta);
 	}
 
 	@Override

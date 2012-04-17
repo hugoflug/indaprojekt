@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -104,7 +105,18 @@ public class Game extends BasicGame
     {
     	for (Player player : players) {
     		player.doLogic(input, delta);
-    	} 		
+    	} 
+    	
+    	{
+	    	Iterator<Player> iterator = players.iterator();
+	    	while (iterator.hasNext()) {
+	    		Player player = iterator.next();
+	    		if (player.isDead()) {
+	    			iterator.remove();
+	    		}
+	    	}
+    	}
+    	
     	//in the future, only go through half of list
     	for (Entity entity : entities) {
     		for (Entity entity2 : entities) {
@@ -127,6 +139,7 @@ public class Game extends BasicGame
     		Projectile proj = player.getProjectile();
     		if (proj != null) {
     			projectiles.add(proj);
+    			entities.add(proj);
     		}
     	}
     }
