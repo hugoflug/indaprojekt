@@ -153,6 +153,7 @@ public class Game extends BasicGame
 	    		Projectile proj = iterator.next();
 	    		if (proj.shouldBeRemoved()) {
 	    			iterator.remove();
+	    			entities.remove(proj);
 	    		}
 	    	}
     	}
