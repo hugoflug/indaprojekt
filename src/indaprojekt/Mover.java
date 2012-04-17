@@ -1,7 +1,9 @@
 package indaprojekt;
 
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+
+import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 
 /**
  * A class representing any physical object capable of moving
@@ -41,6 +43,25 @@ public abstract class Mover extends Entity
 		this.x = x;
 		this.y = y;
 		offsetHitBox.setRect(x + hitBox.x, y + hitBox.y, hitBox.width, hitBox.height);
+	}
+	
+	/**
+	 * @return whether this Mover has moved since the last 
+	 */
+	protected boolean hasMoved()
+	{
+		return x != oldX || y != oldY;
+	}
+	
+	/**
+	 * Does internal logic things, to be called each update
+	 * @param input		a reference to an Input object, describing input
+	 * @throws SlickException
+	 */
+	public void doLogic(Input input, int delta) throws SlickException 
+	{	
+		oldX = this.x;
+		oldY = this.y;
 	}
 	
 	/**

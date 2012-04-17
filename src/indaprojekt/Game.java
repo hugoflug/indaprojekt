@@ -1,6 +1,5 @@
 package indaprojekt;
 
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -131,6 +130,16 @@ public class Game extends BasicGame
     	
     	for (Projectile proj : projectiles) {
     		proj.doLogic(delta);
+    	}
+    	
+    	{
+	    	Iterator<Projectile> iterator = projectiles.iterator();
+	    	while (iterator.hasNext()) {
+	    		Projectile proj = iterator.next();
+	    		if (proj.shouldBeRemoved()) {
+	    			iterator.remove();
+	    		}
+	    	}
     	}
     	
     	//for each player, if the player have thrown a projectile,

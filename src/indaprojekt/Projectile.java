@@ -1,6 +1,5 @@
 package indaprojekt;
 
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 import org.newdawn.slick.Animation;
@@ -10,6 +9,7 @@ public class Projectile extends Mover
 {
 	private Animation animation;
 	private float dx, dy;
+	private boolean remove;
 
 	public Projectile(float x, float y, float dx, float dy, 
 						Rectangle2D.Float hitBox, Animation animation) 
@@ -20,6 +20,7 @@ public class Projectile extends Mover
 		this.dy = dy;
 		
 		this.animation = animation;
+		remove = false;
 	}
 	
 	/**
@@ -35,11 +36,16 @@ public class Projectile extends Mover
 	{
 		animation.draw(x, y);
 	}
+	
+	public boolean shouldBeRemoved()
+	{
+		return remove;
+	}
 
 	@Override
 	public void handleCollision(Entity entity) 
 	{
-		
+		remove = true;
 	}
 
 }

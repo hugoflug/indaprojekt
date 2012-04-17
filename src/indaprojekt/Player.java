@@ -1,6 +1,5 @@
 package indaprojekt;
 
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
@@ -20,7 +19,10 @@ public class Player extends Mover
 	private PlayerControls controls;
 	private Projectile projectile;
 	private Direction direction;
-	private boolean dead;
+	private int lives;
+	private float dx, dy;
+	private float speed;
+	private float friction;
 	
 	//TEMP, should later take a bunch of animations as parameters
 	//instead of just one image
@@ -31,7 +33,11 @@ public class Player extends Mover
 		activeAnimation = animations.get(Direction.DOWN);
 		setDirection(Direction.DOWN);
 		this.controls = controls;
-		dead = false;
+		lives = 5; //TEMP?
+		speed = 2; //TEMP?
+		dx = 0;
+		dy = 0;
+		friction = 1;
 	}
 
 	@Override
@@ -41,20 +47,25 @@ public class Player extends Mover
 		//only there to be able to use scale
 		activeAnimation.getCurrentFrame().draw(x, y, 0.1f);
 	}
-	
-	/**
-	 * Does internal logic things, to be called each update
-	 * @param input		a reference to an Input object, describing input
-	 * @throws SlickException
-	 */
+
+	@Override
 	public void doLogic(Input input, int delta) throws SlickException 
 	{	
+		super.doLogic(input, delta);
+		
+		move(dx, dy);
+		
+		dx = General.towardsZero(dx, friction);
+		dy = General.towardsZero(dy, friction);
+		
 		for (Direction dir : Direction.values()) {
 			Integer key = controls.directionMap.get(dir);
 			if (key != null) {
 				if (input.isKeyDown(key)) {
 					setDirection(dir);
-					move(dir.getNormalizedDX()*(delta/2), dir.getNormalizedDY()*(delta/2));
+		//			move(dir.getNormalizedDX()*(delta/2), dir.getNormalizedDY()*(delta/2));
+					dx += dir.getNormalizedDX()*speed;
+					dy += dir.getNormalizedDY()*speed;
 				}
 			}
     	} if (input.isKeyPressed(controls.keyThrow)) {
@@ -93,9 +104,11 @@ public class Player extends Mover
 	public void handleCollision(Entity entity) 
 	{
 		if (entity instanceof Projectile) {
-			dead = true;
+			lives--;
 		} else {
-			moveBack();
+			if (hasMoved()) {
+				moveBack();
+			}
 		}
 	}
 	
@@ -104,6 +117,6 @@ public class Player extends Mover
 	 */
 	public boolean isDead()
 	{
-		return dead;
+		return lives <= 0;
 	}
 }
