@@ -106,11 +106,19 @@ public class Player extends Mover
 	{
 		if (entity instanceof Projectile) {
 			lives--;
+		}	else if (entity instanceof Item) {
+			
 		} else {
-				moveBack();
+			moveBack();
 			dx = 0;
 			dy = 0;
 		}
+	}
+	
+	@Override
+	public boolean shouldBeRemoved()
+	{
+		return false;
 	}
 	
 	/**

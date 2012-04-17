@@ -26,6 +26,12 @@ public class Obstacle extends Entity
 	}
 
 	@Override
+	public boolean shouldBeRemoved()
+	{
+		return false;
+	}
+	
+	@Override
 	public void handleCollision(Entity entity) 
 	{
 		
