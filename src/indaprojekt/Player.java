@@ -37,7 +37,7 @@ public class Player extends Mover
 		speed = 2; //TEMP?
 		dx = 0;
 		dy = 0;
-		friction = 1;
+		friction = 1f;
 	}
 
 	@Override
@@ -77,8 +77,8 @@ public class Player extends Mover
     		float dx = direction.getNormalizedDX();
     		float dy = direction.getNormalizedDY(); 
     		
-    		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 10, 10);
-    		projectile = new Projectile(x + 50, y + 50, dx, dy, projRect, anim);
+    		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 32, 32);
+    		projectile = new Projectile(offsetHitBox.x + offsetHitBox.width + 1, offsetHitBox.y, dx, dy, projRect, anim);
     	}
 	}
 	

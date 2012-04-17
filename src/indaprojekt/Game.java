@@ -184,15 +184,6 @@ public class Game extends BasicGame
     	for (Entity entity : entities) {
     		entity.draw();
     	}
-//    	for (Player player : players) {
-//    		player.draw();
-//    	}
-//    	for (Projectile proj : projectiles) {
-//    		proj.draw();
-//    	}
-//    	for (Obstacle obs : obstacles) {
-//    		obs.draw();
-//    	}
     }
  
     public static void main(String[] args) throws SlickException
