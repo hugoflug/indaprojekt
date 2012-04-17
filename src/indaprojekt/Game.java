@@ -126,6 +126,7 @@ public class Game extends BasicGame
 	    		Player player = iterator.next();
 	    		if (player.isDead()) {
 	    			iterator.remove();
+	    			entities.remove(player);
 	    		}
 	    	}
     	}
