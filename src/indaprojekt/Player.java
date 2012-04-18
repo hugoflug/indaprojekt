@@ -144,8 +144,6 @@ public class Player extends Mover
 			
 		} else if (entity instanceof Projectile) {
 			lives--; 
-	//	} else if (entity instanceof SpeedUp) {
-	//		increaseSpeed(((SpeedUp) entity).getSpdDiff());
 		} else if (entity instanceof PowerUp) {
 			effects.add(((PowerUp)entity).getEffect());
 		} else if (entity instanceof Item) {
