@@ -29,10 +29,10 @@ public abstract class Effect
 	/*
 	 * Change the following player properties from input according to the effect
 	 */
-	public abstract float changeX(float x);
-	public abstract float changeY(float y);
-	public abstract float changeDX(float dx);
-	public abstract float changeDY(float dy);
-	public abstract float changeFriction(float friction);
-	public abstract int changeLives(int lives);
+	public float changeX(float x) { return x; };
+	public float changeY(float y) { return y; };
+	public float changeDX(float dx) { return dx; };
+	public float changeDY(float dy) { return dy; };
+	public float changeFriction(float friction) { return friction; };
+	public int changeLives(int lives) { return lives; };
 }

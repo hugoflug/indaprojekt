@@ -46,29 +46,4 @@ public class SpeedUpEffect extends Effect
 	{
 		return 0;
 	}
-
-	@Override
-	public float changeDX(float dx) 
-	{
-		return 0;
-	}
-
-	@Override
-	public float changeDY(float dy) 
-	{
-		return 0;
-	}
-
-	@Override
-	public float changeFriction(float friction) 
-	{
-		return 0;
-	}
-
-	@Override
-	public int changeLives(int lives) 
-	{
-		return 0;
-	}
-
 }
