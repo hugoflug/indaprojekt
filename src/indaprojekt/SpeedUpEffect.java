@@ -13,6 +13,8 @@ public class SpeedUpEffect extends Effect
 	private Expirer lifetime;
 	private boolean activated;
 	
+	private boolean apply, deapply;
+	
 	public SpeedUpEffect(float speedDiff, int millis)
 	{
 		super();
@@ -20,6 +22,8 @@ public class SpeedUpEffect extends Effect
 		this.speedDiff = speedDiff;
 		this.millis = millis;
 		activated = false;
+		apply = false;
+		deapply = false;
 	}
 
 	@Override
@@ -28,22 +32,26 @@ public class SpeedUpEffect extends Effect
 		if (!activated) {
 			activated = true;
 			lifetime = new Expirer(millis);
+			apply = true;
 		}
 		
 		if (lifetime.hasExpired()) {
-			remove = true;
+			deapply = true;
 		}
 	}
 
 	@Override
-	public float changeX(float x) 
+	public float changeSpeed(float speed) 
 	{
-		return 0;
-	}
-
-	@Override
-	public float changeY(float y) 
-	{
-		return 0;
+		if (apply) {
+			apply = false;
+			return speed + speedDiff;
+		} else if (deapply) {
+			deapply = false;
+			remove = true;
+			return speed - speedDiff;
+		} else {
+			return speed;
+		}
 	}
 }

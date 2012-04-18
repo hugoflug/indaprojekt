@@ -65,6 +65,7 @@ public class Player extends Mover
     	{
 	    	Iterator<Effect> iterator = effects.iterator();
 	    	while (iterator.hasNext()) {
+	    		System.out.println("effect!!");
 	    		Effect effect = iterator.next();
 				applyEffect(effect);
 				effect.doLogic();
@@ -143,8 +144,8 @@ public class Player extends Mover
 			
 		} else if (entity instanceof Projectile) {
 			lives--; 
-		} else if (entity instanceof SpeedUp) {
-			increaseSpeed(((SpeedUp) entity).getSpdDiff());
+	//	} else if (entity instanceof SpeedUp) {
+	//		increaseSpeed(((SpeedUp) entity).getSpdDiff());
 		} else if (entity instanceof PowerUp) {
 			effects.add(((PowerUp)entity).getEffect());
 		} else if (entity instanceof Item) {
@@ -223,6 +224,7 @@ public class Player extends Mover
 		y = effect.changeY(y);
 		dx = effect.changeDX(dx);
 		dy = effect.changeDY(dy);
+		speed = effect.changeSpeed(speed);
 		friction = effect.changeFriction(friction);
 		lives = effect.changeLives(lives);
 	}

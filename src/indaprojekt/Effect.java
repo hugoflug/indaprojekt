@@ -29,6 +29,7 @@ public abstract class Effect
 	/*
 	 * Change the following player properties from input according to the effect
 	 */
+	public float changeSpeed(float speed) { return speed; }
 	public float changeX(float x) { return x; };
 	public float changeY(float y) { return y; };
 	public float changeDX(float dx) { return dx; };
