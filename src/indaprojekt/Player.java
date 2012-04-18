@@ -7,6 +7,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 /**
  * Describes a player, i. e. a character that can be controlled using
@@ -23,6 +24,7 @@ public class Player extends Mover
 	private float dx, dy;
 	private float speed;
 	private float friction;
+	private Sound throwSound;
 	
 	//TEMP, should later take a bunch of animations as parameters
 	//instead of just one image
@@ -35,6 +37,7 @@ public class Player extends Mover
 		this.controls = controls;
 		lives = 5; //TEMP?
 		speed = 2; //TEMP?
+		throwSound = new Sound("res//sounds//gunfire.ogg");
 		dx = 0;
 		dy = 0;
 		friction = 1;
@@ -69,13 +72,15 @@ public class Player extends Mover
 				}
 			}
     	} if (input.isKeyPressed(controls.keyThrow)) {
-    		Image image = new Image("res//bomb.png");
+    		Image image = new Image("res//images//bomb.png");
     		
     		//TEMP
     		Animation anim = new Animation(new Image[]{image}, 1);
     		
     		float dx = direction.getNormalizedDX();
     		float dy = direction.getNormalizedDY(); 
+    		
+    		throwSound.play();
     		
     		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 32, 32);
     		projectile = new Projectile(projectileOriginX((float)projRect.getWidth()), 

@@ -45,7 +45,7 @@ public class Game extends BasicGame
 										Input.KEY_S,
 										Input.KEY_D,
 										Input.KEY_LCONTROL);
-		Image player1Image = new Image("res//player.png");
+		Image player1Image = new Image("res//images//player.png");
 		Map<Direction, Animation> animMap1 = new HashMap<Direction, Animation>();
 		animMap1.put(Direction.UP, new Animation(new Image[]{player1Image}, 1));
 		animMap1.put(Direction.UPRIGHT, new Animation(new Image[]{player1Image}, 1));
@@ -69,7 +69,7 @@ public class Game extends BasicGame
 						Input.KEY_DOWN,
 						Input.KEY_RIGHT,
 						Input.KEY_L);
-		Image player2Image = new Image("res//player2.png");
+		Image player2Image = new Image("res//images//player2.png");
 		Map<Direction, Animation> animMap2 = new HashMap<Direction, Animation>();
 		animMap2.put(Direction.UP, new Animation(new Image[]{player2Image}, 1));
 		animMap2.put(Direction.UPRIGHT, new Animation(new Image[]{player2Image}, 1));
@@ -84,9 +84,9 @@ public class Game extends BasicGame
 		Player p2 = new Player(150, 150, player2Controls, player2HitBox, animMap2);
 		players.add(p2);
 		entities.add(p2);
-		background = new Image("res//classroom.jpg");
+		background = new Image("res//images//classroom.jpg");
 		
-		Image obstacleImage = new Image("res//bomb2.png");
+		Image obstacleImage = new Image("res//images//bomb2.png");
 		Obstacle obstacle = new Obstacle(100, 100, new Rectangle2D.Float(0, 0, obstacleImage.getWidth(), obstacleImage.getHeight()), 
 		new Animation(new Image[]{obstacleImage}, 1));
 		obstacles.add(obstacle);
@@ -105,11 +105,11 @@ public class Game extends BasicGame
 		obstacles.add(topWall);
 		entities.add(topWall);
 		
-		Image itemImage = new Image("res//bomb2.png");
+		Image itemImage = new Image("res//images//bomb2.png");
 		Item item = new Item(itemImage, 250, 250, new Rectangle2D.Float(0, 0, 25, 25));
 		entities.add(item);
 		
-		Image spdUpImage = new Image("res//Speed.png");
+		Image spdUpImage = new Image("res//images//Speed.png");
 		SpeedUp spdUp = new SpeedUp(spdUpImage, 300, 300, new Rectangle2D.Float(0,0,25,25), 2);
 		entities.add(spdUp);
     }
