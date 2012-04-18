@@ -106,8 +106,12 @@ public class Player extends Mover
 	{
 		if (entity instanceof Projectile) {
 			lives--;
-		}	else if (entity instanceof Item) {
-			
+		} else if (entity instanceof Item) {
+			if (entity instanceof PowerUp) {
+				if (entity instanceof SpeedUp) {
+					increaseSpeed(((SpeedUp) entity).getSpdDiff());
+				}
+			}
 		} else {
 			moveBack();
 			dx = 0;
@@ -161,5 +165,12 @@ public class Player extends Mover
 			default:
 				return offsetHitBox.y;
 		}		
+	}
+	
+	/**
+	 * Increases the speed of the player.
+	 */
+	public void increaseSpeed(float increasedSpeed) {
+		this.speed += increasedSpeed;
 	}
 }
