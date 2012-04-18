@@ -85,6 +85,18 @@ public class Player extends Mover
     		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 32, 32);
     		projectile = new Projectile(projectileOriginX((float)projRect.getWidth()), 
     				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim);
+    	} if (input.isKeyPressed(Input.KEY_LSHIFT)) { //TEMP, should have a proper PlayerControls variable later
+    		Image image = new Image("res//images//bomb.png");
+    		
+    		//TEMP
+    		Animation anim = new Animation(new Image[]{image}, 1);
+    		
+    		float dx = direction.getNormalizedDX();
+    		float dy = direction.getNormalizedDY(); 
+    		
+    		Rectangle2D.Float bombRect = new Rectangle2D.Float(0, 0, 32, 32);
+    		projectile = new Bomb(projectileOriginX((float)bombRect.getWidth()), 
+    				projectileOriginY((float)bombRect.getWidth()), dx, dy, bombRect, anim);
     	}
 	}
 	
