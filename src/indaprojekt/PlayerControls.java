@@ -10,12 +10,14 @@ public class PlayerControls
 {	
 	public final Map<Direction, Integer> directionMap;
 	public final int keyThrow;
+	public final int keyBomb;
 	
 	public PlayerControls(int keyUp,
 						  int keyLeft,
 						  int keyDown,
 						  int keyRight,
-						  int keyThrow)
+						  int keyThrow,
+						  int keyBomb)
 	{
 		directionMap = new HashMap<Direction, Integer>();
 		directionMap.put(Direction.UP, keyUp);
@@ -23,6 +25,7 @@ public class PlayerControls
 		directionMap.put(Direction.RIGHT, keyRight);
 		directionMap.put(Direction.DOWN, keyDown);
 		this.keyThrow = keyThrow;
+		this.keyBomb = keyBomb;
 	}
 
 }

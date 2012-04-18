@@ -104,7 +104,7 @@ public class Player extends Mover
     		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 32, 32);
     		projectile = new Projectile(projectileOriginX((float)projRect.getWidth()), 
     				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim);
-    	} if (input.isKeyPressed(Input.KEY_LSHIFT)) { //TEMP, should have a proper PlayerControls variable later
+    	} if (input.isKeyPressed(controls.keyBomb)) { //TEMP, should have a proper PlayerControls variable later
     		Image image = new Image("res//images//bomb.png");
     		
     		//TEMP
@@ -167,6 +167,14 @@ public class Player extends Mover
 	public boolean isDead()
 	{
 		return lives <= 0;
+	}
+	
+	/**
+	 * @return	the amount of lives the player has
+	 */
+	public int getLives()
+	{
+		return lives;
 	}
 	
 	/**

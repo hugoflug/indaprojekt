@@ -26,6 +26,7 @@ public class Game extends BasicGame
 	private List<Projectile> projectiles;
 	private List<Obstacle> obstacles;
 	private List<Entity> entities;
+	private UserInterface ui;
 	private Input input;
 	private Image background;
 	
@@ -44,7 +45,8 @@ public class Game extends BasicGame
 										Input.KEY_A,
 										Input.KEY_S,
 										Input.KEY_D,
-										Input.KEY_LCONTROL);
+										Input.KEY_LCONTROL,
+										Input.KEY_LSHIFT);
 		Image player1Image = new Image("res//images//player.png");
 		Map<Direction, Animation> animMap1 = new HashMap<Direction, Animation>();
 		animMap1.put(Direction.UP, new Animation(new Image[]{player1Image}, 1));
@@ -68,7 +70,8 @@ public class Game extends BasicGame
 						Input.KEY_LEFT,
 						Input.KEY_DOWN,
 						Input.KEY_RIGHT,
-						Input.KEY_L);
+						Input.KEY_L,
+						Input.KEY_K);
 		Image player2Image = new Image("res//images//player2.png");
 		Map<Direction, Animation> animMap2 = new HashMap<Direction, Animation>();
 		animMap2.put(Direction.UP, new Animation(new Image[]{player2Image}, 1));
@@ -121,6 +124,10 @@ public class Game extends BasicGame
     	projectiles = new LinkedList<Projectile>();
     	obstacles = new ArrayList<Obstacle>();
     	entities = new LinkedList<Entity>();
+    	
+    	Image lifeImage = new Image("res//images//Speed.png");
+    	Image noLifeImage = new Image("res//images//bomb.png");
+    	ui = new UserInterface(0, 0, 550, 550, lifeImage, noLifeImage, 5, 5);
     	
     	setupEntities();
     	
@@ -181,6 +188,13 @@ public class Game extends BasicGame
     			entities.add(proj);
     		}
     	}
+    	
+    	//TEMP, makes the game crash when amount of players is not 2
+    	ui.setPlayer1Lives(players.get(0).getLives());
+    	
+    	if (players.size() >= 2) {
+    		ui.setPlayer2Lives(players.get(1).getLives());
+    	}
     }
  
     @Override
@@ -191,6 +205,8 @@ public class Game extends BasicGame
     	for (Entity entity : entities) {
     		entity.draw();
     	}
+    	
+    	ui.draw();
     }
  
     public static void main(String[] args) throws SlickException
