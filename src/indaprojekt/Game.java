@@ -123,10 +123,6 @@ public class Game extends BasicGame
     @Override
     public void update(GameContainer gc, int delta) throws SlickException     
     {
-//    	for (Player player : players) {
-//    		player.doLogic(input, delta);
-//    	} 
-    	
     	for (Entity entity : entities) {
     		entity.doLogic(input, delta);
     	}
@@ -158,10 +154,6 @@ public class Game extends BasicGame
     			}
     		}
     	}
-    	
-//    	for (Projectile proj : projectiles) {
-//    		proj.doLogic(delta);
-//    	}
     	
     	{
 	    	Iterator<Entity> iterator = entities.iterator();

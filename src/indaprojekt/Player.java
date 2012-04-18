@@ -77,7 +77,7 @@ public class Player extends Mover
     		float dx = direction.getNormalizedDX();
     		float dy = direction.getNormalizedDY(); 
     		
-    		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 10, 10);
+    		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 32, 32);
     		projectile = new Projectile(projectileOriginX((float)projRect.getWidth()), 
     				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim);
     	}
