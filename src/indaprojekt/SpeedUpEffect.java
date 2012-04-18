@@ -4,6 +4,7 @@ package indaprojekt;
  * An effect speeding up a Player a certain amount
  * for a certain time
  *
+ *	(Not yet functional - this turned out to be a hard way to do things...)
  */
 public class SpeedUpEffect extends Effect
 {
