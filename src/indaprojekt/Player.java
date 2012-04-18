@@ -1,6 +1,9 @@
 package indaprojekt;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.newdawn.slick.Animation;
@@ -17,6 +20,7 @@ public class Player extends Mover
 {
 	private Animation activeAnimation;
 	private Map<Direction, Animation> animations;
+	private List<Effect> effects;
 	private PlayerControls controls;
 	private Projectile projectile;
 	private Direction direction;
@@ -28,11 +32,13 @@ public class Player extends Mover
 	
 	//TEMP, should later take a bunch of animations as parameters
 	//instead of just one image
-	public Player(float x, float y, PlayerControls controls, Rectangle2D.Float hitBox, Map<Direction, Animation> animations) throws SlickException
+	public Player(float x, float y, PlayerControls controls, Rectangle2D.Float hitBox, 
+						Map<Direction, Animation> animations) throws SlickException
 	{
 		super(x, y, hitBox);
 		this.animations = animations;
 		activeAnimation = animations.get(Direction.DOWN);
+		effects = new LinkedList<Effect>();
 		setDirection(Direction.DOWN);
 		this.controls = controls;
 		lives = 5; //TEMP?
@@ -55,6 +61,18 @@ public class Player extends Mover
 	public void doLogic(Input input, int delta) throws SlickException 
 	{	
 		super.doLogic(input, delta);
+		
+    	{
+	    	Iterator<Effect> iterator = effects.iterator();
+	    	while (iterator.hasNext()) {
+	    		Effect effect = iterator.next();
+				applyEffect(effect);
+				effect.doLogic();
+	    		if (effect.shouldBeRemoved()) {
+	    			iterator.remove();
+	    		}
+	    	}
+    	}
 		
 		move(dx, dy);
 		
@@ -124,9 +142,11 @@ public class Player extends Mover
 		if (entity instanceof Bomb) {
 			
 		} else if (entity instanceof Projectile) {
-			lives--;
+			lives--; 
 		} else if (entity instanceof SpeedUp) {
 			increaseSpeed(((SpeedUp) entity).getSpdDiff());
+		} else if (entity instanceof PowerUp) {
+			effects.add(((PowerUp)entity).getEffect());
 		} else if (entity instanceof Item) {
 
 		} else {
@@ -192,5 +212,18 @@ public class Player extends Mover
 	public void increaseSpeed(float increasedSpeed) 
 	{
 		this.speed += increasedSpeed;
+	}
+	
+	/**
+	 * Applies a certain effect to the player
+	 */
+	private void applyEffect(Effect effect)
+	{
+		x = effect.changeX(x);
+		y = effect.changeY(y);
+		dx = effect.changeDX(dx);
+		dy = effect.changeDY(dy);
+		friction = effect.changeFriction(friction);
+		lives = effect.changeLives(lives);
 	}
 }

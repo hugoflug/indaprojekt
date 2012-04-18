@@ -21,8 +21,8 @@ public class Bomb extends Projectile
 		sound = new Sound("res//sounds//bomb.ogg");
 		friction = 0.15f;
 	}
-	
 	public void doLogic(Input input, int delta) throws SlickException 
+	
 	{	
 		super.doLogic(input, delta);
 		
