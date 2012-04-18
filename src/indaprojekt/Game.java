@@ -90,7 +90,7 @@ public class Game extends BasicGame
     	entities.add(p2);
     	background = new Image("res//classroom.jpg");
     	
-    	Image obstacleImage = new Image("res//bomb.png");
+    	Image obstacleImage = new Image("res//bomb2.png");
     	Obstacle obstacle = new Obstacle(100, 100, new Rectangle2D.Float(0, 0, obstacleImage.getWidth(), obstacleImage.getHeight()), 
     			new Animation(new Image[]{obstacleImage}, 1));
     	obstacles.add(obstacle);
@@ -109,7 +109,7 @@ public class Game extends BasicGame
     	obstacles.add(topWall);
     	entities.add(topWall);
     	
-    	Image itemImage = new Image("res//bomb.png");
+    	Image itemImage = new Image("res//bomb2.png");
     	Item item = new Item(itemImage, 250, 250, new Rectangle2D.Float(0, 0, 25, 25));
     	entities.add(item);
     	
