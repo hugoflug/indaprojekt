@@ -91,8 +91,8 @@ public class Player extends Mover
     		//TEMP
     		Animation anim = new Animation(new Image[]{image}, 1);
     		
-    		float dx = direction.getNormalizedDX();
-    		float dy = direction.getNormalizedDY(); 
+    		float dx = direction.getNormalizedDX()*1.5f;
+    		float dy = direction.getNormalizedDY()*1.5f; 
     		
     		Rectangle2D.Float bombRect = new Rectangle2D.Float(0, 0, 32, 32);
     		projectile = new Bomb(projectileOriginX((float)bombRect.getWidth()), 

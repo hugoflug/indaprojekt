@@ -5,18 +5,21 @@ import java.awt.geom.Rectangle2D.Float;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 public class Bomb extends Projectile 
 {
 	private Expirer lifetime;
 	private float friction;
+	private Sound sound;
 	
 	public Bomb(float x, float y, float dx, float dy, Float hitBox,
-			Animation animation) 
+			Animation animation) throws SlickException 
 	{
 		super(x, y, dx, dy, hitBox, animation);
 		lifetime = new Expirer(1000);
-		friction = 0.2f;
+		sound = new Sound("res//sounds//bomb.ogg");
+		friction = 0.15f;
 	}
 	
 	public void doLogic(Input input, int delta) throws SlickException 
@@ -28,6 +31,7 @@ public class Bomb extends Projectile
 		
 		if (lifetime.hasExpired()) {
 			//TODO: explode bomb
+			sound.play();
 			remove = true;
 		}
 	}
