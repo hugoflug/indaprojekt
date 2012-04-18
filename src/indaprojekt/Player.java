@@ -106,12 +106,10 @@ public class Player extends Mover
 	{
 		if (entity instanceof Projectile) {
 			lives--;
+		} else if (entity instanceof SpeedUp) {
+			increaseSpeed(((SpeedUp) entity).getSpdDiff());
 		} else if (entity instanceof Item) {
-			if (entity instanceof PowerUp) {
-				if (entity instanceof SpeedUp) {
-					increaseSpeed(((SpeedUp) entity).getSpdDiff());
-				}
-			}
+
 		} else {
 			moveBack();
 			dx = 0;
