@@ -121,7 +121,9 @@ public class Player extends Mover
 	@Override
 	public void handleCollision(Entity entity) 
 	{
-		if (entity instanceof Projectile) {
+		if (entity instanceof Bomb) {
+			
+		} else if (entity instanceof Projectile) {
 			lives--;
 		} else if (entity instanceof SpeedUp) {
 			increaseSpeed(((SpeedUp) entity).getSpdDiff());
