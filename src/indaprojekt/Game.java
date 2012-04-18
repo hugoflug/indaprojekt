@@ -123,9 +123,13 @@ public class Game extends BasicGame
     @Override
     public void update(GameContainer gc, int delta) throws SlickException     
     {
-    	for (Player player : players) {
-    		player.doLogic(input, delta);
-    	} 
+//    	for (Player player : players) {
+//    		player.doLogic(input, delta);
+//    	} 
+    	
+    	for (Entity entity : entities) {
+    		entity.doLogic(input, delta);
+    	}
     	
     	{
 	    	Iterator<Player> iterator = players.iterator();
@@ -155,9 +159,9 @@ public class Game extends BasicGame
     		}
     	}
     	
-    	for (Projectile proj : projectiles) {
-    		proj.doLogic(delta);
-    	}
+//    	for (Projectile proj : projectiles) {
+//    		proj.doLogic(delta);
+//    	}
     	
     	{
 	    	Iterator<Entity> iterator = entities.iterator();
@@ -188,15 +192,6 @@ public class Game extends BasicGame
     	for (Entity entity : entities) {
     		entity.draw();
     	}
-//    	for (Player player : players) {
-//    		player.draw();
-//    	}
-//    	for (Projectile proj : projectiles) {
-//    		proj.draw();
-//    	}
-//    	for (Obstacle obs : obstacles) {
-//    		obs.draw();
-//    	}
     }
  
     public static void main(String[] args) throws SlickException

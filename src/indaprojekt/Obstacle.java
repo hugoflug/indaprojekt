@@ -3,6 +3,7 @@ package indaprojekt;
 import java.awt.geom.Rectangle2D;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 /**
@@ -33,6 +34,12 @@ public class Obstacle extends Entity
 	
 	@Override
 	public void handleCollision(Entity entity) 
+	{
+		
+	}
+
+	@Override
+	public void doLogic(Input input, int delta) throws SlickException 
 	{
 		
 	}

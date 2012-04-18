@@ -3,6 +3,7 @@ package indaprojekt;
 import java.awt.geom.Rectangle2D;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class Projectile extends Mover
@@ -25,9 +26,12 @@ public class Projectile extends Mover
 	
 	/**
 	 * Does internal logic things, to be called each update
+	 * @param input		a reference to an Input object, describing input
+	 * @throws SlickException
 	 */
-	public void doLogic(int delta)
-	{
+	public void doLogic(Input input, int delta) throws SlickException 
+	{	
+		super.doLogic(input, delta);
 		move(dx*delta, dy*delta);
 	}
 

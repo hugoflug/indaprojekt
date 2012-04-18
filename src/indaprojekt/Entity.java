@@ -2,6 +2,7 @@ package indaprojekt;
 
 import java.awt.geom.Rectangle2D;
 
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 /**
@@ -42,6 +43,13 @@ public abstract class Entity
 	{
 		return this.offsetHitBox.intersects(entity.offsetHitBox);
 	}
+	
+	/**
+	 * Does any internal logic the entity needs to do
+	 * @param input		an Input holding the current input state
+	 * @param delta		time, in ms, since last update
+	 */
+	public abstract void doLogic(Input input, int delta) throws SlickException;
 	
 	/**
 	 * @return	whether this entity should be removed from the game

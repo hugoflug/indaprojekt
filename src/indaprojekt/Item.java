@@ -4,6 +4,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Float;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 /**
@@ -38,6 +39,12 @@ public class Item extends Entity
 	public boolean shouldBeRemoved()
 	{
 		return remove;
+	}
+
+	@Override
+	public void doLogic(Input input, int delta) 
+	{
+		
 	}
 
 }

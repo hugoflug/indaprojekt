@@ -132,12 +132,13 @@ public class Player extends Mover
 	}
 	
 	/**
-	 * Calculates the appropriate coordinates for the projectile to start at, with according to the projectiles and the player's size.
+	 * Calculates the appropriate coordinates for the projectile to start at, according to the projectiles and the player's size.
 	 * 
 	 * @param prjWidth width of the projectile
 	 * @return x coordinates for the projectiles start position
 	 */
-	private float projectileOriginX(float prjWidth) {
+	private float projectileOriginX(float prjWidth) 
+	{
 		switch (direction) {
 			case RIGHT:
 				return offsetHitBox.x + (float) offsetHitBox.getWidth()+1;
@@ -149,12 +150,13 @@ public class Player extends Mover
 	}
 	
 	/**
-	 * Calculates the appropriate coordinates for the projectile to start at, with according to the projectiles and the player's size.
+	 * Calculates the appropriate coordinates for the projectile to start at, according to the projectiles and the player's size.
 	 * 
 	 * @param prjWidth width of the projectile
 	 * @return y coordinates for the projectiles start position
 	 */
-	private float projectileOriginY(float prjWidth) {
+	private float projectileOriginY(float prjWidth) 
+	{
 		switch (direction) {
 			case UP:
 				return offsetHitBox.y - prjWidth - 1;
@@ -168,7 +170,8 @@ public class Player extends Mover
 	/**
 	 * Increases the speed of the player.
 	 */
-	public void increaseSpeed(float increasedSpeed) {
+	public void increaseSpeed(float increasedSpeed) 
+	{
 		this.speed += increasedSpeed;
 	}
 }
