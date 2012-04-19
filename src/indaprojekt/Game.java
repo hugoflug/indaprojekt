@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -47,18 +48,18 @@ public class Game extends BasicGame
 										Input.KEY_D,
 										Input.KEY_LCONTROL,
 										Input.KEY_LSHIFT);
-		Image player1Image = new Image("res//images//player.png");
+		
+		Color transp = Color.white;
 		Map<Direction, Animation> animMap1 = new HashMap<Direction, Animation>();
-		animMap1.put(Direction.UP, new Animation(new Image[]{new Image("res//images//up1.png"),new Image("res//images//up2.png") }, 1));
-		animMap1.put(Direction.UPRIGHT, new Animation(new Image[]{new Image("res//images//up1.png")}, 1));
-		animMap1.put(Direction.RIGHT, new Animation(new Image[]{new Image("res//images//right1.png"),new Image("res//images//right2.png")}, 1));
-		animMap1.put(Direction.DOWNRIGHT, new Animation(new Image[]{new Image("res//images//down1.png")}, 1));
-		animMap1.put(Direction.DOWN, new Animation(new Image[]{new Image("res//images//down1.png"), new Image("res//images//down2.png")}, 1));
-		animMap1.put(Direction.DOWNLEFT, new Animation(new Image[]{new Image("res//images//up1.png")}, 1));
-		animMap1.put(Direction.LEFT, new Animation(new Image[]{new Image("res//images//left1.png"), new Image("res//images//left2.png")}, 1));
-		animMap1.put(Direction.UPLEFT, new Animation(new Image[]{new Image("res//images//up1.png")}, 1));
-		Rectangle2D.Float player1HitBox = new Rectangle2D.Float(0f, 0f, 
-		player1Image.getWidth()/10f, player1Image.getHeight()/10f);
+		animMap1.put(Direction.UP, new Animation(new Image[]{new Image("res//images//up1.png",transp),new Image("res//images//up2.png",transp) }, 1));
+		animMap1.put(Direction.UPRIGHT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
+		animMap1.put(Direction.RIGHT, new Animation(new Image[]{new Image("res//images//right1.png",transp),new Image("res//images//right2.png",transp)}, 1));
+		animMap1.put(Direction.DOWNRIGHT, new Animation(new Image[]{new Image("res//images//down1.png",transp)}, 1));
+		animMap1.put(Direction.DOWN, new Animation(new Image[]{new Image("res//images//down1.png",transp), new Image("res//images//down2.png",transp)}, 1));
+		animMap1.put(Direction.DOWNLEFT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
+		animMap1.put(Direction.LEFT, new Animation(new Image[]{new Image("res//images//left1.png",transp), new Image("res//images//left2.png",transp)}, 1));
+		animMap1.put(Direction.UPLEFT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
+		Rectangle2D.Float player1HitBox = new Rectangle2D.Float(0f, 0f, 48, 48);
 		Player p1 = new Player(50, 50, player1Controls, player1HitBox, animMap1);
 		players.add(p1);
 		entities.add(p1);
@@ -71,18 +72,16 @@ public class Game extends BasicGame
 						Input.KEY_RIGHT,
 						Input.KEY_L,
 						Input.KEY_K);
-		Image player2Image = new Image("res//images//player2.png");
 		Map<Direction, Animation> animMap2 = new HashMap<Direction, Animation>();
-		animMap2.put(Direction.UP, new Animation(new Image[]{new Image("res//images//up1.png"),new Image("res//images//up2.png") }, 1));
-		animMap2.put(Direction.UPRIGHT, new Animation(new Image[]{new Image("res//images//up1.png")}, 1));
-		animMap2.put(Direction.RIGHT, new Animation(new Image[]{new Image("res//images//right1.png"),new Image("res//images//right2.png")}, 1));
-		animMap2.put(Direction.DOWNRIGHT, new Animation(new Image[]{new Image("res//images//down1.png")}, 1));
-		animMap2.put(Direction.DOWN, new Animation(new Image[]{new Image("res//images//down1.png"), new Image("res//images//down2.png")}, 1));
-		animMap2.put(Direction.DOWNLEFT, new Animation(new Image[]{new Image("res//images//up1.png")}, 1));
-		animMap2.put(Direction.LEFT, new Animation(new Image[]{new Image("res//images//left1.png"), new Image("res//images//left2.png")}, 1));
-		animMap2.put(Direction.UPLEFT, new Animation(new Image[]{new Image("res//images//up1.png")}, 1));
-		Rectangle2D.Float player2HitBox = new Rectangle2D.Float(0f, 0f, 
-		player2Image.getWidth()/10f, player2Image.getHeight()/10f);
+		animMap2.put(Direction.UP, new Animation(new Image[]{new Image("res//images//up1.png",transp),new Image("res//images//up2.png",transp) }, 1));
+		animMap2.put(Direction.UPRIGHT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
+		animMap2.put(Direction.RIGHT, new Animation(new Image[]{new Image("res//images//right1.png",transp),new Image("res//images//right2.png",transp)}, 1));
+		animMap2.put(Direction.DOWNRIGHT, new Animation(new Image[]{new Image("res//images//down1.png",transp)}, 1));
+		animMap2.put(Direction.DOWN, new Animation(new Image[]{new Image("res//images//down1.png",transp), new Image("res//images//down2.png",transp)}, 1));
+		animMap2.put(Direction.DOWNLEFT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
+		animMap2.put(Direction.LEFT, new Animation(new Image[]{new Image("res//images//left1.png",transp), new Image("res//images//left2.png",transp)}, 1));
+		animMap2.put(Direction.UPLEFT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
+		Rectangle2D.Float player2HitBox = new Rectangle2D.Float(0f, 0f, 48, 48);
 		Player p2 = new Player(150, 150, player2Controls, player2HitBox, animMap2);
 		players.add(p2);
 		entities.add(p2);
