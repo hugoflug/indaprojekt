@@ -54,7 +54,7 @@ public class Player extends Mover
 	{
 		//TEMP, remove getCurrentFrame() later
 		//only there to be able to use scale
-		activeAnimation.getCurrentFrame().draw(x, y, 0.1f);
+		activeAnimation.draw(x, y);
 	}
 
 	@Override
