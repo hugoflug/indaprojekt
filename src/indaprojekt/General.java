@@ -12,9 +12,17 @@ public class General
 	public static float towardsZero(float a, float b)
 	{
 		if (a < 0) {
-			return a + b;
+			if (a + b > 0) {
+				return 0;
+			} else {
+				return a + b;
+			}
 		} else if (a > 0) {
-			return a - b;
+			if (a - b < 0) {
+				return 0;
+			} else {
+				return a - b;
+			}
 		} else {
 			return a;
 		}

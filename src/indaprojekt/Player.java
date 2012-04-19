@@ -1,12 +1,16 @@
 package indaprojekt;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 /**
  * Describes a player, i. e. a character that can be controlled using
@@ -16,6 +20,7 @@ public class Player extends Mover
 {
 	private Animation activeAnimation;
 	private Map<Direction, Animation> animations;
+	private List<Effect> effects;
 	private PlayerControls controls;
 	private Projectile projectile;
 	private Direction direction;
@@ -23,18 +28,22 @@ public class Player extends Mover
 	private float dx, dy;
 	private float speed;
 	private float friction;
+	private Sound throwSound;
 	
 	//TEMP, should later take a bunch of animations as parameters
 	//instead of just one image
-	public Player(float x, float y, PlayerControls controls, Rectangle2D.Float hitBox, Map<Direction, Animation> animations) throws SlickException
+	public Player(float x, float y, PlayerControls controls, Rectangle2D.Float hitBox, 
+						Map<Direction, Animation> animations) throws SlickException
 	{
 		super(x, y, hitBox);
 		this.animations = animations;
 		activeAnimation = animations.get(Direction.DOWN);
+		effects = new LinkedList<Effect>();
 		setDirection(Direction.DOWN);
 		this.controls = controls;
 		lives = 5; //TEMP?
 		speed = 2; //TEMP?
+		throwSound = new Sound("res//sounds//gunfire.ogg");
 		dx = 0;
 		dy = 0;
 		friction = 1f;
@@ -53,6 +62,19 @@ public class Player extends Mover
 	{	
 		super.doLogic(input, delta);
 		
+    	{
+	    	Iterator<Effect> iterator = effects.iterator();
+	    	while (iterator.hasNext()) {
+	    		System.out.println("effect!!");
+	    		Effect effect = iterator.next();
+				applyEffect(effect);
+				effect.doLogic();
+	    		if (effect.shouldBeRemoved()) {
+	    			iterator.remove();
+	    		}
+	    	}
+    	}
+		
 		move(dx, dy);
 		
 		dx = General.towardsZero(dx, friction);
@@ -69,17 +91,32 @@ public class Player extends Mover
 				}
 			}
     	} if (input.isKeyPressed(controls.keyThrow)) {
-    		Image image = new Image("res//bomb.png");
+    		Image image = new Image("res//images//bomb.png");
     		
     		//TEMP
     		Animation anim = new Animation(new Image[]{image}, 1);
     		
     		float dx = direction.getNormalizedDX();
     		float dy = direction.getNormalizedDY(); 
-    	
-    		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 10, 10);
+    		
+    		throwSound.play();
+    		
+    		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 32, 32);
+
     		projectile = new Projectile(projectileOriginX((float)projRect.getWidth()), 
     				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim);
+    	} if (input.isKeyPressed(controls.keyBomb)) { //TEMP, should have a proper PlayerControls variable later
+    		Image image = new Image("res//images//bomb.png");
+    		
+    		//TEMP
+    		Animation anim = new Animation(new Image[]{image}, 1);
+    		
+    		float dx = direction.getNormalizedDX()*1.5f;
+    		float dy = direction.getNormalizedDY()*1.5f; 
+    		
+    		Rectangle2D.Float bombRect = new Rectangle2D.Float(0, 0, 32, 32);
+    		projectile = new Bomb(projectileOriginX((float)bombRect.getWidth()), 
+    				projectileOriginY((float)bombRect.getWidth()), dx, dy, bombRect, anim);
     	}
 	}
 	
@@ -104,10 +141,14 @@ public class Player extends Mover
 	@Override
 	public void handleCollision(Entity entity) 
 	{
-		if (entity instanceof Projectile) {
-			lives--;
-		}	else if (entity instanceof Item) {
+		if (entity instanceof Bomb) {
 			
+		} else if (entity instanceof Projectile) {
+			lives--; 
+		} else if (entity instanceof PowerUp) {
+			effects.add(((PowerUp)entity).getEffect());
+		} else if (entity instanceof Item) {
+
 		} else {
 			moveBack();
 			dx = 0;
@@ -130,12 +171,21 @@ public class Player extends Mover
 	}
 	
 	/**
-	 * Calculates the appropriate coordinates for the projectile to start at, with according to the projectiles and the player's size.
+	 * @return	the amount of lives the player has
+	 */
+	public int getLives()
+	{
+		return lives;
+	}
+	
+	/**
+	 * Calculates the appropriate coordinates for the projectile to start at, according to the projectiles and the player's size.
 	 * 
 	 * @param prjWidth width of the projectile
 	 * @return x coordinates for the projectiles start position
 	 */
-	private float projectileOriginX(float prjWidth) {
+	private float projectileOriginX(float prjWidth) 
+	{
 		switch (direction) {
 			case RIGHT:
 				return offsetHitBox.x + (float) offsetHitBox.getWidth()+1;
@@ -147,12 +197,13 @@ public class Player extends Mover
 	}
 	
 	/**
-	 * Calculates the appropriate coordinates for the projectile to start at, with according to the projectiles and the player's size.
+	 * Calculates the appropriate coordinates for the projectile to start at, according to the projectiles and the player's size.
 	 * 
 	 * @param prjWidth width of the projectile
 	 * @return y coordinates for the projectiles start position
 	 */
-	private float projectileOriginY(float prjWidth) {
+	private float projectileOriginY(float prjWidth) 
+	{
 		switch (direction) {
 			case UP:
 				return offsetHitBox.y - prjWidth - 1;
@@ -161,5 +212,27 @@ public class Player extends Mover
 			default:
 				return offsetHitBox.y;
 		}		
+	}
+	
+	/**
+	 * Increases the speed of the player.
+	 */
+	public void increaseSpeed(float increasedSpeed) 
+	{
+		this.speed += increasedSpeed;
+	}
+	
+	/**
+	 * Applies a certain effect to the player
+	 */
+	private void applyEffect(Effect effect)
+	{
+		x = effect.changeX(x);
+		y = effect.changeY(y);
+		dx = effect.changeDX(dx);
+		dy = effect.changeDY(dy);
+		speed = effect.changeSpeed(speed);
+		friction = effect.changeFriction(friction);
+		lives = effect.changeLives(lives);
 	}
 }

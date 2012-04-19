@@ -3,13 +3,14 @@ package indaprojekt;
 import java.awt.geom.Rectangle2D;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class Projectile extends Mover
 {
 	private Animation animation;
-	private float dx, dy;
-	private boolean remove;
+	protected float dx, dy;
+	protected boolean remove;
 
 	public Projectile(float x, float y, float dx, float dy, 
 						Rectangle2D.Float hitBox, Animation animation) 
@@ -23,11 +24,10 @@ public class Projectile extends Mover
 		remove = false;
 	}
 	
-	/**
-	 * Does internal logic things, to be called each update
-	 */
-	public void doLogic(int delta)
-	{
+	@Override
+	public void doLogic(Input input, int delta) throws SlickException 
+	{	
+		super.doLogic(input, delta);
 		move(dx*delta, dy*delta);
 	}
 
@@ -48,5 +48,4 @@ public class Projectile extends Mover
 	{
 		remove = true;
 	}
-
 }
