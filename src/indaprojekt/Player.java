@@ -29,6 +29,7 @@ public class Player extends Mover
 	private float speed;
 	private float friction;
 	private Sound throwSound;
+	private Sound hitSound;
 	private Sound deadSound;
 	
 	//TEMP, should later take a bunch of animations as parameters
@@ -45,6 +46,7 @@ public class Player extends Mover
 		lives = 5; //TEMP?
 		speed = 1.5f; //TEMP?
 		throwSound = new Sound("res//sounds//gunfire.ogg");
+		hitSound = new Sound("res//sounds//hitSound.ogg");
 		deadSound = new Sound("res//sounds//Dead.ogg");
 		dx = 0;
 		dy = 0;
@@ -153,7 +155,7 @@ public class Player extends Mover
 			lives -= 2;
 	    } else if (entity instanceof Projectile) {
 			lives--;
-			deadSound.play();
+			hitSound.play();
 			
 		} else if (entity instanceof PowerUp) {
 			effects.add(((PowerUp)entity).getEffect());
