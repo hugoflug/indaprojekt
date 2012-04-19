@@ -143,7 +143,7 @@ public class Game extends BasicGame
     	obstacles = new ArrayList<Obstacle>();
     	entities = new LinkedList<Entity>();
     	
-    	Image lifeImage = new Image("res//images//Speed.png");
+    	Image lifeImage = new Image("res//images//BlueHeart.png");
     	Image noLifeImage = new Image("res//images//brokenHeart.png");
     	ui = new UserInterface(0, 0, gc.getWidth() - 250, gc.getHeight() - 50, lifeImage, noLifeImage, 5, 5);
     	
