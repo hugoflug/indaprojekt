@@ -143,7 +143,7 @@ public class Game extends BasicGame
     	
     	Image lifeImage = new Image("res//images//BlueHeart.png");
     	Image noLifeImage = new Image("res//images//brokenHeart.png");
-    	ui = new UserInterface(0, 0, gc.getWidth() - 250, gc.getHeight() - 50, lifeImage, noLifeImage, 5, 5);
+    	ui = new UserInterface(55, 55, gc.getWidth() - 235, gc.getHeight() - 87, lifeImage, noLifeImage, 5, 5);
     	
     	setupEntities(gc);
     	
