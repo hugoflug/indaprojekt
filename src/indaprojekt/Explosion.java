@@ -41,7 +41,7 @@ public class Explosion extends Entity
 	@Override
 	public void handleCollision(Entity entity) 
 	{
-		
+
 	}
 
 	@Override
