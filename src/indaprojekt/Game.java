@@ -141,9 +141,14 @@ public class Game extends BasicGame
     	obstacles = new ArrayList<Obstacle>();
     	entities = new LinkedList<Entity>();
     	
-    	Image lifeImage = new Image("res//images//BlueHeart.png");
+    	Image lifeImage1 = new Image("res//images//BlueHeart.png");
+    	Image lifeImage2 = new Image("res//images//OrangeHeart.png");
     	Image noLifeImage = new Image("res//images//brokenHeart.png");
-    	ui = new UserInterface(0, 0, gc.getWidth() - 250, gc.getHeight() - 50, lifeImage, noLifeImage, 5, 5);
+    	ui = new UserInterface(0, 0, gc.getWidth() - 250, gc.getHeight() - 50, 
+    								lifeImage1,
+    								noLifeImage,
+    								lifeImage2,
+    								noLifeImage, 5, 5);
     	
     	setupEntities(gc);
     	
