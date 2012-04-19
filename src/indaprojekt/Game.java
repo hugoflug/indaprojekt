@@ -51,13 +51,13 @@ public class Game extends BasicGame
 		
 		Color transp = Color.white;
 		Map<Direction, Animation> animMap1 = new HashMap<Direction, Animation>();
-		animMap1.put(Direction.UP, new Animation(new Image[]{new Image("res//images//up1.png",transp),new Image("res//images//up2.png",transp) }, 1));
+		animMap1.put(Direction.UP, new Animation(new Image[]{new Image("res//images//up1.png",transp),new Image("res//images//up2.png",transp) }, 200));
 		animMap1.put(Direction.UPRIGHT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
-		animMap1.put(Direction.RIGHT, new Animation(new Image[]{new Image("res//images//right1.png",transp),new Image("res//images//right2.png",transp)}, 1));
+		animMap1.put(Direction.RIGHT, new Animation(new Image[]{new Image("res//images//right1.png",transp),new Image("res//images//right2.png",transp)}, 200));
 		animMap1.put(Direction.DOWNRIGHT, new Animation(new Image[]{new Image("res//images//down1.png",transp)}, 1));
-		animMap1.put(Direction.DOWN, new Animation(new Image[]{new Image("res//images//down1.png",transp), new Image("res//images//down2.png",transp)}, 1));
+		animMap1.put(Direction.DOWN, new Animation(new Image[]{new Image("res//images//down1.png",transp), new Image("res//images//down2.png",transp)}, 200));
 		animMap1.put(Direction.DOWNLEFT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
-		animMap1.put(Direction.LEFT, new Animation(new Image[]{new Image("res//images//left1.png",transp), new Image("res//images//left2.png",transp)}, 1));
+		animMap1.put(Direction.LEFT, new Animation(new Image[]{new Image("res//images//left1.png",transp), new Image("res//images//left2.png",transp)}, 200));
 		animMap1.put(Direction.UPLEFT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
 		Rectangle2D.Float player1HitBox = new Rectangle2D.Float(0f, 0f, 48, 48);
 		Player p1 = new Player(50, 50, player1Controls, player1HitBox, animMap1);
@@ -73,13 +73,13 @@ public class Game extends BasicGame
 						Input.KEY_L,
 						Input.KEY_K);
 		Map<Direction, Animation> animMap2 = new HashMap<Direction, Animation>();
-		animMap2.put(Direction.UP, new Animation(new Image[]{new Image("res//images//up1.png",transp),new Image("res//images//up2.png",transp) }, 1));
+		animMap2.put(Direction.UP, new Animation(new Image[]{new Image("res//images//up1.png",transp),new Image("res//images//up2.png",transp) }, 200));
 		animMap2.put(Direction.UPRIGHT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
-		animMap2.put(Direction.RIGHT, new Animation(new Image[]{new Image("res//images//right1.png",transp),new Image("res//images//right2.png",transp)}, 1));
+		animMap2.put(Direction.RIGHT, new Animation(new Image[]{new Image("res//images//right1.png",transp),new Image("res//images//right2.png",transp)}, 200));
 		animMap2.put(Direction.DOWNRIGHT, new Animation(new Image[]{new Image("res//images//down1.png",transp)}, 1));
-		animMap2.put(Direction.DOWN, new Animation(new Image[]{new Image("res//images//down1.png",transp), new Image("res//images//down2.png",transp)}, 1));
+		animMap2.put(Direction.DOWN, new Animation(new Image[]{new Image("res//images//down1.png",transp), new Image("res//images//down2.png",transp)}, 200));
 		animMap2.put(Direction.DOWNLEFT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
-		animMap2.put(Direction.LEFT, new Animation(new Image[]{new Image("res//images//left1.png",transp), new Image("res//images//left2.png",transp)}, 1));
+		animMap2.put(Direction.LEFT, new Animation(new Image[]{new Image("res//images//left1.png",transp), new Image("res//images//left2.png",transp)}, 200));
 		animMap2.put(Direction.UPLEFT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
 		Rectangle2D.Float player2HitBox = new Rectangle2D.Float(0f, 0f, 48, 48);
 		Player p2 = new Player(150, 150, player2Controls, player2HitBox, animMap2);
