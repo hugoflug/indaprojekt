@@ -38,7 +38,7 @@ public class Game extends BasicGame
     /**
      * Sets up and adds all the entities of the map to the game
      */
-    private void setupEntities() throws SlickException
+    private void setupEntities(GameContainer container) throws SlickException
     {	
 		PlayerControls player1Controls = new PlayerControls(
 										Input.KEY_W,
@@ -62,7 +62,6 @@ public class Game extends BasicGame
 		Player p1 = new Player(50, 50, player1Controls, player1HitBox, animMap1);
 		players.add(p1);
 		entities.add(p1);
-		
 		
 		//TEMP
 		PlayerControls player2Controls = new PlayerControls(
@@ -89,24 +88,43 @@ public class Game extends BasicGame
 		entities.add(p2);
 		background = new Image("res//images//classroom.jpg");
 		
-		Image obstacleImage = new Image("res//images//bomb2.png");
+		Image obstacleImage = new Image("res//images//isbit.png");
 		Obstacle obstacle = new Obstacle(100, 100, new Rectangle2D.Float(0, 0, obstacleImage.getWidth(), obstacleImage.getHeight()), 
 		new Animation(new Image[]{obstacleImage}, 1));
 		obstacles.add(obstacle);
 		entities.add(obstacle);
 		
-		Obstacle leftWall = new Obstacle(0, 0, new Rectangle2D.Float(0, 0, 50, 600), new Animation(new Image[]{obstacleImage}, 1));
-		Obstacle rightWall = new Obstacle(750, 0, new Rectangle2D.Float(0, 0, 50, 600), new Animation(new Image[]{obstacleImage}, 1));
-		Obstacle bottomWall = new Obstacle(0, 550, new Rectangle2D.Float(0, 0, 800, 50), new Animation(new Image[]{obstacleImage}, 1));
-		Obstacle topWall = new Obstacle(0, 0, new Rectangle2D.Float(0, 0, 800, 50), new Animation(new Image[]{obstacleImage}, 1));
-		obstacles.add(leftWall);
-		entities.add(leftWall);
-		obstacles.add(rightWall);
-		entities.add(rightWall);
-		obstacles.add(bottomWall);
-		entities.add(bottomWall);
-		obstacles.add(topWall);
-		entities.add(topWall);
+		int w = container.getWidth();
+		int h = container.getHeight();
+		
+		Obstacle leftWall = new Obstacle(0, 0, new Rectangle2D.Float(0, 0, 50, h), new Animation(new Image[]{obstacleImage}, 1));
+		Obstacle rightWall = new Obstacle(w - 50, 0, new Rectangle2D.Float(0, 0, 50, h), new Animation(new Image[]{obstacleImage}, 1));
+		Obstacle bottomWall = new Obstacle(0, h - 50, new Rectangle2D.Float(0, 0, w, 50), new Animation(new Image[]{obstacleImage}, 1));
+		Obstacle topWall = new Obstacle(0, 0, new Rectangle2D.Float(0, 0, w, 50), new Animation(new Image[]{obstacleImage}, 1));
+		
+		Image iceCube = new Image("res//images//isbit.png");
+		int cubeW = iceCube.getWidth();
+		int cubeH = iceCube.getHeight();
+		for (int i = 0; i < w; i += cubeW) {
+			Obstacle cube = new Obstacle(i, 0, new Rectangle2D.Float(0, 0, cubeW, cubeH), new Animation(new Image[]{obstacleImage}, 1));
+			obstacles.add(cube);
+			entities.add(cube);
+		}
+		for (int i = 0; i < h; i += cubeH) {
+			Obstacle cube = new Obstacle(0, i, new Rectangle2D.Float(0, 0, cubeW, cubeH), new Animation(new Image[]{obstacleImage}, 1));
+			obstacles.add(cube);
+			entities.add(cube);
+		}
+		for (int i = 0; i < w; i += cubeW) {
+			Obstacle cube = new Obstacle(i, h - cubeH, new Rectangle2D.Float(0, 0, cubeW, cubeH), new Animation(new Image[]{obstacleImage}, 1));
+			obstacles.add(cube);
+			entities.add(cube);
+		}
+		for (int i = 0; i < h; i += cubeW) {
+			Obstacle cube = new Obstacle(w - cubeW, i, new Rectangle2D.Float(0, 0, cubeW, cubeH), new Animation(new Image[]{obstacleImage}, 1));
+			obstacles.add(cube);
+			entities.add(cube);
+		}
 		
 		Image itemImage = new Image("res//images//bomb2.png");
 		Item item = new Item(itemImage, 250, 250, new Rectangle2D.Float(0, 0, 25, 25));
@@ -127,9 +145,9 @@ public class Game extends BasicGame
     	
     	Image lifeImage = new Image("res//images//Speed.png");
     	Image noLifeImage = new Image("res//images//bomb.png");
-    	ui = new UserInterface(0, 0, 550, 550, lifeImage, noLifeImage, 5, 5);
+    	ui = new UserInterface(0, 0, gc.getWidth() - 250, gc.getHeight() - 50, lifeImage, noLifeImage, 5, 5);
     	
-    	setupEntities();
+    	setupEntities(gc);
     	
     	input = gc.getInput();
     }
@@ -200,7 +218,7 @@ public class Game extends BasicGame
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException 
     {
-    	background.draw();
+  //  	background.draw();
     	
     	for (Entity entity : entities) {
     		entity.draw();
@@ -212,8 +230,9 @@ public class Game extends BasicGame
     public static void main(String[] args) throws SlickException
     {
          AppGameContainer app = new AppGameContainer(new Game());
-         app.setDisplayMode(800, 600, false);
+         app.setDisplayMode(1000, 600, false);
          app.setVSync(true);
+         app.setFullscreen(false);
          app.start();
     }	
 }

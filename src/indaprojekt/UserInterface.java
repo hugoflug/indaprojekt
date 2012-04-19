@@ -53,7 +53,6 @@ public class UserInterface
 	{
 		int i = 0;
 		for (; i < lives; i++) {
-			System.out.println(i + " " + yPos);
 			lifeImage.draw(xPos + i*(lifeImage.getWidth() + imageDistance), yPos);
 		}
 		

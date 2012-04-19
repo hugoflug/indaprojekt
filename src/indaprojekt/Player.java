@@ -65,7 +65,6 @@ public class Player extends Mover
     	{
 	    	Iterator<Effect> iterator = effects.iterator();
 	    	while (iterator.hasNext()) {
-	    		System.out.println("effect!!");
 	    		Effect effect = iterator.next();
 				applyEffect(effect);
 				effect.doLogic();
@@ -88,6 +87,7 @@ public class Player extends Mover
 		//			move(dir.getNormalizedDX()*(delta/2), dir.getNormalizedDY()*(delta/2));
 					dx += dir.getNormalizedDX()*speed;
 					dy += dir.getNormalizedDY()*speed;
+		//			break;
 				}
 			}
     	} if (input.isKeyPressed(controls.keyThrow)) {
@@ -212,14 +212,6 @@ public class Player extends Mover
 			default:
 				return offsetHitBox.y;
 		}		
-	}
-	
-	/**
-	 * Increases the speed of the player.
-	 */
-	public void increaseSpeed(float increasedSpeed) 
-	{
-		this.speed += increasedSpeed;
 	}
 	
 	/**
