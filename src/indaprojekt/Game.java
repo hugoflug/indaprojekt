@@ -95,32 +95,31 @@ public class Game extends BasicGame
 		
 		int w = container.getWidth();
 		int h = container.getHeight();
-		
-		Obstacle leftWall = new Obstacle(0, 0, new Rectangle2D.Float(0, 0, 50, h), new Animation(new Image[]{obstacleImage}, 1));
-		Obstacle rightWall = new Obstacle(w - 50, 0, new Rectangle2D.Float(0, 0, 50, h), new Animation(new Image[]{obstacleImage}, 1));
-		Obstacle bottomWall = new Obstacle(0, h - 50, new Rectangle2D.Float(0, 0, w, 50), new Animation(new Image[]{obstacleImage}, 1));
-		Obstacle topWall = new Obstacle(0, 0, new Rectangle2D.Float(0, 0, w, 50), new Animation(new Image[]{obstacleImage}, 1));
-		
+				
 		Image iceCube = new Image("res//images//isbit.png");
 		int cubeW = iceCube.getWidth();
 		int cubeH = iceCube.getHeight();
 		for (int i = 0; i < w; i += cubeW) {
-			Obstacle cube = new Obstacle(i, 0, new Rectangle2D.Float(0, 0, cubeW, cubeH), new Animation(new Image[]{obstacleImage}, 1));
+			Obstacle cube = new Obstacle(i, 0, new Rectangle2D.Float(0, 0, cubeW, cubeH), 
+											   new Animation(new Image[]{obstacleImage}, 1));
 			obstacles.add(cube);
 			entities.add(cube);
 		}
 		for (int i = 0; i < h; i += cubeH) {
-			Obstacle cube = new Obstacle(0, i, new Rectangle2D.Float(0, 0, cubeW, cubeH), new Animation(new Image[]{obstacleImage}, 1));
+			Obstacle cube = new Obstacle(0, i, new Rectangle2D.Float(0, 0, cubeW, cubeH), 
+											   new Animation(new Image[]{obstacleImage}, 1));
 			obstacles.add(cube);
 			entities.add(cube);
 		}
 		for (int i = 0; i < w; i += cubeW) {
-			Obstacle cube = new Obstacle(i, h - cubeH, new Rectangle2D.Float(0, 0, cubeW, cubeH), new Animation(new Image[]{obstacleImage}, 1));
+			Obstacle cube = new Obstacle(i, h - cubeH, new Rectangle2D.Float(0, 0, cubeW, cubeH), 
+							new Animation(new Image[]{obstacleImage}, 1));
 			obstacles.add(cube);
 			entities.add(cube);
 		}
 		for (int i = 0; i < h; i += cubeW) {
-			Obstacle cube = new Obstacle(w - cubeW, i, new Rectangle2D.Float(0, 0, cubeW, cubeH), new Animation(new Image[]{obstacleImage}, 1));
+			Obstacle cube = new Obstacle(w - cubeW, i, 
+							new Rectangle2D.Float(0, 0, cubeW, cubeH), new Animation(new Image[]{obstacleImage}, 1));
 			obstacles.add(cube);
 			entities.add(cube);
 		}
