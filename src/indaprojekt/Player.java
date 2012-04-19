@@ -42,7 +42,7 @@ public class Player extends Mover
 		setDirection(Direction.DOWN);
 		this.controls = controls;
 		lives = 5; //TEMP?
-		speed = 2; //TEMP?
+		speed = 1.5f; //TEMP?
 		throwSound = new Sound("res//sounds//gunfire.ogg");
 		dx = 0;
 		dy = 0;
@@ -79,10 +79,12 @@ public class Player extends Mover
 		dx = General.towardsZero(dx, friction);
 		dy = General.towardsZero(dy, friction);
 		
+		activeAnimation.stop();
 		for (Direction dir : Direction.values()) {
 			Integer key = controls.directionMap.get(dir);
 			if (key != null) {
 				if (input.isKeyDown(key)) {
+		    		activeAnimation.start();
 					setDirection(dir);
 		//			move(dir.getNormalizedDX()*(delta/2), dir.getNormalizedDY()*(delta/2));
 					dx += dir.getNormalizedDX()*speed;
@@ -105,7 +107,8 @@ public class Player extends Mover
 
     		projectile = new Projectile(projectileOriginX((float)projRect.getWidth()), 
     				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim);
-    	} if (input.isKeyPressed(controls.keyBomb)) { //TEMP, should have a proper PlayerControls variable later
+    	} 
+    	if (input.isKeyPressed(controls.keyBomb)) { 
     		Image image = new Image("res//images//bomb.png");
     		
     		//TEMP
