@@ -48,4 +48,10 @@ public class Projectile extends Mover
 	{
 		remove = true;
 	}
+
+	@Override
+	public Entity getEntity() 
+	{
+		return null;
+	}
 }

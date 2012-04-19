@@ -125,6 +125,7 @@ public class Player extends Mover
 	 * Otherwise returns null.
 	 * Once a projectile has been returned, it is removed from the player.
 	 */
+	//TEMP, later to be removed
 	public Projectile getProjectile()
 	{
 		Projectile returnProjectile = projectile;
@@ -143,7 +144,9 @@ public class Player extends Mover
 	{
 		if (entity instanceof Bomb) {
 			
-		} else if (entity instanceof Projectile) {
+		} else if (entity instanceof Explosion) {
+			lives -= 2;
+	    } else if (entity instanceof Projectile) {
 			lives--; 
 		} else if (entity instanceof PowerUp) {
 			effects.add(((PowerUp)entity).getEffect());
@@ -226,5 +229,15 @@ public class Player extends Mover
 		speed = effect.changeSpeed(speed);
 		friction = effect.changeFriction(friction);
 		lives = effect.changeLives(lives);
+	}
+
+	@Override
+	public Entity getEntity() 
+	{
+		return null;
+		//TEMP
+//		Entity returner = projectile;
+//		projectile = null;
+//		return returner;
 	}
 }

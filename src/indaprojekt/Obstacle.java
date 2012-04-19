@@ -43,4 +43,10 @@ public class Obstacle extends Entity
 	{
 		
 	}
+
+	@Override
+	public Entity getEntity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

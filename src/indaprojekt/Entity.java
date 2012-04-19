@@ -57,4 +57,9 @@ public abstract class Entity
 	public abstract boolean shouldBeRemoved();
 	
 	public abstract void handleCollision(Entity entity);
+	
+	/**
+	 * @return	an entity if this Entity has spawned another entity, otherwise null
+	 */
+	public abstract Entity getEntity();
 }

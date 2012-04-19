@@ -86,7 +86,7 @@ public class Game extends BasicGame
 		Player p2 = new Player(150, 150, player2Controls, player2HitBox, animMap2);
 		players.add(p2);
 		entities.add(p2);
-		background = new Image("res//images//classroom.jpg");
+		background = new Image("res//images//bakgrund.png");
 		
 		Image obstacleImage = new Image("res//images//isbit.png");
 		Obstacle obstacle = new Obstacle(100, 100, new Rectangle2D.Float(0, 0, obstacleImage.getWidth(), obstacleImage.getHeight()), 
@@ -131,7 +131,7 @@ public class Game extends BasicGame
 		entities.add(item);
 		
 		Image spdUpImage = new Image("res//images//Speed.png");
-		SpeedUp spdUp = new SpeedUp(spdUpImage, 300, 300, new Rectangle2D.Float(0,0,25,25), 2, 4000);
+		SpeedUp spdUp = new SpeedUp(spdUpImage, 300, 300, new Rectangle2D.Float(0, 0, 25, 25), 2, 4000);
 		entities.add(spdUp);
     }
  
@@ -144,7 +144,7 @@ public class Game extends BasicGame
     	entities = new LinkedList<Entity>();
     	
     	Image lifeImage = new Image("res//images//Speed.png");
-    	Image noLifeImage = new Image("res//images//bomb.png");
+    	Image noLifeImage = new Image("res//images//brokenHeart.png");
     	ui = new UserInterface(0, 0, gc.getWidth() - 250, gc.getHeight() - 50, lifeImage, noLifeImage, 5, 5);
     	
     	setupEntities(gc);
@@ -188,13 +188,18 @@ public class Game extends BasicGame
     	}
     	
     	{
+    		Entity spawn = null;
 	    	Iterator<Entity> iterator = entities.iterator();
 	    	while (iterator.hasNext()) {
 	    		Entity entity = iterator.next();
+	    		spawn = entity.getEntity();
 	    		if (entity.shouldBeRemoved()) {
 	    			iterator.remove();
 	    		}
 	    	}
+//    		if (spawn != null) {
+//    			entities.add(spawn);
+//    		}
     	}
     	
     	//for each player, if the player have thrown a projectile,
@@ -218,7 +223,7 @@ public class Game extends BasicGame
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException 
     {
-  //  	background.draw();
+    	background.draw();
     	
     	for (Entity entity : entities) {
     		entity.draw();
