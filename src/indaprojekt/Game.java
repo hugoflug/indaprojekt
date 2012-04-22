@@ -138,14 +138,14 @@ public class Game extends BasicGame
     	int i = 0;
     	for (Entity entity : entities) {
     		i++;
-    		if (i > length) {
-    			break;
-    		}
+//    		if (i > length) {
+//    			break;
+//    		}
     		for (Entity entity2 : entities) {
     			if (entity != entity2) {
     				if (entity.isCollision(entity2)) {
     					entity.handleCollision(entity2);
-    					entity2.handleCollision(entity);
+    			//		entity2.handleCollision(entity);
     				}
     			}
     		}
