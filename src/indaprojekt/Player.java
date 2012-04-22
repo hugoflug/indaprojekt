@@ -224,7 +224,7 @@ public class Player extends Mover
 	}
 
 	@Override
-	public Entity getEntity() 
+	public Entity spawnEntity() 
 	{
 		Entity returner = projectile;
 		projectile = null;

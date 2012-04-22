@@ -50,7 +50,7 @@ public class Projectile extends Mover
 	}
 
 	@Override
-	public Entity getEntity() 
+	public Entity spawnEntity() 
 	{
 		return null;
 	}

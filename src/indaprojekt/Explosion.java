@@ -46,7 +46,7 @@ public class Explosion extends Entity
 	}
 
 	@Override
-	public Entity getEntity() {
+	public Entity spawnEntity() {
 	
 		return null;
 	}

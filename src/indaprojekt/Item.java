@@ -47,7 +47,7 @@ public class Item extends Entity
 	}
 
 	@Override
-	public Entity getEntity() 
+	public Entity spawnEntity() 
 	{
 		return null;
 	}

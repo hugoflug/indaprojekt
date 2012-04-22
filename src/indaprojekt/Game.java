@@ -197,7 +197,7 @@ public class Game extends BasicGame
 	    	Iterator<Entity> iterator = entities.iterator();
 	    	while (iterator.hasNext()) {
 	    		Entity entity = iterator.next();
-	    		spawn = entity.getEntity();
+	    		spawn = entity.spawnEntity();
 	    		if (spawn != null) {
 	    			toAdd.add(spawn);
 	    		}

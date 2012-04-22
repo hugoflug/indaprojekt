@@ -61,5 +61,5 @@ public abstract class Entity
 	/**
 	 * @return	an entity if this Entity has spawned another entity, otherwise null
 	 */
-	public abstract Entity getEntity();
+	public abstract Entity spawnEntity();
 }

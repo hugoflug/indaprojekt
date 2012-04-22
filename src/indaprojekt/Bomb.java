@@ -43,7 +43,7 @@ public class Bomb extends Projectile
 	}
 	
 	@Override
-	public Entity getEntity()
+	public Entity spawnEntity()
 	{
 		if (explosion != null) {
 			remove = true;
