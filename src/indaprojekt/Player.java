@@ -135,9 +135,11 @@ public class Player extends Mover
 	//TEMP, later to be removed
 	public Projectile getProjectile()
 	{
-		Projectile returnProjectile = projectile;
-		projectile = null;
-		return returnProjectile;
+		//TEMP
+		return null;
+//		Projectile returnProjectile = projectile;
+//		projectile = null;
+//		return returnProjectile;
 	}
 	
 	private void setDirection(Direction direction)
@@ -243,10 +245,8 @@ public class Player extends Mover
 	@Override
 	public Entity getEntity() 
 	{
-		return null;
-		//TEMP
-//		Entity returner = projectile;
-//		projectile = null;
-//		return returner;
+		Entity returner = projectile;
+		projectile = null;
+		return returner;
 	}
 }

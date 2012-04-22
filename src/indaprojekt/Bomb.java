@@ -4,6 +4,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Float;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
@@ -36,9 +37,9 @@ public class Bomb extends Projectile
 		if (lifetime.hasExpired()) {
 			remove = true; //TEMP
 			sound.play();
-			Image explImage = new Image("res//images//Speed.png");
+			Image explImage = new Image("res//images//explosion.png", Color.white);
 			Animation explAnim = new Animation(new Image[]{explImage}, 1);
-			explosion = new Explosion(x, y, new Rectangle2D.Float(0, 0, 40, 40), explAnim, 2000); 
+			explosion = new Explosion(x, y, new Rectangle2D.Float(0, 0, 40, 40), explAnim, 500); 
 		}
 	}
 	

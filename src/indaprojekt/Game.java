@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Animation;
@@ -191,29 +192,33 @@ public class Game extends BasicGame
     	}
     	
     	{
+    		List<Entity> toAdd = new LinkedList<Entity>();
     		Entity spawn = null;
 	    	Iterator<Entity> iterator = entities.iterator();
 	    	while (iterator.hasNext()) {
 	    		Entity entity = iterator.next();
 	    		spawn = entity.getEntity();
+	    		if (spawn != null) {
+	    			toAdd.add(spawn);
+	    		}
 	    		if (entity.shouldBeRemoved()) {
 	    			iterator.remove();
 	    		}
 	    	}
-//    		if (spawn != null) {
-//    			entities.add(spawn);
-//    		}
+	    	for (Entity e : toAdd) {
+	    		entities.add(e);
+	    	}
     	}
     	
     	//for each player, if the player have thrown a projectile,
     	//add it to the projectile list
-    	for (Player player : players) {
-    		Projectile proj = player.getProjectile();
-    		if (proj != null) {
-    			projectiles.add(proj);
-    			entities.add(proj);
-    		}
-    	}
+//    	for (Player player : players) {
+//    		Projectile proj = player.getProjectile();
+//    		if (proj != null) {
+//    			projectiles.add(proj);
+//    			entities.add(proj);
+//    		}
+//    	}
     	
     	//TEMP, makes the game crash when amount of players is not 2
     	ui.setPlayer1Lives(players.get(0).getLives());

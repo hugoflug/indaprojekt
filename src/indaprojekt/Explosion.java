@@ -16,6 +16,7 @@ public class Explosion extends Entity
 	{
 		super(x, y, hitBox);
 		lifetime = new Expirer(duration);
+		this.animation = animation;
 	}
 
 	@Override
