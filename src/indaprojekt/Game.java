@@ -37,57 +37,8 @@ public class Game extends BasicGame
         super("Awesome Game");
     }
     
-    /**
-     * Sets up and adds all the entities of the map to the game
-     */
-    private void setupEntities(GameContainer container) throws SlickException
-    {	
-		PlayerControls player1Controls = new PlayerControls(
-										Input.KEY_W,
-										Input.KEY_A,
-										Input.KEY_S,
-										Input.KEY_D,
-										Input.KEY_LCONTROL,
-										Input.KEY_LSHIFT);
-		
-		Color transp = Color.white;
-		Map<Direction, Animation> animMap1 = new HashMap<Direction, Animation>();
-		animMap1.put(Direction.UP, new Animation(new Image[]{new Image("res//images//up1.png",transp),new Image("res//images//up2.png",transp) }, 200));
-		animMap1.put(Direction.UPRIGHT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
-		animMap1.put(Direction.RIGHT, new Animation(new Image[]{new Image("res//images//right1.png",transp),new Image("res//images//right2.png",transp)}, 200));
-		animMap1.put(Direction.DOWNRIGHT, new Animation(new Image[]{new Image("res//images//down1.png",transp)}, 1));
-		animMap1.put(Direction.DOWN, new Animation(new Image[]{new Image("res//images//down1.png",transp), new Image("res//images//down2.png",transp)}, 200));
-		animMap1.put(Direction.DOWNLEFT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
-		animMap1.put(Direction.LEFT, new Animation(new Image[]{new Image("res//images//left1.png",transp), new Image("res//images//left2.png",transp)}, 200));
-		animMap1.put(Direction.UPLEFT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
-		Rectangle2D.Float player1HitBox = new Rectangle2D.Float(0f, 0f, 48, 48);
-		Player p1 = new Player(50, 50, player1Controls, player1HitBox, animMap1);
-		players.add(p1);
-		entities.add(p1);
-		
-		//TEMP
-		PlayerControls player2Controls = new PlayerControls(
-						Input.KEY_UP,
-						Input.KEY_LEFT,
-						Input.KEY_DOWN,
-						Input.KEY_RIGHT,
-						Input.KEY_L,
-						Input.KEY_K);
-		Map<Direction, Animation> animMap2 = new HashMap<Direction, Animation>();
-		animMap2.put(Direction.UP, new Animation(new Image[]{new Image("res//images//up1.png",transp),new Image("res//images//up2.png",transp) }, 200));
-		animMap2.put(Direction.UPRIGHT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
-		animMap2.put(Direction.RIGHT, new Animation(new Image[]{new Image("res//images//right1.png",transp),new Image("res//images//right2.png",transp)}, 200));
-		animMap2.put(Direction.DOWNRIGHT, new Animation(new Image[]{new Image("res//images//down1.png",transp)}, 1));
-		animMap2.put(Direction.DOWN, new Animation(new Image[]{new Image("res//images//down1.png",transp), new Image("res//images//down2.png",transp)}, 200));
-		animMap2.put(Direction.DOWNLEFT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
-		animMap2.put(Direction.LEFT, new Animation(new Image[]{new Image("res//images//left1.png",transp), new Image("res//images//left2.png",transp)}, 200));
-		animMap2.put(Direction.UPLEFT, new Animation(new Image[]{new Image("res//images//up1.png",transp)}, 1));
-		Rectangle2D.Float player2HitBox = new Rectangle2D.Float(0f, 0f, 48, 48);
-		Player p2 = new Player(150, 150, player2Controls, player2HitBox, animMap2);
-		players.add(p2);
-		entities.add(p2);
-		background = new Image("res//images//bakgrund.png");
-		
+    private void setupWalls(GameContainer container) throws SlickException
+    {
 		Image obstacleImage = new Image("res//images//isbit.png");
 		Obstacle obstacle = new Obstacle(100, 100, new Rectangle2D.Float(0, 0, obstacleImage.getWidth(), obstacleImage.getHeight()), 
 		new Animation(new Image[]{obstacleImage}, 1));
@@ -124,6 +75,24 @@ public class Game extends BasicGame
 			obstacles.add(cube);
 			entities.add(cube);
 		}
+    }
+    
+    /**
+     * Sets up and adds all the entities of the map to the game
+     */
+    private void setupEntities(GameContainer container) throws SlickException
+    {	
+		setupWalls(container);
+    	
+    	Player player1 = new PlayerOne(50, 50);
+		players.add(player1);
+		entities.add(player1);
+		
+		Player player2 = new PlayerTwo(150, 150);
+		players.add(player2);
+		entities.add(player2);
+		
+		background = new Image("res//images//bakgrund.png");
 		
 		Image itemImage = new Image("res//images//bomb2.png");
 		Item item = new Item(itemImage, 250, 250, new Rectangle2D.Float(0, 0, 25, 25));
