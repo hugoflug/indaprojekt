@@ -8,7 +8,7 @@ import org.newdawn.slick.SlickException;
 
 public class Projectile extends Mover
 {
-	private Animation animation;
+	protected Animation animation;
 	protected float dx, dy;
 	protected boolean remove;
 

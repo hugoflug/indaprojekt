@@ -38,7 +38,13 @@ public class Bomb extends Projectile
 			sound.play();
 			Image explImage = new Image("res//images//explosion.png", Color.white);
 			Animation explAnim = new Animation(new Image[]{explImage}, 1);
-			explosion = new Explosion(x, y, new Rectangle2D.Float(0, 0, 40, 40), explAnim, 500); 
+			int explW = explImage.getWidth();
+			int explH = explImage.getHeight();
+			int bombW = animation.getWidth();
+			int bombH = animation.getHeight();
+			explosion = new Explosion(x - explW/2 + bombW/2, y - explH/2 + bombH/2, 
+						new Rectangle2D.Float(0, 0, explImage.getWidth(), 
+						explImage.getHeight()), explAnim, 500); 
 		}
 	}
 	
