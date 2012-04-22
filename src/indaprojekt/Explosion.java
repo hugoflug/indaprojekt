@@ -11,18 +11,26 @@ public class Explosion extends Entity
 	private Animation animation;
 	private Expirer lifetime;
 	private boolean remove;
+	private float scale;
+	private final float centerX, centerY;
 	
-	public Explosion(float x, float y, Float hitBox, Animation animation, int duration) 
+	public Explosion(float x, float y, Float hitBox, Animation animation, int duration, 
+					float centerX, float centerY) 
 	{
 		super(x, y, hitBox);
 		lifetime = new Expirer(duration);
 		this.animation = animation;
+		
+		scale = 0.5f;
+		
+		this.centerX = centerX;
+		this.centerY = centerY;
 	}
 
 	@Override
 	public void draw() throws SlickException 
 	{
-		animation.draw(x, y);
+		animation.getCurrentFrame().draw(x, y, scale);
 	}
 
 	@Override
@@ -31,6 +39,15 @@ public class Explosion extends Entity
 		if (lifetime.hasExpired()) {
 			remove = true;
 		}
+		scale += 0.005f*delta;
+		
+		center();
+	}
+	
+	private void center()
+	{
+		x = centerX - (animation.getWidth()/2)*scale;
+		y = centerY - (animation.getHeight()/2)*scale;
 	}
 
 	@Override

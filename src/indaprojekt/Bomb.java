@@ -27,7 +27,6 @@ public class Bomb extends Projectile
 		remove = false;
 	}
 	public void doLogic(Input input, int delta) throws SlickException 
-	
 	{	
 		super.doLogic(input, delta);
 		
@@ -44,7 +43,7 @@ public class Bomb extends Projectile
 			int bombH = animation.getHeight();
 			explosion = new Explosion(x - explW/2 + bombW/2, y - explH/2 + bombH/2, 
 						new Rectangle2D.Float(0, 0, explImage.getWidth(), 
-						explImage.getHeight()), explAnim, 500); 
+						explImage.getHeight()), explAnim, 500, x + bombW/2, y + bombH/2); 
 		}
 	}
 	
