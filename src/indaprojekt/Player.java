@@ -119,7 +119,7 @@ public class Player extends Mover
     		
     		Rectangle2D.Float bombRect = new Rectangle2D.Float(0, 0, 32, 32);
     		projectile = new Bomb(projectileOriginX((float)bombRect.getWidth()), 
-    				projectileOriginY((float)bombRect.getWidth()), dx, dy, bombRect, anim);
+    				projectileOriginY((float)bombRect.getWidth()), dx, dy, bombRect, anim, 500);
     	}
 	}
 	
@@ -135,7 +135,7 @@ public class Player extends Mover
 		if (entity instanceof Bomb) {
 			
 		} else if (entity instanceof Explosion) {
-			lives -= 2;
+			lives = 0;
 	    } else if (entity instanceof Projectile) {
 			lives--;
 			hitSound.play();

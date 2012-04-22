@@ -45,8 +45,7 @@ public class Explosion extends Mover
 			remove = true;
 		}
 		scale += 0.005f*delta;
-		
-		//TEMP
+
 		hitBox = new Rectangle2D.Float(hitBox.x, hitBox.y, ogWidth*scale, ogHeight*scale);
 		
 		center();

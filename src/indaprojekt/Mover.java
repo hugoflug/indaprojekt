@@ -36,7 +36,7 @@ public abstract class Mover extends Entity
 	 * @param x
 	 * @param y
 	 */
-	private void moveTo(float x, float y)
+	protected void moveTo(float x, float y)
 	{
 		oldX = this.x;
 		oldY = this.y;

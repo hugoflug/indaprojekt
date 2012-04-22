@@ -18,10 +18,10 @@ public class Bomb extends Projectile
 	private Explosion explosion;
 	
 	public Bomb(float x, float y, float dx, float dy, Float hitBox,
-			Animation animation) throws SlickException 
+			Animation animation, int millis) throws SlickException 
 	{
 		super(x, y, dx, dy, hitBox, animation);
-		lifetime = new Expirer(1000);
+		lifetime = new Expirer(millis);
 		sound = new Sound("res//sounds//bomb.ogg");
 		friction = 0.15f;
 		remove = false;
