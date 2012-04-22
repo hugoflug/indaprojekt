@@ -42,7 +42,7 @@ public class Player extends Mover
 		setDirection(Direction.DOWN);
 		this.controls = controls;
 		lives = 5; //TEMP?
-		speed = 1.5f; //TEMP?
+		speed = 0.75f; //TEMP?
 		throwSound = new Sound("res//sounds//gunfire.ogg");
 		hitSound = new Sound("res//sounds//hitSound.ogg");
 		deadSound = new Sound("res//sounds//Dead.ogg");
@@ -74,7 +74,7 @@ public class Player extends Mover
 	    	}
     	}
 		
-		move(dx, dy);
+		move(dx*delta, dy*delta);
 		
 		dx = General.towardsZero(dx, friction);
 		dy = General.towardsZero(dy, friction);
