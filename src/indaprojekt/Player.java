@@ -48,7 +48,7 @@ public class Player extends Mover
 		deadSound = new Sound("res//sounds//Dead.ogg");
 		dx = 0;
 		dy = 0;
-		friction = 1f;
+		friction = 0.1f;
 	}
 
 	@Override
