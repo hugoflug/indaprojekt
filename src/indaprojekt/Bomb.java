@@ -35,7 +35,6 @@ public class Bomb extends Projectile
 		dy = General.towardsZero(dy, friction);
 		
 		if (lifetime.hasExpired()) {
-			remove = true; //TEMP
 			sound.play();
 			Image explImage = new Image("res//images//explosion.png", Color.white);
 			Animation explAnim = new Animation(new Image[]{explImage}, 1);

@@ -209,18 +209,7 @@ public class Game extends BasicGame
 	    		entities.add(e);
 	    	}
     	}
-    	
-    	//for each player, if the player have thrown a projectile,
-    	//add it to the projectile list
-//    	for (Player player : players) {
-//    		Projectile proj = player.getProjectile();
-//    		if (proj != null) {
-//    			projectiles.add(proj);
-//    			entities.add(proj);
-//    		}
-//    	}
-    	
-    	//TEMP, makes the game crash when amount of players is not 2
+
     	ui.setPlayer1Lives(players.get(0).getLives());
     	
     	if (players.size() >= 2) {

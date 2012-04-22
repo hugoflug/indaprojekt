@@ -32,8 +32,6 @@ public class Player extends Mover
 	private Sound hitSound;
 	private Sound deadSound;
 	
-	//TEMP, should later take a bunch of animations as parameters
-	//instead of just one image
 	public Player(float x, float y, PlayerControls controls, Rectangle2D.Float hitBox, 
 						Map<Direction, Animation> animations) throws SlickException
 	{
@@ -56,8 +54,6 @@ public class Player extends Mover
 	@Override
 	public void draw() throws SlickException 
 	{
-		//TEMP, remove getCurrentFrame() later
-		//only there to be able to use scale
 		activeAnimation.draw(x, y);
 	}
 
@@ -125,21 +121,6 @@ public class Player extends Mover
     		projectile = new Bomb(projectileOriginX((float)bombRect.getWidth()), 
     				projectileOriginY((float)bombRect.getWidth()), dx, dy, bombRect, anim);
     	}
-	}
-	
-	/*
-	 * If the player has created a projectile, returns that projectile.
-	 * Otherwise returns null.
-	 * Once a projectile has been returned, it is removed from the player.
-	 */
-	//TEMP, later to be removed
-	public Projectile getProjectile()
-	{
-		//TEMP
-		return null;
-//		Projectile returnProjectile = projectile;
-//		projectile = null;
-//		return returnProjectile;
 	}
 	
 	private void setDirection(Direction direction)
