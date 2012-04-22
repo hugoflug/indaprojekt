@@ -25,7 +25,6 @@ import org.newdawn.slick.SlickException;
 public class Game extends BasicGame
 {
 	private List<Player> players;
-	private List<Projectile> projectiles;
 	private List<Obstacle> obstacles;
 	private List<Entity> entities;
 	private UserInterface ui;
@@ -65,13 +64,13 @@ public class Game extends BasicGame
 		}
 		for (int i = 0; i < w; i += cubeW) {
 			Obstacle cube = new Obstacle(i, h - cubeH, new Rectangle2D.Float(0, 0, cubeW, cubeH), 
-							new Animation(new Image[]{obstacleImage}, 1));
+													   new Animation(new Image[]{obstacleImage}, 1));
 			obstacles.add(cube);
 			entities.add(cube);
 		}
 		for (int i = 0; i < h; i += cubeW) {
-			Obstacle cube = new Obstacle(w - cubeW, i, 
-							new Rectangle2D.Float(0, 0, cubeW, cubeH), new Animation(new Image[]{obstacleImage}, 1));
+			Obstacle cube = new Obstacle(w - cubeW, i, new Rectangle2D.Float(0, 0, cubeW, cubeH), 
+													   new Animation(new Image[]{obstacleImage}, 1));
 			obstacles.add(cube);
 			entities.add(cube);
 		}
@@ -107,7 +106,6 @@ public class Game extends BasicGame
     public void init(GameContainer gc) throws SlickException 
     {
     	players = new ArrayList<Player>(2);
-    	projectiles = new LinkedList<Projectile>();
     	obstacles = new ArrayList<Obstacle>();
     	entities = new LinkedList<Entity>();
     	
