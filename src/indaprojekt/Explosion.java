@@ -1,18 +1,20 @@
 package indaprojekt;
 
+import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Float;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-public class Explosion extends Entity
+public class Explosion extends Mover
 {
 	private Animation animation;
 	private Expirer lifetime;
 	private boolean remove;
 	private float scale;
 	private final float centerX, centerY;
+	private final float ogWidth, ogHeight;
 	
 	public Explosion(float x, float y, Float hitBox, Animation animation, int duration, 
 					float centerX, float centerY) 
@@ -25,6 +27,9 @@ public class Explosion extends Entity
 		
 		this.centerX = centerX;
 		this.centerY = centerY;
+		
+		ogWidth = (float)hitBox.getWidth();
+		ogHeight = (float)hitBox.getHeight();
 	}
 
 	@Override
@@ -41,13 +46,16 @@ public class Explosion extends Entity
 		}
 		scale += 0.005f*delta;
 		
+		//TEMP
+		hitBox = new Rectangle2D.Float(hitBox.x, hitBox.y, ogWidth*scale, ogHeight*scale);
+		
 		center();
 	}
 	
 	private void center()
 	{
-		x = centerX - (animation.getWidth()/2)*scale;
-		y = centerY - (animation.getHeight()/2)*scale;
+		moveTo(centerX - (animation.getWidth()/2)*scale,
+			   centerY - (animation.getHeight()/2)*scale);
 	}
 
 	@Override
