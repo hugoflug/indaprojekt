@@ -33,7 +33,7 @@ public class Player extends Mover
 	private Sound deadSound;
 	
 	public Player(float x, float y, PlayerControls controls, Rectangle2D.Float hitBox, 
-						Map<Direction, Animation> animations) throws SlickException
+						Map<Direction, Animation> animations, int lives, float speed) throws SlickException
 	{
 		super(x, y, hitBox);
 		this.animations = animations;
@@ -41,8 +41,8 @@ public class Player extends Mover
 		effects = new LinkedList<Effect>();
 		setDirection(Direction.DOWN);
 		this.controls = controls;
-		lives = 5; //TEMP?
-		speed = 0.75f; //TEMP?
+		this.lives = lives; 
+		this.speed = speed; 
 		throwSound = new Sound("res//sounds//gunfire.ogg");
 		hitSound = new Sound("res//sounds//hitSound.ogg");
 		deadSound = new Sound("res//sounds//Dead.ogg");
