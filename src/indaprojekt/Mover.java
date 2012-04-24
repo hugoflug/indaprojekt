@@ -52,8 +52,8 @@ public abstract class Mover extends Entity
 	 */
 	public void doLogic(Input input, int delta) throws SlickException 
 	{	
-		oldX = this.x;
-		oldY = this.y;
+//		oldX = this.x;
+//		oldY = this.y;
 	}
 	
 	/**
