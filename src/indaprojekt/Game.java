@@ -1,19 +1,11 @@
 package indaprojekt;
 
 import java.awt.geom.Rectangle2D;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Queue;
 
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -98,18 +90,11 @@ public class Game extends BasicGame
 	    	}
     	}
     	
-    	int length = (int)Math.ceil(entities.size()/2);
-    	int i = 0;
     	for (Entity entity : entities) {
-    		i++;
-//    		if (i > length) {
-//    			break;
-//    		}
     		for (Entity entity2 : entities) {
     			if (entity != entity2) {
     				if (entity.isCollision(entity2)) {
     					entity.handleCollision(entity2);
-    			//		entity2.handleCollision(entity);
     				}
     			}
     		}

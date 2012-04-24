@@ -1,7 +1,6 @@
 package indaprojekt;
 
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.Rectangle2D.Float;
 import java.util.HashMap;
 import java.util.Map;
 
