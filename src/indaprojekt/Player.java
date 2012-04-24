@@ -138,7 +138,9 @@ public class Player extends Mover
 			lives = 0;
 	    } else if (entity instanceof Projectile) {
 			lives--;
+			if(lives > 0){
 			hitSound.play();
+			}
 			
 		} else if (entity instanceof PowerUp) {
 			effects.add(((PowerUp)entity).getEffect());
@@ -163,6 +165,7 @@ public class Player extends Mover
 	public boolean isDead()
 	{
 		return lives <= 0;
+		
 	}
 	
 	/**
@@ -170,6 +173,9 @@ public class Player extends Mover
 	 */
 	public int getLives()
 	{
+		if(lives == 0){
+			deadSound.play();
+		}
 		return lives;
 	}
 	
