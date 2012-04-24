@@ -18,6 +18,10 @@ import org.newdawn.slick.Sound;
  */
 public class Player extends ConstantMover
 {
+	private static final float PLAYER_FRICTION = 0.85f;
+	private static final int BOMB_TIME = 500;
+	private static final float BOMB_SPEED = 1.5f;
+	
 	private Animation activeAnimation;
 	private Map<Direction, Animation> animations;
 	private List<Effect> effects;
@@ -33,7 +37,7 @@ public class Player extends ConstantMover
 	public Player(float x, float y, PlayerControls controls, Rectangle2D.Float hitBox, 
 						Map<Direction, Animation> animations, int lives, float speed) throws SlickException
 	{
-		super(x, y, hitBox, 0, 0, 0.1f);
+		super(x, y, hitBox, 0, 0, PLAYER_FRICTION); 
 		this.animations = animations;
 		activeAnimation = animations.get(Direction.DOWN);
 		effects = new LinkedList<Effect>();
@@ -98,7 +102,7 @@ public class Player extends ConstantMover
     		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 32, 32);
 
     		projectile = new Projectile(projectileOriginX((float)projRect.getWidth()), 
-    				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim, 0f);
+    				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim, 1); 
     	} 
     	if (input.isKeyPressed(controls.keyBomb)) { 
     		Image image = new Image("res//images//bomb.png");
@@ -106,12 +110,12 @@ public class Player extends ConstantMover
     		//TEMP
     		Animation anim = new Animation(new Image[]{image}, 1);
     		
-    		float dx = direction.getNormalizedDX()*1.5f;
-    		float dy = direction.getNormalizedDY()*1.5f; 
+    		float dx = direction.getNormalizedDX()*BOMB_SPEED;
+    		float dy = direction.getNormalizedDY()*BOMB_SPEED; 
     		
     		Rectangle2D.Float bombRect = new Rectangle2D.Float(0, 0, 32, 32);
     		projectile = new Bomb(projectileOriginX((float)bombRect.getWidth()), 
-    				projectileOriginY((float)bombRect.getWidth()), dx, dy, bombRect, anim, 500);
+    				projectileOriginY((float)bombRect.getWidth()), dx, dy, bombRect, anim, BOMB_TIME);
     	}
 	}
 	

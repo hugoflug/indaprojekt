@@ -2,7 +2,7 @@ package indaprojekt;
 
 /**
  * A class for measuring time
- * (rippad frÃ¥n snilssons Stopwatch, vi kanske borde skriva om den senare..)
+ * (rippad från snilssons Stopwatch, vi kanske borde skriva om den senare..)
  */
 public class Timer 
 {

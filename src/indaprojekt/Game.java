@@ -2,15 +2,10 @@ package indaprojekt;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Queue;
 
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -24,8 +19,10 @@ import org.newdawn.slick.SlickException;
  */
 public class Game extends BasicGame
 {
+	private static final int WINDOW_WIDTH = 1000;
+	private static final int WINDOW_HEIGHT = 600;
+	
 	private List<Player> players;
-	private List<Obstacle> obstacles;
 	private List<Entity> entities;
 	private UserInterface ui;
 	private Input input;
@@ -36,52 +33,12 @@ public class Game extends BasicGame
         super("Awesome Game");
     }
     
-    private void setupWalls(GameContainer container) throws SlickException
-    {
-		Image obstacleImage = new Image("res//images//isbit.png");
-		Obstacle obstacle = new Obstacle(100, 100, new Rectangle2D.Float(0, 0, obstacleImage.getWidth(), obstacleImage.getHeight()), 
-		new Animation(new Image[]{obstacleImage}, 1));
-		obstacles.add(obstacle);
-		entities.add(obstacle);
-		
-		int w = container.getWidth();
-		int h = container.getHeight();
-				
-		Image iceCube = new Image("res//images//isbit.png");
-		int cubeW = iceCube.getWidth();
-		int cubeH = iceCube.getHeight();
-		for (int i = 0; i < w; i += cubeW) {
-			Obstacle cube = new Obstacle(i, 0, new Rectangle2D.Float(0, 0, cubeW, cubeH), 
-											   new Animation(new Image[]{obstacleImage}, 1));
-			obstacles.add(cube);
-			entities.add(cube);
-		}
-		for (int i = 0; i < h; i += cubeH) {
-			Obstacle cube = new Obstacle(0, i, new Rectangle2D.Float(0, 0, cubeW, cubeH), 
-											   new Animation(new Image[]{obstacleImage}, 1));
-			obstacles.add(cube);
-			entities.add(cube);
-		}
-		for (int i = 0; i < w; i += cubeW) {
-			Obstacle cube = new Obstacle(i, h - cubeH, new Rectangle2D.Float(0, 0, cubeW, cubeH), 
-													   new Animation(new Image[]{obstacleImage}, 1));
-			obstacles.add(cube);
-			entities.add(cube);
-		}
-		for (int i = 0; i < h; i += cubeW) {
-			Obstacle cube = new Obstacle(w - cubeW, i, new Rectangle2D.Float(0, 0, cubeW, cubeH), 
-													   new Animation(new Image[]{obstacleImage}, 1));
-			obstacles.add(cube);
-			entities.add(cube);
-		}
-    }
-    
     /**
      * Sets up and adds all the entities of the map to the game
      */
     private void setupEntities(GameContainer container) throws SlickException
     {	
-		setupWalls(container);
+		entities = MapLoader.loadEntities("res//maps//map1.txt", new Image("res//images//isbit.png"));
     	
     	Player player1 = new PlayerOne(50, 50);
 		players.add(player1);
@@ -106,7 +63,6 @@ public class Game extends BasicGame
     public void init(GameContainer gc) throws SlickException 
     {
     	players = new ArrayList<Player>(2);
-    	obstacles = new ArrayList<Obstacle>();
     	entities = new LinkedList<Entity>();
 
     	ui = new DefaultUserInterface(gc.getWidth(), gc.getHeight());
@@ -134,18 +90,11 @@ public class Game extends BasicGame
 	    	}
     	}
     	
-    	int length = (int)Math.ceil(entities.size()/2);
-    	int i = 0;
     	for (Entity entity : entities) {
-    		i++;
-//    		if (i > length) {
-//    			break;
-//    		}
     		for (Entity entity2 : entities) {
     			if (entity != entity2) {
     				if (entity.isCollision(entity2)) {
     					entity.handleCollision(entity2);
-    			//		entity2.handleCollision(entity);
     				}
     			}
     		}
@@ -192,7 +141,7 @@ public class Game extends BasicGame
     public static void main(String[] args) throws SlickException
     {	
          AppGameContainer app = new AppGameContainer(new Game());
-         app.setDisplayMode(1000, 600, false);
+         app.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
          app.setVSync(true);
          app.setFullscreen(false);
          app.start();
