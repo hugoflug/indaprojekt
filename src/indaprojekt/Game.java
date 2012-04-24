@@ -19,14 +19,15 @@ import org.newdawn.slick.SlickException;
  */
 public class Game extends BasicGame
 {
-	private static final int WINDOW_WIDTH = 1000;
-	private static final int WINDOW_HEIGHT = 600;
+	public static final int WINDOW_WIDTH = 1000;
+	public static final int WINDOW_HEIGHT = 600;
 	
 	private List<Player> players;
 	private List<Entity> entities;
 	private UserInterface ui;
 	private Input input;
 	private Image background;
+	private PowerUpGenerator powerUpGenerator;
 	
     public Game()
     {
@@ -54,8 +55,7 @@ public class Game extends BasicGame
 		Item item = new Item(itemImage, 250, 250, new Rectangle2D.Float(0, 0, 25, 25));
 		entities.add(item);
 		
-		Image spdUpImage = new Image("res//images//Speed.png");
-		SpeedUp spdUp = new SpeedUp(spdUpImage, 300, 300, new Rectangle2D.Float(0, 0, 25, 25), 0.3f, 4000);
+		SpeedUp spdUp = new SpeedUp(300, 300, 0.3f, 4000);
 		entities.add(spdUp);
     }
  
@@ -64,6 +64,7 @@ public class Game extends BasicGame
     {
     	players = new ArrayList<Player>(2);
     	entities = new LinkedList<Entity>();
+    	powerUpGenerator = new PowerUpGenerator();
 
     	ui = new DefaultUserInterface(gc.getWidth(), gc.getHeight());
     	
@@ -123,6 +124,11 @@ public class Game extends BasicGame
     	
     	if (players.size() >= 2) {
     		ui.setPlayer2Lives(players.get(1).getLives());
+    	}
+    	
+    	PowerUp powerUp = powerUpGenerator.generatePowerUp();
+    	if (powerUp != null) {
+    		entities.add(powerUp);
     	}
     }
  

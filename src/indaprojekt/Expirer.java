@@ -10,7 +10,7 @@ public class Expirer
 	private int expireTime;
 	
 	/**
-	 * @param millis	after how long should this Expirer expire?
+	 * @param millis after how long should this Expirer expire?
 	 */
 	public Expirer(int millis)
 	{
@@ -20,7 +20,7 @@ public class Expirer
 	}
 	
 	/**
-	 * @return		whether the Expirer has expired or not
+	 * @return whether the Expirer has expired or not
 	 */
 	public boolean hasExpired()
 	{

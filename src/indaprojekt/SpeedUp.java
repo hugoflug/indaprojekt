@@ -1,13 +1,15 @@
 package indaprojekt;
 
+import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Float;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 public class SpeedUp extends PowerUp 
 {	
-	public SpeedUp(Image image, float x, float y, Float hitBox, float spdDiff, int millis) 
+	public SpeedUp(float x, float y, float spdDiff, int millis) throws SlickException 
 	{
-		super(image, x, y, hitBox, new SpeedUpEffect(spdDiff, millis));	
+		super(new Image("res//images//Speed.png"), x, y, new Rectangle2D.Float(0, 0, 25, 25), new SpeedUpEffect(spdDiff, millis));	
 	}
 }
