@@ -6,29 +6,20 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-public class Projectile extends Mover
+public class Projectile extends ConstantMover
 {
 	protected Animation animation;
 	protected float dx, dy;
 	protected boolean remove;
 
 	public Projectile(float x, float y, float dx, float dy, 
-						Rectangle2D.Float hitBox, Animation animation) 
+						Rectangle2D.Float hitBox, Animation animation,
+						float friction) 
 	{
-		super(x, y, hitBox);
-		
-		this.dx = dx;
-		this.dy = dy;
+		super(x, y, hitBox, dx, dy, friction);
 		
 		this.animation = animation;
 		remove = false;
-	}
-	
-	@Override
-	public void doLogic(Input input, int delta) throws SlickException 
-	{	
-		super.doLogic(input, delta);
-		move(dx*delta, dy*delta);
 	}
 
 	@Override
@@ -46,6 +37,8 @@ public class Projectile extends Mover
 	@Override
 	public void handleCollision(Entity entity) 
 	{
+	//	dx = -dx;
+	//	dy = -dy;
 		remove = true;
 	}
 

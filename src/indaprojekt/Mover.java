@@ -13,7 +13,6 @@ import org.newdawn.slick.SlickException;
 public abstract class Mover extends Entity
 {
 	private float oldX, oldY;
-	private float friction;
 	
 	public Mover(float x, float y, Rectangle2D.Float hitBox) 
 	{
