@@ -87,7 +87,7 @@ public class Game extends BasicGame
 		players.add(player1);
 		entities.add(player1);
 		
-		Player player2 = new PlayerTwo(150, 150);
+		Player player2 = new PlayerTwo(900, 500);
 		players.add(player2);
 		entities.add(player2);
 		
