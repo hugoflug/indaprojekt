@@ -33,7 +33,7 @@ public class Player extends ConstantMover
 	public Player(float x, float y, PlayerControls controls, Rectangle2D.Float hitBox, 
 						Map<Direction, Animation> animations, int lives, float speed) throws SlickException
 	{
-		super(x, y, hitBox, 0, 0, 0.1f);
+		super(x, y, hitBox, 0, 0, 0.9f); //0.1f friction
 		this.animations = animations;
 		activeAnimation = animations.get(Direction.DOWN);
 		effects = new LinkedList<Effect>();
@@ -98,7 +98,7 @@ public class Player extends ConstantMover
     		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 32, 32);
 
     		projectile = new Projectile(projectileOriginX((float)projRect.getWidth()), 
-    				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim, 0);
+    				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim, 1); 
     	} 
     	if (input.isKeyPressed(controls.keyBomb)) { 
     		Image image = new Image("res//images//bomb.png");

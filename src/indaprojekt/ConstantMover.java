@@ -24,8 +24,8 @@ public abstract class ConstantMover extends Mover
 	public void doLogic(Input input, int delta) throws SlickException
 	{
 		move(dx*delta, dy*delta);
-		dx = General.towardsZero(dx, friction);
-		dy = General.towardsZero(dy, friction);
+		dx *= friction;
+		dy *= friction;
 	}
 
 }
