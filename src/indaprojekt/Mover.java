@@ -69,11 +69,13 @@ public abstract class Mover extends Entity
 	 */
 	protected void moveBack()
 	{
+
 		if(!(oldPositions.size() == 0)) {
 			y = oldPositions.pop();
 			x = oldPositions.pop();
 			System.out.println(x + " " + y + " " + oldPositions.size());
 			offsetHitBox.setRect(x + hitBox.x, y + hitBox.y, hitBox.width, hitBox.height);
 		}
+
 	}
 }

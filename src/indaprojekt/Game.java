@@ -30,7 +30,7 @@ public class Game extends BasicGame
 	
     public Game()
     {
-        super("Awesome Game");
+        super("Ice Ice Baby");
     }
     
     /**
