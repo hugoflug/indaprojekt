@@ -13,7 +13,6 @@ import org.newdawn.slick.Sound;
 public class Bomb extends Projectile 
 {
 	private Expirer lifetime;
-	private float friction;
 	private Sound sound;
 	private Explosion explosion;
 	
