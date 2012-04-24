@@ -27,8 +27,8 @@ import org.newdawn.slick.SlickException;
  */
 public class Game extends BasicGame
 {
-	public static final int WINDOW_WIDTH = 1000;
-	public static final int WINDOW_HEIGHT = 600;
+	private static final int WINDOW_WIDTH = 1000;
+	private static final int WINDOW_HEIGHT = 600;
 	
 	private List<Player> players;
 	private List<Entity> entities;

@@ -45,8 +45,8 @@ public class Obstacle extends Entity
 	}
 
 	@Override
-	public Entity spawnEntity() {
-		// TODO Auto-generated method stub
+	public Entity spawnEntity() 
+	{
 		return null;
 	}
 }

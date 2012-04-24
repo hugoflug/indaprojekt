@@ -16,7 +16,6 @@ public class MapLoader
 	public static List<Entity> loadEntities(String filename, Image obstacleImage)
 	{
 		List<Entity> entities = new LinkedList<Entity>();
-		int errCode = 0;
 		BufferedReader in = null;
 		try {
 			in = new BufferedReader(new FileReader(filename));

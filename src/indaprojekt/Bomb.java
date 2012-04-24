@@ -12,15 +12,17 @@ import org.newdawn.slick.Sound;
 
 public class Bomb extends Projectile 
 {
+	private static final float BOMB_FRICTION = 0.9f;
+	private static final int EXPLOSION_TIME = 500;
+	
 	private Expirer lifetime;
-	private float friction;
 	private Sound sound;
 	private Explosion explosion;
 	
 	public Bomb(float x, float y, float dx, float dy, Float hitBox,
 			Animation animation, int millis) throws SlickException 
 	{
-		super(x, y, dx, dy, hitBox, animation, 0.9f);
+		super(x, y, dx, dy, hitBox, animation, BOMB_FRICTION);
 		lifetime = new Expirer(millis);
 		sound = new Sound("res//sounds//bomb.ogg");
 		remove = false;
@@ -40,7 +42,7 @@ public class Bomb extends Projectile
 			int bombH = animation.getHeight();
 			explosion = new Explosion(x - explW/2 + bombW/2, y - explH/2 + bombH/2, 
 									  new Rectangle2D.Float(0, 0, explImage.getWidth(), 
-									  explImage.getHeight()), explAnim, 500, x + bombW/2, y + bombH/2); 
+									  explImage.getHeight()), explAnim, EXPLOSION_TIME, x + bombW/2, y + bombH/2); 
 		}
 	}
 	
