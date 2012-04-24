@@ -31,7 +31,10 @@ public class Item extends Entity
 	@Override
 	public void handleCollision(Entity entity) 
 	{
-		remove = true;
+		if (entity instanceof Projectile) {
+		} else {
+			remove = true;
+		}
 	}
 	
 	@Override
