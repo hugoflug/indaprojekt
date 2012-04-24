@@ -31,7 +31,6 @@ public class Game extends BasicGame
 	public static final int WINDOW_HEIGHT = 600;
 	
 	private List<Player> players;
-	private List<Obstacle> obstacles;
 	private List<Entity> entities;
 	private UserInterface ui;
 	private Input input;
@@ -42,55 +41,12 @@ public class Game extends BasicGame
         super("Awesome Game");
     }
     
-    /*private void setupWalls(GameContainer container) throws SlickException
-    {
-		Image obstacleImage = new Image("res//images//isbit.png");
-		Obstacle obstacle = new Obstacle(100, 100, new Rectangle2D.Float(0, 0, obstacleImage.getWidth(), obstacleImage.getHeight()), 
-		new Animation(new Image[]{obstacleImage}, 1));
-		obstacles.add(obstacle);
-		entities.add(obstacle);
-		
-		int w = container.getWidth();
-		int h = container.getHeight();
-				
-		Image iceCube = new Image("res//images//isbit.png");
-		int cubeW = iceCube.getWidth();
-		int cubeH = iceCube.getHeight();
-		for (int i = 0; i < w; i += cubeW) {
-			Obstacle cube = new Obstacle(i, 0, new Rectangle2D.Float(0, 0, cubeW, cubeH), 
-											   new Animation(new Image[]{obstacleImage}, 1));
-			obstacles.add(cube);
-			entities.add(cube);
-		}
-		initMap();
-		
-		for (int i = 0; i < h; i += cubeH) {
-			Obstacle cube = new Obstacle(0, i, new Rectangle2D.Float(0, 0, cubeW, cubeH), 
-											   new Animation(new Image[]{obstacleImage}, 1));
-			obstacles.add(cube);
-			entities.add(cube);
-		}
-		for (int i = 0; i < w; i += cubeW) {
-			Obstacle cube = new Obstacle(i, h - cubeH, new Rectangle2D.Float(0, 0, cubeW, cubeH), 
-													   new Animation(new Image[]{obstacleImage}, 1));
-			obstacles.add(cube);
-			entities.add(cube);
-		}
-		for (int i = 0; i < h; i += cubeW) {
-			Obstacle cube = new Obstacle(w - cubeW, i, new Rectangle2D.Float(0, 0, cubeW, cubeH), 
-													   new Animation(new Image[]{obstacleImage}, 1));
-			obstacles.add(cube);
-			entities.add(cube);
-		}
-    }*/
-    
     /**
      * Sets up and adds all the entities of the map to the game
      */
     private void setupEntities(GameContainer container) throws SlickException
     {	
-		//setupWalls(container);
-    	initMap();
+		entities = MapLoader.loadEntities("res//maps//map1.txt", new Image("res//images//isbit.png"));
     	
     	Player player1 = new PlayerOne(50, 50);
 		players.add(player1);
@@ -115,7 +71,6 @@ public class Game extends BasicGame
     public void init(GameContainer gc) throws SlickException 
     {
     	players = new ArrayList<Player>(2);
-    	obstacles = new ArrayList<Obstacle>();
     	entities = new LinkedList<Entity>();
 
     	ui = new DefaultUserInterface(gc.getWidth(), gc.getHeight());
@@ -123,51 +78,6 @@ public class Game extends BasicGame
     	setupEntities(gc);
     	
     	input = gc.getInput();
-    }
-    
-    private void initMap() {
-    	
-		int errCode = 0;
-		BufferedReader in = null;
-		try {
-			// FileReader uses "the default character encoding".
-			in = new BufferedReader(new FileReader("res/maps/map1.txt"));
-			// To specify an encoding, use this code instead:
-			// file = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), "UTF-8"));
-			String line;
-			int row = 0;
-			while ((line = in.readLine()) != null) {
-				Image obstacleImage = new Image("res//images//isbit.png");
-				for (int col=0; col<line.length(); col++) {
-					char c = line.trim().charAt(col);
-					if (c == 'x') {
-						obstacles.add(new Obstacle(col*obstacleImage.getWidth(), row*obstacleImage.getHeight(), 
-								new Rectangle2D.Float(0, 0, obstacleImage.getWidth(), obstacleImage.getHeight()), 
-								new Animation(new Image[]{obstacleImage}, 1)));
-						entities.add(new Obstacle(col*obstacleImage.getWidth(), row*obstacleImage.getHeight(), 
-								new Rectangle2D.Float(0, 0, obstacleImage.getWidth(), obstacleImage.getHeight()), 
-								new Animation(new Image[]{obstacleImage}, 1)));
-					}
-				}
-				row++;					
-			}
-		} catch (IOException | SlickException e) {
-			System.err.printf("%s: %s%n", "", e);
-			errCode = 1;
-		} finally {
-			try {
-				if (in != null) {
-					in.close();
-				}
-			} catch (IOException e) {
-				System.err.printf("%s: %s%n", "", e);
-				errCode = 1;
-			}
-			if (errCode == 1) {
-				System.exit(errCode);
-			}
-		}
-
     }
  
     @Override
