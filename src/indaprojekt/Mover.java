@@ -1,6 +1,8 @@
 package indaprojekt;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Deque;
+import java.util.LinkedList;
 
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
@@ -12,13 +14,14 @@ import org.newdawn.slick.SlickException;
  */
 public abstract class Mover extends Entity
 {
-	private float oldX, oldY;
+	
+	private LinkedList<Float> oldPositions;
 	
 	public Mover(float x, float y, Rectangle2D.Float hitBox) 
 	{
 		super(x, y, hitBox);
-		oldX = x;
-		oldY = y;
+		oldPositions = new LinkedList<Float>();
+
 	}
 	
 	/**
@@ -38,8 +41,14 @@ public abstract class Mover extends Entity
 	 */
 	protected void moveTo(float x, float y)
 	{
-		oldX = this.x;
-		oldY = this.y;
+		oldPositions.push(this.x);
+		oldPositions.push(this.y);
+		
+		if(oldPositions.size() > 100) {
+			oldPositions.removeLast();
+			oldPositions.removeLast();
+		}
+		
 		this.x = x;
 		this.y = y;
 		offsetHitBox.setRect(x + hitBox.x, y + hitBox.y, hitBox.width, hitBox.height);
@@ -52,8 +61,7 @@ public abstract class Mover extends Entity
 	 */
 	public void doLogic(Input input, int delta) throws SlickException 
 	{	
-		oldX = this.x;
-		oldY = this.y;
+		
 	}
 	
 	/**
@@ -61,10 +69,11 @@ public abstract class Mover extends Entity
 	 */
 	protected void moveBack()
 	{
-		//not sure why this doesn't work
-//		moveTo(oldX, oldY);
-		x = oldX;
-		y = oldY;
-		offsetHitBox.setRect(x + hitBox.x, y + hitBox.y, hitBox.width, hitBox.height);
+		if(!(oldPositions.size() == 0)) {
+			y = oldPositions.pop();
+			x = oldPositions.pop();
+			System.out.println(x + " " + y + " " + oldPositions.size());
+			offsetHitBox.setRect(x + hitBox.x, y + hitBox.y, hitBox.width, hitBox.height);
+		}
 	}
 }

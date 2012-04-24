@@ -128,6 +128,7 @@ public class Player extends ConstantMover
 	@Override
 	public void handleCollision(Entity entity) 
 	{
+		System.out.println(entity.getClass());
 		if (entity instanceof Bomb) {
 			
 		} else if (entity instanceof Explosion) {
