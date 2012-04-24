@@ -61,8 +61,6 @@ public abstract class Mover extends Entity
 	 */
 	protected void moveBack()
 	{
-		//not sure why this doesn't work
-//		moveTo(oldX, oldY);
 		x = oldX;
 		y = oldY;
 		offsetHitBox.setRect(x + hitBox.x, y + hitBox.y, hitBox.width, hitBox.height);
