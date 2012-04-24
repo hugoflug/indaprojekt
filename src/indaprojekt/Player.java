@@ -25,6 +25,7 @@ public class Player extends ConstantMover
 	private Animation activeAnimation;
 	private Map<Direction, Animation> animations;
 	private List<Effect> effects;
+	private List<Explosion> explosionImmunity;
 	private PlayerControls controls;
 	private Projectile projectile;
 	private Direction direction;
@@ -41,6 +42,7 @@ public class Player extends ConstantMover
 		this.animations = animations;
 		activeAnimation = animations.get(Direction.DOWN);
 		effects = new LinkedList<Effect>();
+		explosionImmunity = new LinkedList<Explosion>();
 		setDirection(Direction.DOWN);
 		this.controls = controls;
 		this.lives = lives; 
@@ -73,6 +75,16 @@ public class Player extends ConstantMover
 	    			iterator.remove();
 	    		}
 	    	}
+    	}
+    	
+    	{
+    		Iterator<Explosion> iterator = explosionImmunity.iterator();
+    		while (iterator.hasNext()) {
+    			Explosion expl = iterator.next();
+    			if (expl.shouldBeRemoved()) {
+    				iterator.remove();
+    			}
+    		}
     	}
 		
 		activeAnimation.stop();
@@ -131,8 +143,15 @@ public class Player extends ConstantMover
 		if (entity instanceof Bomb) {
 			
 		} else if (entity instanceof Explosion) {
-			lives = 0;
-			deadSound.play();
+			if (!explosionImmunity.contains(entity)) {
+				explosionImmunity.add((Explosion)entity);
+				lives -= 2;
+				if (lives > 0){
+					hitSound.play();
+				} else {
+					deadSound.play();
+				}
+			}
 	    } else if (entity instanceof Projectile) {
 			lives--;
 			if (lives > 0){

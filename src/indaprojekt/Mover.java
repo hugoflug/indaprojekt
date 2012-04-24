@@ -60,7 +60,6 @@ public abstract class Mover extends Entity
 	 */
 	public void doLogic(Input input, int delta) throws SlickException 
 	{	
-		
 	}
 	
 	/**
