@@ -147,6 +147,7 @@ public class Game extends BasicGame
          app.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
          app.setVSync(true);
          app.setFullscreen(false);
+         app.setShowFPS(false);
          app.start();
     }	
 }
