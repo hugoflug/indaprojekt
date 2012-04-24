@@ -1,7 +1,6 @@
 package indaprojekt;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Deque;
 import java.util.LinkedList;
 
 import org.newdawn.slick.Input;
@@ -71,7 +70,6 @@ public abstract class Mover extends Entity
 		if(!(oldPositions.size() == 0)) {
 			y = oldPositions.pop();
 			x = oldPositions.pop();
-			System.out.println(x + " " + y + " " + oldPositions.size());
 			offsetHitBox.setRect(x + hitBox.x, y + hitBox.y, hitBox.width, hitBox.height);
 		}
 
