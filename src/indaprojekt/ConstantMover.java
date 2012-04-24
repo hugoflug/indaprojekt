@@ -1,7 +1,6 @@
 package indaprojekt;
 
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.Rectangle2D.Float;
 
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;

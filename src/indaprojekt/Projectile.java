@@ -3,7 +3,6 @@ package indaprojekt;
 import java.awt.geom.Rectangle2D;
 
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class Projectile extends ConstantMover
