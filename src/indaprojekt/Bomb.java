@@ -20,19 +20,15 @@ public class Bomb extends Projectile
 	public Bomb(float x, float y, float dx, float dy, Float hitBox,
 			Animation animation, int millis) throws SlickException 
 	{
-		super(x, y, dx, dy, hitBox, animation);
+		super(x, y, dx, dy, hitBox, animation, 0.8f);
 		lifetime = new Expirer(millis);
 		sound = new Sound("res//sounds//bomb.ogg");
-		friction = 0.15f;
 		remove = false;
 	}
 	
 	public void doLogic(Input input, int delta) throws SlickException 
 	{	
 		super.doLogic(input, delta);
-		
-		dx = General.towardsZero(dx, friction);
-		dy = General.towardsZero(dy, friction);
 		
 		if (lifetime.hasExpired()) {
 			sound.play();
@@ -43,8 +39,8 @@ public class Bomb extends Projectile
 			int bombW = animation.getWidth();
 			int bombH = animation.getHeight();
 			explosion = new Explosion(x - explW/2 + bombW/2, y - explH/2 + bombH/2, 
-							new Rectangle2D.Float(0, 0, explImage.getWidth(), 
-									explImage.getHeight()), explAnim, 500, x + bombW/2, y + bombH/2); 
+									  new Rectangle2D.Float(0, 0, explImage.getWidth(), 
+									  explImage.getHeight()), explAnim, 500, x + bombW/2, y + bombH/2); 
 		}
 	}
 	
@@ -61,8 +57,8 @@ public class Bomb extends Projectile
 	public void handleCollision(Entity entity) 
 	{
 		moveBack();
-		dx = 0;
-		dy = 0;
+		dx = -dx;
+		dy = -dy;
 	}
 
 }

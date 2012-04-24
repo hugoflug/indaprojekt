@@ -20,7 +20,7 @@ public class PlayerTwo extends Player
 					new Rectangle2D.Float(0, 0, 48, 48),
 					getAnimations(),
 					5,
-					0.20f);
+					0.15f);
 	}
 	
 	private static PlayerControls getPlayerControls()

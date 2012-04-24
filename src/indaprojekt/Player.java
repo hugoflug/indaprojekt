@@ -16,7 +16,7 @@ import org.newdawn.slick.Sound;
  * Describes a player, i. e. a character that can be controlled using
  * the keyboard
  */
-public class Player extends Mover
+public class Player extends ConstantMover
 {
 	private Animation activeAnimation;
 	private Map<Direction, Animation> animations;
@@ -25,9 +25,7 @@ public class Player extends Mover
 	private Projectile projectile;
 	private Direction direction;
 	private int lives;
-	private float dx, dy;
 	private float speed;
-	private float friction;
 	private Sound throwSound;
 	private Sound hitSound;
 	private Sound deadSound;
@@ -35,7 +33,7 @@ public class Player extends Mover
 	public Player(float x, float y, PlayerControls controls, Rectangle2D.Float hitBox, 
 						Map<Direction, Animation> animations, int lives, float speed) throws SlickException
 	{
-		super(x, y, hitBox);
+		super(x, y, hitBox, 0, 0, 0.85f); //0.1f friction
 		this.animations = animations;
 		activeAnimation = animations.get(Direction.DOWN);
 		effects = new LinkedList<Effect>();
@@ -48,7 +46,6 @@ public class Player extends Mover
 		deadSound = new Sound("res//sounds//Dead.ogg");
 		dx = 0;
 		dy = 0;
-		friction = 0.1f;
 	}
 
 	@Override
@@ -73,11 +70,6 @@ public class Player extends Mover
 	    		}
 	    	}
     	}
-		
-		move(dx*delta, dy*delta);
-		
-		dx = General.towardsZero(dx, friction);
-		dy = General.towardsZero(dy, friction);
 		
 		activeAnimation.stop();
 		for (Direction dir : Direction.values()) {
@@ -106,7 +98,7 @@ public class Player extends Mover
     		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 32, 32);
 
     		projectile = new Projectile(projectileOriginX((float)projRect.getWidth()), 
-    				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim);
+    				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim, 1); 
     	} 
     	if (input.isKeyPressed(controls.keyBomb)) { 
     		Image image = new Image("res//images//bomb.png");

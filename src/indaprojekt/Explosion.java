@@ -23,7 +23,7 @@ public class Explosion extends Mover
 		lifetime = new Expirer(duration);
 		this.animation = animation;
 		
-		scale = 0.5f;
+		scale = 0.1f;
 		
 		this.centerX = centerX;
 		this.centerY = centerY;
@@ -70,8 +70,7 @@ public class Explosion extends Mover
 	}
 
 	@Override
-	public Entity spawnEntity() {
-	
+	public Entity spawnEntity() {	
 		return null;
 	}
 	
