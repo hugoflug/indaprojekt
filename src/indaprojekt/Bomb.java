@@ -20,7 +20,7 @@ public class Bomb extends Projectile
 	public Bomb(float x, float y, float dx, float dy, Float hitBox,
 			Animation animation, int millis) throws SlickException 
 	{
-		super(x, y, dx, dy, hitBox, animation, 0.8f);
+		super(x, y, dx, dy, hitBox, animation, 0.9f);
 		lifetime = new Expirer(millis);
 		sound = new Sound("res//sounds//bomb.ogg");
 		remove = false;

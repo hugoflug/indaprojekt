@@ -24,6 +24,7 @@ public abstract class ConstantMover extends Mover
 	public void doLogic(Input input, int delta) throws SlickException
 	{
 		move(dx*delta, dy*delta);
+		//OBS!! should change according to delta
 		dx *= friction;
 		dy *= friction;
 	}
