@@ -33,7 +33,7 @@ public class Player extends ConstantMover
 	public Player(float x, float y, PlayerControls controls, Rectangle2D.Float hitBox, 
 						Map<Direction, Animation> animations, int lives, float speed) throws SlickException
 	{
-		super(x, y, hitBox, 0, 0, 0.9f); //0.1f friction
+		super(x, y, hitBox, 0, 0, 0.85f); //0.1f friction
 		this.animations = animations;
 		activeAnimation = animations.get(Direction.DOWN);
 		effects = new LinkedList<Effect>();
