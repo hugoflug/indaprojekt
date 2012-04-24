@@ -57,6 +57,9 @@ public class Game extends BasicGame
 		Image spdUpImage = new Image("res//images//Speed.png");
 		SpeedUp spdUp = new SpeedUp(spdUpImage, 300, 300, new Rectangle2D.Float(0, 0, 25, 25), 0.3f, 4000);
 		entities.add(spdUp);
+		
+		LifeUp lifeUp = new LifeUp(350, 300);
+		entities.add(lifeUp);
     }
  
     @Override
