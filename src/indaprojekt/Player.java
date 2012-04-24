@@ -136,10 +136,13 @@ public class Player extends Mover
 			
 		} else if (entity instanceof Explosion) {
 			lives = 0;
+			deadSound.play();
 	    } else if (entity instanceof Projectile) {
 			lives--;
-			if(lives > 0){
-			hitSound.play();
+			if (lives > 0){
+				hitSound.play();
+			} else {
+				deadSound.play();
 			}
 			
 		} else if (entity instanceof PowerUp) {
@@ -173,9 +176,6 @@ public class Player extends Mover
 	 */
 	public int getLives()
 	{
-		if(lives == 0){
-			deadSound.play();
-		}
 		return lives;
 	}
 	
