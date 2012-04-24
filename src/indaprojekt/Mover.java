@@ -67,7 +67,6 @@ public abstract class Mover extends Entity
 	 */
 	protected void moveBack()
 	{
-
 		if(!(oldPositions.size() == 0)) {
 			y = oldPositions.pop();
 			x = oldPositions.pop();

@@ -11,7 +11,7 @@ import org.newdawn.slick.SlickException;
  */
 public class Item extends Entity 
 {
-	private boolean remove;
+	protected boolean remove;
 	private Image image;
 	
 	public Item(Image image, float x, float y, Rectangle2D.Float hitBox) 

@@ -57,7 +57,7 @@ public class Bomb extends Projectile
 	
 	@Override
 	public void handleCollision(Entity entity) 
-	{
+	{	
 		moveBack();
 		
 		dx = -dx;

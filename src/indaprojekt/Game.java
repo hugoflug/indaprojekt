@@ -57,6 +57,9 @@ public class Game extends BasicGame
 		
 		SpeedUp spdUp = new SpeedUp(300, 300, 0.3f, 4000);
 		entities.add(spdUp);
+		
+		LifeUp lifeUp = new LifeUp(350, 300);
+		entities.add(lifeUp);
     }
  
     @Override
@@ -150,6 +153,7 @@ public class Game extends BasicGame
          app.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
          app.setVSync(true);
          app.setFullscreen(false);
+         app.setShowFPS(false);
          app.start();
     }	
 }
