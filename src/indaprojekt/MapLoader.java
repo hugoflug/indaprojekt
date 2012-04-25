@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 
 public class MapLoader 
 {
