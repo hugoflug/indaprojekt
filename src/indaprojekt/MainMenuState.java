@@ -17,6 +17,10 @@ public class MainMenuState extends BasicGameState {
 	private final float startGameOptionLeftBorderX = 400;
 	private final float startGameOptionTopBorderY = 250;
 	
+	private Image exitGameOption;
+	private final float exitGameOptionLeftBorderX = 0;
+	private final float exitGameOptionTopBorderY = 0;
+	
 	public MainMenuState(int stateID) {
 		this.stateID = stateID;
 	}
@@ -26,6 +30,7 @@ public class MainMenuState extends BasicGameState {
 			throws SlickException {
 		background = new Image("res//images//bakgrund.png");
 		startGameOption = new Image("res//images//play.png");
+		exitGameOption = new Image("res//images//exit.png");
 		
 	}
 
@@ -35,6 +40,8 @@ public class MainMenuState extends BasicGameState {
 		background.draw(0, 0);
 		startGameOption.draw(startGameOptionLeftBorderX,
 				startGameOptionTopBorderY);
+		exitGameOption.draw(exitGameOptionLeftBorderX,
+				exitGameOptionTopBorderY);
 		
 	}
 
@@ -42,11 +49,16 @@ public class MainMenuState extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame game, int delta)
 			throws SlickException {
 		Input input = gc.getInput();
-		float mouseX = input.getMouseX();
-		float mouseY = input.getMouseY();
 
-		if (startIsClicked(mouseX, mouseY)) {
-			game.enterState(IceIceBabyGame.GAME_PLAY_STATE);
+		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
+			float mouseX = input.getMouseX();
+			float mouseY = input.getMouseY();
+
+			if (startIsClicked(mouseX, mouseY)) {
+				game.enterState(IceIceBabyGame.GAME_PLAY_STATE);
+			} else if (exitGameOptionIsClicked(mouseX, mouseY)) {
+				gc.exit();
+			}
 		}
 	}
 	
@@ -61,7 +73,16 @@ public class MainMenuState extends BasicGameState {
 				mouseX < startGameOptionLeftBorderX+startGameOption.getWidth() &&
 				mouseY > startGameOptionTopBorderY &&
 				mouseY < startGameOptionTopBorderY+startGameOption.getHeight());
-			
+	}
+	
+	/**
+	 * 
+	 */
+	private boolean exitGameOptionIsClicked(float mouseX, float mouseY) {
+		return (mouseX > exitGameOptionLeftBorderX && 
+				mouseX < exitGameOptionLeftBorderX+exitGameOption.getWidth() &&
+				mouseY > exitGameOptionTopBorderY &&
+				mouseY < exitGameOptionTopBorderY+exitGameOption.getHeight());
 	}
 
 	@Override
