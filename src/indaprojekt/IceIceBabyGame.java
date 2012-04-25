@@ -30,6 +30,9 @@ public class IceIceBabyGame extends StateBasedGame{
          app.setVSync(true);
          app.setFullscreen(false);
          app.setShowFPS(false);
+         // TODO - testa hur detta ser ut på mac och linux. Jag fann
+         // till slut att för windows MÅSTE bilden vara 16x16.
+         app.setIcon("res//images//icon.png");
          app.start();
     }
 
