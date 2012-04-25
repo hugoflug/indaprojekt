@@ -24,7 +24,22 @@ public class PowerUpGenerator {
 	public PowerUp generatePowerUp() throws SlickException {
 		PowerUp power = null;
 		if (expirer.hasExpired()) {
-			power = new SpeedUp(Game.WINDOW_WIDTH/2, Game.WINDOW_HEIGHT/2, 0.3f, 4000);
+			// TODO - the powerUps can end up anywhere, but if they hit an 
+			// obstacle, they will dissappear immediately, but will be 
+			// visible for 1/FPS seconds.
+			int choosePower = rand.nextInt(2);
+			System.out.println(choosePower);
+			switch(choosePower) {
+			case 0:
+				power = new SpeedUp(rand.nextFloat()*Game.WINDOW_WIDTH,
+						rand.nextFloat()*Game.WINDOW_HEIGHT, 0.3f, 4000);
+				break;
+			default:
+				power = new LifeUp(rand.nextFloat()*Game.WINDOW_WIDTH,
+						rand.nextFloat()*Game.WINDOW_HEIGHT);
+				break;
+				
+			}
 			expirer = generatePowerUpTime();
 		}
 		return power;
