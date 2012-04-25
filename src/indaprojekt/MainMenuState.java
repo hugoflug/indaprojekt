@@ -66,7 +66,7 @@ public class MainMenuState extends BasicGameState {
 	 * 
 	 * @param mouseX the x-coordinate for the mouse click.
 	 * @param mouseY the y-coordinate for the mouse click.
-	 * @return
+	 * @return true if the mouse click was on the play button.
 	 */
 	private boolean startIsClicked(float mouseX, float mouseY) {
 		return (mouseX > startGameOptionLeftBorderX && 
@@ -76,7 +76,9 @@ public class MainMenuState extends BasicGameState {
 	}
 	
 	/**
-	 * 
+	 * @param mouseX the x-coordinate for the mouse click.
+	 * @param mouseY the y-coordinate for the mouse click.
+	 * @return true if the mouse click was on the exit button.
 	 */
 	private boolean exitGameOptionIsClicked(float mouseX, float mouseY) {
 		return (mouseX > exitGameOptionLeftBorderX && 
