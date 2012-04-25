@@ -6,18 +6,18 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * Describes the actual game.
  */
-public class Game extends BasicGame
+public class Game extends BasicGameState
 {
 	public static final int WINDOW_WIDTH = 1000;
 	public static final int WINDOW_HEIGHT = 600;
@@ -28,10 +28,11 @@ public class Game extends BasicGame
 	private Input input;
 	private Image background;
 	private PowerUpGenerator powerUpGenerator;
+	private int stateID;
 	
-    public Game()
+    public Game(int stateID)
     {
-        super("Ice Ice Baby");
+        this.stateID = stateID;
     }
     
     /**
@@ -63,7 +64,7 @@ public class Game extends BasicGame
     }
  
     @Override
-    public void init(GameContainer gc) throws SlickException 
+    public void init(GameContainer gc, StateBasedGame game) throws SlickException 
     {
     	players = new ArrayList<Player>(2);
     	entities = new LinkedList<Entity>();
@@ -76,8 +77,7 @@ public class Game extends BasicGame
     	input = gc.getInput();
     }
  
-    @Override
-    public void update(GameContainer gc, int delta) throws SlickException     
+    public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException     
     {
     	for (Entity entity : entities) {
     		entity.doLogic(input, delta);
@@ -136,7 +136,7 @@ public class Game extends BasicGame
     }
  
     @Override
-    public void render(GameContainer gc, Graphics g) throws SlickException 
+    public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException 
     {
     	background.draw();
     	
@@ -146,14 +146,9 @@ public class Game extends BasicGame
     	
     	ui.draw();
     }
- 
-    public static void main(String[] args) throws SlickException
-    {	
-         AppGameContainer app = new AppGameContainer(new Game());
-         app.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
-         app.setVSync(true);
-         app.setFullscreen(false);
-         app.setShowFPS(false);
-         app.start();
-    }	
+
+	@Override
+	public int getID() {
+		return stateID;
+	}
 }
