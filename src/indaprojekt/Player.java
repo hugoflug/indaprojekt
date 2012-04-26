@@ -176,6 +176,7 @@ public class Player extends ConstantMover
 			
 		} else if (entity instanceof PowerUp) {
 			effects.add(((PowerUp)entity).getEffect());
+			((PowerUp)entity).getPickedUp();
 		} else if (entity instanceof Item) {
 
 		} else {
