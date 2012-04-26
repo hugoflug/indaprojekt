@@ -41,7 +41,7 @@ public class Button
 		pressed = false;
 		if (area.contains(input.getMouseX(), input.getMouseY())) {
 			activeImage = mouseOverImage;
-			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && 
+			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON) && 
 					action != null) {
 				action.doAction();
 			}
