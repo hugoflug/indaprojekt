@@ -21,7 +21,7 @@ import org.newdawn.slick.state.StateBasedGame;
  * The general properties for a menu with buttons.
  *
  */
-public abstract class ButtonMenuState extends BasicGameState 
+public abstract class ButtonMenuState extends AdvancedGameState
 {
 	private int stateID;
 	
@@ -35,11 +35,6 @@ public abstract class ButtonMenuState extends BasicGameState
 		this.stateID = stateID;
 		buttons = new ArrayList<Button>();
 		keyMap = new HashMap<Integer, ActionPerformer>();
-	}
-	
-	protected void setTheme(Music theme)
-	{
-		this.theme = theme;
 	}
 	
 	protected void addButton(Button button)
@@ -68,22 +63,6 @@ public abstract class ButtonMenuState extends BasicGameState
 		
 		for (Button button : buttons) {
 			button.draw();
-		}
-	}
-
-	@Override
-	public void leave(GameContainer gc, StateBasedGame game)
-	{
-		if (theme != null) {
-			theme.stop();
-		}
-	}
-	
-	@Override
-	public void enter(GameContainer gc, StateBasedGame game)
-	{
-		if (theme != null) {
-			theme.loop();
 		}
 	}
 	

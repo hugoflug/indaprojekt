@@ -122,7 +122,7 @@ public class MainMenuState extends ButtonMenuState
 			}
 		});
 
-		this.setTheme(new Music("res//sounds//theme.ogg", true));
+		this.setTheme(new Music("res//sounds//iceicebegin.ogg", true));
 	}
 
 }
