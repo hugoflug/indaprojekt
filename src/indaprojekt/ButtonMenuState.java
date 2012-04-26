@@ -33,7 +33,8 @@ public class ButtonMenuState extends BasicGameState {
 	
 	@Override
 	public void init(final GameContainer gc, final StateBasedGame game)
-			throws SlickException {
+			throws SlickException 
+	{
 		
 		buttons = new ArrayList<Button>();
 		background = new Image("res//images//bakgrund.png");
@@ -52,7 +53,8 @@ public class ButtonMenuState extends BasicGameState {
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame game, int delta)
-			throws SlickException {
+			throws SlickException 
+	{
 		Input input = gc.getInput();
 
 		for (Button button : buttons) {
@@ -61,7 +63,8 @@ public class ButtonMenuState extends BasicGameState {
 	}
 
 	@Override
-	public int getID() {
+	public int getID() 
+	{
 		return stateID;
 	}
 
