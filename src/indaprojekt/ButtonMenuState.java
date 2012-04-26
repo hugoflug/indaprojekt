@@ -82,7 +82,6 @@ public abstract class ButtonMenuState extends BasicGameState
 	@Override
 	public void enter(GameContainer gc, StateBasedGame game)
 	{
-		System.out.println("entering");
 		if (theme != null) {
 			theme.loop();
 		}
