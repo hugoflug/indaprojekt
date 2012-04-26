@@ -48,7 +48,6 @@ public class MapChooserState extends ButtonMenuState
 	
 	private int getMap(int x, int y, int width) 
 	{
-		System.out.println(y + x*width + 1);
 		return y + x*width + 1;
 	}
 	
