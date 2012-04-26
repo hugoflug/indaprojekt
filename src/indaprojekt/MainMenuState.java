@@ -40,11 +40,10 @@ public class MainMenuState extends ButtonMenuState
 	public void init(final GameContainer gc, final StateBasedGame game)
 			throws SlickException 
 	{
-		for (StackTraceElement s : Thread.currentThread().getStackTrace()) {
-			System.out.println(s);
-		}
-		
 		background = new Image("res//images//bakgrund.png");
+		
+		gc.setSoundOn(false);
+		gc.setMusicOn(false);
 		
 		Image startGameOption = new Image("res//images//play.png");
 		int startW = startGameOption.getWidth();
