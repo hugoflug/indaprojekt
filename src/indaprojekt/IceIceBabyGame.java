@@ -15,7 +15,7 @@ public class IceIceBabyGame extends StateBasedGame{
 		super("Ice Ice Baby");
 		
 		this.addState(new MainMenuState(MAIN_MENU_STATE));
-		this.addState(new Game(GAME_PLAY_STATE));
+		this.addState(new Game(GAME_PLAY_STATE, "res//maps//map1.txt"));
 		this.addState(new GameOverState(GAME_OVER_STATE));
 		this.enterState(MAIN_MENU_STATE);
 	}

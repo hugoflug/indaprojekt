@@ -41,7 +41,7 @@ public class GameOverState extends BasicGameState {
 			throws SlickException {
 		Input input = gc.getInput();
 		if (input.isKeyPressed(Input.KEY_ENTER)) {
-			game.addState(new Game(IceIceBabyGame.GAME_PLAY_STATE));
+			game.addState(new Game(IceIceBabyGame.GAME_PLAY_STATE, "res//maps//map1.txt"));
 			game.getState(IceIceBabyGame.GAME_PLAY_STATE).init(gc, game);
 			game.enterState(IceIceBabyGame.GAME_PLAY_STATE);
 		} else if (input.isKeyPressed(Input.KEY_ESCAPE)) {

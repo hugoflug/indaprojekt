@@ -37,7 +37,7 @@ public class MainMenuState extends ButtonMenuState {
 		startGameButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() {
-				game.addState(new Game(IceIceBabyGame.GAME_PLAY_STATE));
+				game.addState(new Game(IceIceBabyGame.GAME_PLAY_STATE, "res//maps//map1.txt"));
 				try {
 					game.getState(IceIceBabyGame.GAME_PLAY_STATE).init(gc, game);
 				} catch (SlickException e) {
@@ -65,7 +65,7 @@ public class MainMenuState extends ButtonMenuState {
 		mapKey(Input.KEY_ENTER, new ActionPerformer() {
 			@Override
 			public void doAction() {
-				game.addState(new Game(IceIceBabyGame.GAME_PLAY_STATE));
+				game.addState(new Game(IceIceBabyGame.GAME_PLAY_STATE, "res//maps//map1.txt"));
 				try {
 					game.getState(IceIceBabyGame.GAME_PLAY_STATE).init(gc, game);
 				} catch (SlickException e) {

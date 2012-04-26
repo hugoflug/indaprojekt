@@ -29,10 +29,12 @@ public class Game extends BasicGameState
 	private Image background;
 	private PowerUpGenerator powerUpGenerator;
 	private int stateID;
+	private String mapFilename;
 	
-    public Game(int stateID)
+    public Game(int stateID, String filename)
     {
         this.stateID = stateID;
+        this.mapFilename = filename;
     }
     
     /**
@@ -40,7 +42,7 @@ public class Game extends BasicGameState
      */
     private void setupEntities(GameContainer container) throws SlickException
     {	
-		entities = MapLoader.loadEntities("res//maps//map1.txt", new Image("res//images//isbit.png"));
+		entities = MapLoader.loadEntities(mapFilename, new Image("res//images//isbit.png"));
     	
     	Player player1 = new PlayerOne(50, 50);
 		players.add(player1);
@@ -147,6 +149,11 @@ public class Game extends BasicGameState
     	}
     	
     	ui.draw();
+    }
+    
+    public String getMapName()
+    {
+    	return mapFilename;
     }
 
 	@Override

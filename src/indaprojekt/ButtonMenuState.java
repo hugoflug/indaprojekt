@@ -15,7 +15,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class ButtonMenuState extends BasicGameState {
+public abstract class ButtonMenuState extends BasicGameState {
 	private int stateID;
 	
 	protected Image background;
@@ -43,8 +43,6 @@ public class ButtonMenuState extends BasicGameState {
 	public void init(final GameContainer gc, final StateBasedGame game)
 			throws SlickException 
 	{
-		
-	//	buttons = new ArrayList<Button>();
 		background = new Image("res//images//bakgrund.png");
 	}
 
