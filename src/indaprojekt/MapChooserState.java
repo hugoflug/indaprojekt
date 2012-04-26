@@ -28,8 +28,8 @@ public class MapChooserState extends ButtonMenuState
 				Image levelImage = new Image("res//images//map" + getMap(j, i, 3) + ".png");
 				Image levelImageHover = new Image("res//images//map" + getMap(j, i, 3) + "h" + ".png");
 				Rectangle2D.Float area = new Rectangle2D.Float(i*333, j*200, 333, 200);
-				Button levelButton = new Button(levelImage, levelImageHover, area);
 				
+				Button levelButton = new Button(levelImage, levelImageHover, area);
 				final int x = j;
 				final int y = i;
 				levelButton.setAction(new ActionPerformer() {

@@ -10,7 +10,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class MainMenuState extends ButtonMenuState {
+public class MainMenuState extends ButtonMenuState 
+{
 	private final int START_GAME_X = 400; 
 	private final int START_GAME_Y = 250;
 	private final int EXIT_GAME_X = 0;
