@@ -36,8 +36,6 @@ public class Projectile extends ConstantMover
 	@Override
 	public void handleCollision(Entity entity) 
 	{
-	//	dx = -dx;
-	//	dy = -dy;
 		remove = true;
 	}
 

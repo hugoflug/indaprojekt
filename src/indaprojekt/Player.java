@@ -130,6 +130,18 @@ public class Player extends ConstantMover
     		projectile = new Bomb(projectileOriginX((float)bombRect.getWidth()), 
     				projectileOriginY((float)bombRect.getWidth()), dx, dy, bombRect, anim, BOMB_TIME);
     	}
+    	
+		limitEffects();
+	}
+	
+	private void limitEffects()
+	{
+		if (lives > 5) {
+			lives = 5;
+		}
+		if (speed > 1) {
+			speed = 1;
+		}
 	}
 	
 	private void setDirection(Direction direction)
