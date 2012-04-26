@@ -86,13 +86,16 @@ public class Game extends BasicGameState
     	}
     	
     	{
+    		int i = 0;
 	    	Iterator<Player> iterator = players.iterator();
 	    	while (iterator.hasNext()) {
+	    		i++;
 	    		Player player = iterator.next();
 	    		if (player.isDead()) {
 	    			iterator.remove();
 	    			entities.remove(player);
 					game.getState(IceIceBabyGame.GAME_PLAY_STATE).init(gc, game);
+					((GameOverState)(game.getState(IceIceBabyGame.GAME_OVER_STATE))).setPlayerWon(i);
 	    			game.enterState(IceIceBabyGame.GAME_OVER_STATE);
 	    		}
 	    	}
