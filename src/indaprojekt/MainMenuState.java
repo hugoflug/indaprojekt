@@ -31,9 +31,10 @@ public class MainMenuState extends ButtonMenuState
 		Image startGameOption = new Image("res//images//play.png");
 		int startW = startGameOption.getWidth();
 		int startH = startGameOption.getHeight();
-		Button startGameButton = new Button(startGameOption, 
+		Button startGameButton = new GrowButton(startGameOption, 
 								     startGameOption, 
-								     new Rectangle2D.Float(START_GAME_X, START_GAME_Y, startW, startH));
+								     new Rectangle2D.Float(START_GAME_X, START_GAME_Y, startW, startH),
+								     1.3f, 75);
 		
 		startGameButton.setAction(new ActionPerformer() {
 			@Override
