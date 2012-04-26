@@ -33,13 +33,13 @@ public class GrowButton extends Button
 			if (!scaleTime.hasExpired()) {
 				scale += scalePerMilli*delta;
 			}
-			area.x = ogArea.x - (ogArea.width*scale)/2;
-			area.y = ogArea.y - (ogArea.height*scale)/2;
+			area.x = ogArea.x - (ogArea.width*scale)/2 + ogArea.width/2;
+			area.y = ogArea.y - (ogArea.height*scale)/2 + ogArea.height/2;
 		} else {
 			alreadyInArea = false;
 			scale = 1.0f;
-//			area.x = ogArea.x;
-//			area.y = ogArea.y;
+			area.x = ogArea.x;
+			area.y = ogArea.y;
 		}
 	}
 
