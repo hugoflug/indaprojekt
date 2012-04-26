@@ -80,6 +80,15 @@ public abstract class ButtonMenuState extends BasicGameState
 	}
 	
 	@Override
+	public void enter(GameContainer gc, StateBasedGame game)
+	{
+		System.out.println("entering");
+		if (theme != null) {
+			theme.loop();
+		}
+	}
+	
+	@Override
 	public void update(GameContainer gc, StateBasedGame game, int delta)
 			throws SlickException 
 	{
@@ -93,10 +102,6 @@ public abstract class ButtonMenuState extends BasicGameState
 			if (input.isKeyPressed(i)) {
 				keyMap.get(i).doAction();
 			}
-		}
-		
-		if (theme != null && !theme.playing()) {
-			theme.loop();
 		}
 	}
 

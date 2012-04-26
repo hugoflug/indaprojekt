@@ -92,9 +92,10 @@ public class MainMenuState extends ButtonMenuState
 		soundGameButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() {
+				System.out.println("toggling sound");
 				boolean soundsOn = gc.isSoundOn() && gc.isMusicOn();
-				gc.setMusicOn(soundsOn);
-				gc.setSoundOn(soundsOn);
+				gc.setMusicOn(!soundsOn);
+				gc.setSoundOn(!soundsOn);
 			}
 		});
 		addButton(soundGameButton);
@@ -121,7 +122,7 @@ public class MainMenuState extends ButtonMenuState
 				game.enterState(IceIceBabyGame.MAP_CHOOSER_STATE);
 			}
 		});
-		
+
 		this.setTheme(new Music("res//sounds//theme.ogg"));
 	}
 
