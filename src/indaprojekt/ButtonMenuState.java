@@ -12,15 +12,18 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public abstract class ButtonMenuState extends BasicGameState {
+public abstract class ButtonMenuState extends BasicGameState 
+{
 	private int stateID;
 	
 	protected Image background;
 	private List<Button> buttons;
 	private Map<Integer, ActionPerformer> keyMap;
+	private Sound theme;
 	
 	public ButtonMenuState(int stateID) 
 	{
@@ -29,10 +32,16 @@ public abstract class ButtonMenuState extends BasicGameState {
 		keyMap = new HashMap<Integer, ActionPerformer>();
 	}
 	
+	protected void setTheme(Sound theme)
+	{
+		this.theme = theme;
+	}
+	
 	protected void addButton(Button button)
 	{
 		buttons.add(button);
 	}
+
 	
 	protected void mapKey(int key, ActionPerformer action)
 	{
@@ -71,6 +80,10 @@ public abstract class ButtonMenuState extends BasicGameState {
 			if (input.isKeyPressed(i)) {
 				keyMap.get(i).doAction();
 			}
+		}
+		
+		if (!theme.playing()) {
+			theme.loop();
 		}
 	}
 

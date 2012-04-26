@@ -8,6 +8,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class MainMenuState extends ButtonMenuState 
@@ -19,6 +20,7 @@ public class MainMenuState extends ButtonMenuState
 	public final static float BUTTON_ENDSCALE = 1.3f;
 	public final static int BUTTON_SCALEMILLIS = 75;
 	
+	
 	public MainMenuState(int stateID) throws SlickException
 	{
 		super(stateID);
@@ -26,7 +28,8 @@ public class MainMenuState extends ButtonMenuState
 	
 	@Override
 	public void init(final GameContainer gc, final StateBasedGame game)
-			throws SlickException {
+			throws SlickException 
+	{
 		
 		background = new Image("res//images//bakgrund.png");
 		
@@ -93,6 +96,8 @@ public class MainMenuState extends ButtonMenuState
 				game.enterState(IceIceBabyGame.MAP_CHOOSER_STATE);
 			}
 		});
+		
+	//	this.setTheme(new Sound("res//sounds//speedup.ogg"));
 	}
 
 }
