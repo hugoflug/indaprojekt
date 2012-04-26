@@ -45,10 +45,9 @@ public class PauseState extends ButtonMenuState {
 
 		Image pauseImage = new Image("res//images//pause.png");
 		int pauseTextX = MIDDLE_X - (pauseImage.getWidth()/2);
-		Button pauseText = new GrowButton(pauseImage, pauseImage, 
+		Button pauseText = new Button(pauseImage, pauseImage, 
 				new Rectangle2D.Float(pauseTextX, pauseTextY, 
-						pauseImage.getWidth(), pauseImage.getHeight()),
-						MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS);
+						pauseImage.getWidth(), pauseImage.getHeight()));
 		addButton(pauseText);
 		
 		// Main menu button.
