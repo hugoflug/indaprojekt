@@ -12,7 +12,7 @@ import org.newdawn.slick.SlickException;
 public class Item extends Entity 
 {
 	protected boolean remove;
-	private Image image;
+	protected Image image;
 	
 	public Item(Image image, float x, float y, Rectangle2D.Float hitBox) 
 	{
