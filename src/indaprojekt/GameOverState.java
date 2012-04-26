@@ -8,6 +8,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * The state that will run when a player has died. From here you 
+ * can play again or go to the main menu.
+ *
+ */
 public class GameOverState extends BasicGameState {
 	private int stateID;
 	private Image background;

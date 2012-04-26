@@ -6,7 +6,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 /**
- * A class representing any physical object in the game
+ * A class representing any physical object in the game.
  *
  */
 public abstract class Entity 

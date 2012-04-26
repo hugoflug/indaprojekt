@@ -15,6 +15,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * The general properties for a menu with buttons.
+ *
+ */
 public abstract class ButtonMenuState extends BasicGameState {
 	private int stateID;
 	

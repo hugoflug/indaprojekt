@@ -10,6 +10,11 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * This is the state in which you are in the main menu. From here
+ * you can close the game, go to game state or the choose level state.
+ *
+ */
 public class MainMenuState extends ButtonMenuState 
 {
 	private final static int START_GAME_X = 400; 

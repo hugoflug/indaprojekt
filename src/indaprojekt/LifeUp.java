@@ -6,6 +6,10 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
+/**
+ * A power-up that gives a LifeUpEffect.
+ *
+ */
 public class LifeUp extends PowerUp
 {
 	public LifeUp(float x, float y) throws SlickException 

@@ -6,6 +6,11 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+/**
+ * A button that grows a little bit when you hover over 
+ * it with the mouse.
+ *
+ */
 public class GrowButton extends Button 
 {
 	private float scalePerMilli;

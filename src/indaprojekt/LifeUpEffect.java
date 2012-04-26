@@ -1,5 +1,8 @@
 package indaprojekt;
-
+/**
+ * An effect that has a value of an amount of increasing life.
+ *
+ */
 public class LifeUpEffect extends Effect
 {
 	private boolean remove;

@@ -5,6 +5,11 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * This is the main class that controls everything. In here are all
+ * the different states of the game.
+ *
+ */
 public class IceIceBabyGame extends StateBasedGame{
 	public static final int MAIN_MENU_STATE = 0;
 	public static final int GAME_PLAY_STATE = 1;

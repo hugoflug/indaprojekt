@@ -10,6 +10,11 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
+/**
+ * A bomb is an object that a Player can throw and when it
+ * lands it will eventually create an Explosion and disappear.
+ *
+ */
 public class Bomb extends Projectile 
 {
 	private static final float BOMB_FRICTION = 0.9f;

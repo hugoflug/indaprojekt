@@ -6,7 +6,11 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-
+/**
+ * A button that performs an action when you click on 
+ * it with the mouse.
+ *
+ */
 public class Button 
 {
 	public interface ActionPerformer

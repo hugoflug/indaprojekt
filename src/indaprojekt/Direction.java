@@ -1,5 +1,9 @@
 package indaprojekt;
 
+/**
+ * All the directions in the game with normalized speed.
+ *
+ */
 public enum Direction 
 {	
 	UP(0, -1),

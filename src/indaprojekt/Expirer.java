@@ -1,7 +1,7 @@
 package indaprojekt;
 
 /**
- * Something that expires after x time
+ * Something that expires after x time.
  *
  */
 public class Expirer 

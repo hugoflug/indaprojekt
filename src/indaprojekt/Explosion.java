@@ -7,6 +7,10 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+/**
+ * An explosion that will exist for a short moment.
+ *
+ */
 public class Explosion extends Mover
 {
 	private Animation animation;
