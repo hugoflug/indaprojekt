@@ -30,7 +30,7 @@ public class GrowButton extends Button
 	public void doLogic(int delta, Input input) throws SlickException 
 	{
 		super.doLogic(delta, input);
-		if (area.contains(input.getMouseX(), input.getMouseY())) {
+		if (ogArea.contains(input.getMouseX(), input.getMouseY())) {
 			if (!alreadyInArea) {
 				scaleTime = new Expirer(scaleMillis);
 				alreadyInArea = true;
