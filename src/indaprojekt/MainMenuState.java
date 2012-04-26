@@ -3,15 +3,12 @@ package indaprojekt;
 import indaprojekt.Button.ActionPerformer;
 
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
@@ -23,8 +20,10 @@ public class MainMenuState extends ButtonMenuState
 {
 	private final static int START_GAME_X = 400; 
 	private final static int START_GAME_Y = 250;
-	private final static int EXIT_GAME_X = 0;
-	private final static int EXIT_GAME_Y = 0;
+	private final static int EXIT_GAME_X = 50;
+	private final static int EXIT_GAME_Y = 50;
+	private final static int HOW_TO_PLAY_X = 450;
+	private final static int HOW_TO_PLAY_Y = 400;
 	private final static int SOUND_X = 800;
 	private final static int SOUND_Y = 500;
 	public final static float BUTTON_ENDSCALE = 1.3f;
@@ -42,9 +41,7 @@ public class MainMenuState extends ButtonMenuState
 	{
 		background = new Image("res//images//bakgrund.png");
 		
-		gc.setSoundOn(false);
-		gc.setMusicOn(false);
-		
+		// Play
 		Image startGameOption = new Image("res//images//play.png");
 		int startW = startGameOption.getWidth();
 		int startH = startGameOption.getHeight();
@@ -63,6 +60,7 @@ public class MainMenuState extends ButtonMenuState
 		});
 		addButton(startGameButton);
 		
+		// Exit
 		Image exitGameOption = new Image("res//images//exit.png");
 		int exitW = exitGameOption.getWidth();
 		int exitH = exitGameOption.getHeight();
@@ -78,6 +76,25 @@ public class MainMenuState extends ButtonMenuState
 		});
 		addButton(exitGameButton);
 		
+		// How to play
+		Image howToPlayOption = new Image("res//images//howToPlay.png");
+		int howToW = howToPlayOption.getWidth();
+		int howToH = howToPlayOption.getHeight();
+		Button howToPlayButton = new GrowButton(howToPlayOption, 
+								     howToPlayOption, 
+								     new Rectangle2D.Float(HOW_TO_PLAY_X, HOW_TO_PLAY_Y, howToW, howToH),
+								     BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
+		
+		howToPlayButton.setAction(new ActionPerformer() {
+			@Override
+			public void doAction() throws SlickException {
+				gc.getInput().clearMousePressedRecord();
+				game.enterState(IceIceBabyGame.HOW_TO_PLAY_STATE);
+			}
+		});
+		addButton(howToPlayButton);
+
+		// Sound on/off
 		Image soundOption = new Image("res//images//sound.gif");
 		Image soundOffOption = new Image("res//images//soundoff.png");
 		int soundW = soundOption.getWidth();
@@ -97,7 +114,8 @@ public class MainMenuState extends ButtonMenuState
 			}
 		});
 		addButton(soundGameButton);
-		
+
+		// Pressed key
 		mapKey(Input.KEY_ENTER, new ActionPerformer() {
 			@Override
 			public void doAction() throws SlickException {
