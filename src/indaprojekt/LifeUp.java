@@ -14,6 +14,6 @@ public class LifeUp extends PowerUp
 			  x, y, 
 			  new Rectangle2D.Float(0, 0, 32, 32), 
 			  new LifeUpEffect(),
-			  new Sound("res//sounds//speedup.ogg")); //TEMP
+			  new Sound("res//sounds//lifeup.ogg")); //TEMP
 	}
 }
