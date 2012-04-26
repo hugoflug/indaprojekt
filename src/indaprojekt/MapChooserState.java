@@ -19,6 +19,17 @@ public class MapChooserState extends ButtonMenuState
 		super(stateID);
 	}
 	
+	private int centralize(int i, int max, int size)
+	{
+		if (i == 0) {
+			return 0;
+		} else if (i == max) {
+			return size;
+		} else {
+			return size/2;
+		}
+	}
+	
 	@Override
 	public void init(final GameContainer gc, final StateBasedGame game)
 			throws SlickException
@@ -31,8 +42,11 @@ public class MapChooserState extends ButtonMenuState
 				Image levelImageHover = new Image("res//images//map" + getMap(j, i, 3) + "h" + ".png");
 				Rectangle2D.Float area = new Rectangle2D.Float(i*333, j*200, 333, 200);
 				
+				int centerX = centralize(i, 2, levelImage.getWidth());
+				int centerY = centralize(j, 2, levelImage.getHeight());
+				
 				Button levelButton = new GrowButton(levelImage, levelImage, area, //levelImageHover second arg?
-									 BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
+									 BUTTON_ENDSCALE, BUTTON_SCALEMILLIS, centerX, centerY);
 				final int x = j;
 				final int y = i;
 				levelButton.setAction(new ActionPerformer() {
