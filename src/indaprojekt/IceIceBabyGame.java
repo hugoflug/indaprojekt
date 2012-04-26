@@ -43,7 +43,7 @@ public class IceIceBabyGame extends StateBasedGame{
 	}
 	
     public static void main(String[] args) throws SlickException
-    {	
+    {		
          AppGameContainer app = new AppGameContainer(new IceIceBabyGame());
          app.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
          app.setVSync(true);

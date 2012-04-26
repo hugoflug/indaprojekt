@@ -7,6 +7,7 @@ import java.awt.geom.Rectangle2D;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -23,6 +24,8 @@ public class MainMenuState extends ButtonMenuState
 	private final static int EXIT_GAME_Y = 50;
 	private final static int HOW_TO_PLAY_X = 450;
 	private final static int HOW_TO_PLAY_Y = 400;
+	private final static int SOUND_X = 800;
+	private final static int SOUND_Y = 500;
 	public final static float BUTTON_ENDSCALE = 1.3f;
 	public final static int BUTTON_SCALEMILLIS = 75;
 	
@@ -36,6 +39,9 @@ public class MainMenuState extends ButtonMenuState
 	public void init(final GameContainer gc, final StateBasedGame game)
 			throws SlickException 
 	{
+		for (StackTraceElement s : Thread.currentThread().getStackTrace()) {
+			System.out.println(s);
+		}
 		
 		background = new Image("res//images//bakgrund.png");
 		
@@ -44,9 +50,9 @@ public class MainMenuState extends ButtonMenuState
 		int startW = startGameOption.getWidth();
 		int startH = startGameOption.getHeight();
 		Button startGameButton = new GrowButton(startGameOption, 
-								     startGameOption, 
-								     new Rectangle2D.Float(START_GAME_X, START_GAME_Y, startW, startH),
-								     BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
+								     			startGameOption, 
+								     			new Rectangle2D.Float(START_GAME_X, START_GAME_Y, startW, startH),
+								     			BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
 		
 		startGameButton.setAction(new ActionPerformer() {
 			@Override
@@ -92,8 +98,28 @@ public class MainMenuState extends ButtonMenuState
 		});
 		addButton(howToPlayButton);
 
-		// Pressed key
+		// Sound on/off
+		Image soundOption = new Image("res//images//sound.gif");
+		Image soundOffOption = new Image("res//images//soundoff.png");
+		int soundW = soundOption.getWidth();
+		int soundH = soundOption.getHeight();
+		Button soundGameButton = new ToggleButton(soundOption, 
+								    	    soundOption, 
+								    	    soundOffOption,
+								    	    soundOffOption,
+								    	    new Rectangle2D.Float(SOUND_X, SOUND_Y, soundW, soundH));
 		
+		soundGameButton.setAction(new ActionPerformer() {
+			@Override
+			public void doAction() {
+				boolean soundsOn = gc.isSoundOn() && gc.isMusicOn();
+				gc.setMusicOn(!soundsOn);
+				gc.setSoundOn(!soundsOn);
+			}
+		});
+		addButton(soundGameButton);
+
+		// Pressed key
 		mapKey(Input.KEY_ENTER, new ActionPerformer() {
 			@Override
 			public void doAction() throws SlickException {
@@ -116,8 +142,8 @@ public class MainMenuState extends ButtonMenuState
 				game.enterState(IceIceBabyGame.MAP_CHOOSER_STATE);
 			}
 		});
-		
-	//	this.setTheme(new Sound("res//sounds//speedup.ogg"));
+
+		this.setTheme(new Music("res//sounds//iceicebegin.ogg", true));
 	}
 
 }

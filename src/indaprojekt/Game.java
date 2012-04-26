@@ -10,6 +10,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -17,7 +18,7 @@ import org.newdawn.slick.state.StateBasedGame;
 /**
  * Describes the actual game.
  */
-public class Game extends BasicGameState
+public class Game extends AdvancedGameState
 {
 	public static final int WINDOW_WIDTH = 1000;
 	public static final int WINDOW_HEIGHT = 600;
@@ -77,6 +78,8 @@ public class Game extends BasicGameState
     	setupEntities(gc);
     	
     	input = gc.getInput();
+    	
+		this.setTheme(new Music("res//sounds//iceiceend.ogg", true));
     }
  
     public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException     
