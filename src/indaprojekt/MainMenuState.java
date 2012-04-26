@@ -8,6 +8,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
@@ -24,6 +25,7 @@ public class MainMenuState extends ButtonMenuState
 	public final static float BUTTON_ENDSCALE = 1.3f;
 	public final static int BUTTON_SCALEMILLIS = 75;
 	
+	
 	public MainMenuState(int stateID) throws SlickException
 	{
 		super(stateID);
@@ -31,7 +33,8 @@ public class MainMenuState extends ButtonMenuState
 	
 	@Override
 	public void init(final GameContainer gc, final StateBasedGame game)
-			throws SlickException {
+			throws SlickException 
+	{
 		
 		background = new Image("res//images//bakgrund.png");
 		
@@ -45,13 +48,9 @@ public class MainMenuState extends ButtonMenuState
 		
 		startGameButton.setAction(new ActionPerformer() {
 			@Override
-			public void doAction() {
+			public void doAction() throws SlickException {
 				game.addState(new Game(IceIceBabyGame.GAME_PLAY_STATE, "res//maps//map1.txt"));
-				try {
-					game.getState(IceIceBabyGame.GAME_PLAY_STATE).init(gc, game);
-				} catch (SlickException e) {
-					System.err.println("Error on init new game.");
-				}
+				game.getState(IceIceBabyGame.GAME_PLAY_STATE).init(gc, game);
 				game.enterState(IceIceBabyGame.GAME_PLAY_STATE);
 			}
 		});
@@ -74,13 +73,9 @@ public class MainMenuState extends ButtonMenuState
 		
 		mapKey(Input.KEY_ENTER, new ActionPerformer() {
 			@Override
-			public void doAction() {
+			public void doAction() throws SlickException {
 				game.addState(new Game(IceIceBabyGame.GAME_PLAY_STATE, "res//maps//map1.txt"));
-				try {
-					game.getState(IceIceBabyGame.GAME_PLAY_STATE).init(gc, game);
-				} catch (SlickException e) {
-					System.err.println("Error on init new game.");
-				}
+				game.getState(IceIceBabyGame.GAME_PLAY_STATE).init(gc, game);
 				game.enterState(IceIceBabyGame.GAME_PLAY_STATE);
 			}
 		});
@@ -98,6 +93,8 @@ public class MainMenuState extends ButtonMenuState
 				game.enterState(IceIceBabyGame.MAP_CHOOSER_STATE);
 			}
 		});
+		
+	//	this.setTheme(new Sound("res//sounds//speedup.ogg"));
 	}
 
 }
