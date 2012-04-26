@@ -8,9 +8,15 @@ import org.newdawn.slick.Input;
 
 public class Button 
 {
+	public interface ActionPerformer
+	{
+		public void doAction();
+	}
+	
 	private Rectangle2D.Float area;
 	private Image activeImage, image, mouseOverImage;
 	private boolean pressed;
+	private ActionPerformer action;
 	
 	public Button(Image image, Image mouseOverImage, Rectangle2D.Float area)
 	{
@@ -27,7 +33,8 @@ public class Button
 		if (area.contains(input.getMouseX(), input.getMouseY())) {
 			activeImage = mouseOverImage;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-				pressed = true;
+				action.doAction();
+		//		pressed = true;
 			}
 		} else {
 			activeImage = image;
@@ -42,5 +49,10 @@ public class Button
 	public void draw()
 	{
 		activeImage.draw((float)area.getX(), (float)area.getY());
+	}
+	
+	public void setAction(ActionPerformer action)
+	{
+		this.action = action;
 	}
 }

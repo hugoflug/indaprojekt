@@ -10,7 +10,7 @@ public class IceIceBabyGame extends StateBasedGame{
 	public static final int GAME_PLAY_STATE = 1;
 	public static final int GAME_OVER_STATE = 2;
 	
-	public IceIceBabyGame() {
+	public IceIceBabyGame() throws SlickException {
 		super("Ice Ice Baby");
 		
 		this.addState(new MainMenuState(MAIN_MENU_STATE));
@@ -33,8 +33,8 @@ public class IceIceBabyGame extends StateBasedGame{
          app.setVSync(true);
          app.setFullscreen(false);
          app.setShowFPS(false);
-         // TODO - testa hur detta ser ut på mac och linux. Jag fann
-         // till slut att för windows MÅSTE bilden vara 16x16.
+         // TODO - testa hur detta ser ut pï¿½ mac och linux. Jag fann
+         // till slut att fï¿½r windows Mï¿½STE bilden vara 16x16.
          app.setIcon("res//images//icon.png");
          app.start();
     }
