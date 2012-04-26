@@ -10,7 +10,8 @@ public class IceIceBabyGame extends StateBasedGame{
 	public static final int GAME_PLAY_STATE = 1;
 	public static final int GAME_OVER_STATE = 2;
 	
-	public IceIceBabyGame() throws SlickException {
+	public IceIceBabyGame() throws SlickException 
+	{
 		super("Ice Ice Baby");
 		
 		this.addState(new MainMenuState(MAIN_MENU_STATE));
@@ -20,7 +21,8 @@ public class IceIceBabyGame extends StateBasedGame{
 	}
 
 	@Override
-	public void initStatesList(GameContainer container) throws SlickException {
+	public void initStatesList(GameContainer container) throws SlickException 
+	{
 		this.getState(MAIN_MENU_STATE).init(container, this);
 		this.getState(GAME_PLAY_STATE).init(container, this);
 		this.getState(GAME_OVER_STATE).init(container, this);

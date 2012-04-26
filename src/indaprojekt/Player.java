@@ -100,22 +100,23 @@ public class Player extends ConstantMover
 		//			break;
 				}
 			}
-    	} if (input.isKeyPressed(controls.keyThrow)) {
-    		Image image = new Image("res//images//bomb.png");
-    		
-    		//TEMP
-    		Animation anim = new Animation(new Image[]{image}, 1);
-    		
-    		float dx = direction.getNormalizedDX();
-    		float dy = direction.getNormalizedDY(); 
-    		
-    		throwSound.play();
-    		
-    		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 32, 32);
-
-    		projectile = new Projectile(projectileOriginX((float)projRect.getWidth()), 
-    				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim, 1); 
     	} 
+//		if (input.isKeyPressed(controls.keyThrow)) {
+//    		Image image = new Image("res//images//bomb.png");
+//    		
+//    		//TEMP
+//    		Animation anim = new Animation(new Image[]{image}, 1);
+//    		
+//    		float dx = direction.getNormalizedDX();
+//    		float dy = direction.getNormalizedDY(); 
+//    		
+//    		throwSound.play();
+//    		
+//    		Rectangle2D.Float projRect = new Rectangle2D.Float(0, 0, 32, 32);
+//
+//    		projectile = new Projectile(projectileOriginX((float)projRect.getWidth()), 
+//    				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim, 1); 
+//    	} 
     	if (input.isKeyPressed(controls.keyBomb)) { 
     		Image image = new Image("res//images//bomb.png");
     		
