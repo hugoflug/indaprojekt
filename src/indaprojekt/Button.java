@@ -20,7 +20,7 @@ public class Button
 	
 	protected Rectangle2D.Float ogArea;
 	protected Rectangle2D.Float area;
-	private Image activeImage, image, mouseOverImage;
+	protected Image activeImage, image, mouseOverImage;
 	private boolean pressed;
 	private ActionPerformer action;
 	protected float scale;
@@ -41,13 +41,19 @@ public class Button
 		pressed = false;
 		if (area.contains(input.getMouseX(), input.getMouseY())) {
 			activeImage = mouseOverImage;
-			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && 
+			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON) && 
 					action != null) {
+				buttonPressed();
 				action.doAction();
 			}
 		} else {
 			activeImage = image;
 		}
+	}
+	
+	protected void buttonPressed()
+	{
+		
 	}
 	
 	public boolean isPressed()

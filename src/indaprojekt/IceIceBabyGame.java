@@ -32,11 +32,11 @@ public class IceIceBabyGame extends StateBasedGame{
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException 
 	{
-		this.getState(MAIN_MENU_STATE).init(container, this);
-		this.getState(GAME_PLAY_STATE).init(container, this);
-		this.getState(GAME_OVER_STATE).init(container, this);
-		this.getState(PAUSE_STATE).init(container, this);
-		this.getState(MAP_CHOOSER_STATE).init(container, this);
+//		this.getState(MAIN_MENU_STATE).init(container, this);
+//		this.getState(GAME_PLAY_STATE).init(container, this);
+//		this.getState(GAME_OVER_STATE).init(container, this);
+//		this.getState(PAUSE_STATE).init(container, this);
+//		this.getState(MAP_CHOOSER_STATE).init(container, this);
 	}
 	
     public static void main(String[] args) throws SlickException
