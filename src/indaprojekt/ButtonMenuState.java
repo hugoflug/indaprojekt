@@ -82,7 +82,7 @@ public abstract class ButtonMenuState extends BasicGameState
 			}
 		}
 		
-		if (!theme.playing()) {
+		if (theme != null && !theme.playing()) {
 			theme.loop();
 		}
 	}

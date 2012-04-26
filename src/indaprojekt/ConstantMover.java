@@ -22,8 +22,9 @@ public abstract class ConstantMover extends Mover
 	@Override
 	public void doLogic(Input input, int delta) throws SlickException
 	{
-		if(!(dx  == 0 && dy == 0))
+		if(!(dx  == 0 && dy == 0)) {
 			move(dx*delta, dy*delta);
+		}
 		//OBS!! should change according to delta
 		dx *= friction;
 		dy *= friction;
