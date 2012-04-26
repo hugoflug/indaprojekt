@@ -81,6 +81,13 @@ public class MainMenuState extends ButtonMenuState {
 				gc.exit();
 			}
 		});
+		
+		mapKey(Input.KEY_V, new ActionPerformer() {
+			@Override
+			public void doAction() throws SlickException {
+				game.enterState(IceIceBabyGame.MAP_CHOOSER_STATE);
+			}
+		});
 	}
 
 }

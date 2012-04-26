@@ -4,13 +4,14 @@ import java.awt.geom.Rectangle2D;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 
 
 public class Button 
 {
 	public interface ActionPerformer
 	{
-		public void doAction();
+		public void doAction() throws SlickException;
 	}
 	
 	private Rectangle2D.Float area;
@@ -27,7 +28,7 @@ public class Button
 		activeImage = image;
 	}
 	
-	public void doLogic(int delta, Input input) 
+	public void doLogic(int delta, Input input) throws SlickException 
 	{
 		pressed = false;
 		if (area.contains(input.getMouseX(), input.getMouseY())) {
