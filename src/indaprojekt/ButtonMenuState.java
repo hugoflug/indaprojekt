@@ -3,6 +3,7 @@ package indaprojekt;
 import indaprojekt.Button.ActionPerformer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +29,6 @@ public abstract class ButtonMenuState extends AdvancedGameState
 	protected Image background;
 	private List<Button> buttons;
 	private Map<Integer, ActionPerformer> keyMap;
-	private Music theme;
 	
 	public ButtonMenuState(int stateID) 
 	{
@@ -60,6 +60,8 @@ public abstract class ButtonMenuState extends AdvancedGameState
 			throws SlickException 
 	{
 		background.draw(0, 0);
+		
+		Collections.sort(buttons);
 		
 		for (Button button : buttons) {
 			button.draw();

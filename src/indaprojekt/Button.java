@@ -11,7 +11,7 @@ import org.newdawn.slick.SlickException;
  * it with the mouse.
  *
  */
-public class Button 
+public class Button implements Comparable<Button>
 {
 	public interface ActionPerformer
 	{
@@ -24,6 +24,8 @@ public class Button
 	private boolean pressed;
 	private ActionPerformer action;
 	protected float scale;
+	private int orderingValue;
+	private int ogOrderingValue;
 	
 	public Button(Image image, Image mouseOverImage, Rectangle2D.Float area)
 	{
@@ -34,12 +36,14 @@ public class Button
 		pressed = false;
 		activeImage = image;
 		scale = 1.0f;
+		setOrderingValue(0);
 	}
 	
 	public void doLogic(int delta, Input input) throws SlickException 
 	{
 		pressed = false;
 		if (area.contains(input.getMouseX(), input.getMouseY())) {
+			orderingValue = -1;
 			activeImage = mouseOverImage;
 			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON) && 
 					action != null) {
@@ -47,6 +51,7 @@ public class Button
 				action.doAction();
 			}
 		} else {
+			orderingValue = ogOrderingValue;
 			activeImage = image;
 		}
 	}
@@ -69,5 +74,16 @@ public class Button
 	public void setAction(ActionPerformer action)
 	{
 		this.action = action;
+	}
+	
+	public void setOrderingValue(int value)
+	{
+		orderingValue = ogOrderingValue = value;
+	}
+
+	@Override
+	public int compareTo(Button b) 
+	{
+		return b.orderingValue - orderingValue;
 	}
 }
