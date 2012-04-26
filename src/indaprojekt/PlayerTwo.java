@@ -22,9 +22,9 @@ public class PlayerTwo extends Player
 					0.10f); //0.15f
 	}
 	
-	private static PlayerControls getPlayerControls()
+	private static Player.Controls getPlayerControls()
 	{
-		return new PlayerControls(
+		return new Player.Controls(
 				Input.KEY_UP,
 				Input.KEY_LEFT,
 				Input.KEY_DOWN,

@@ -21,9 +21,9 @@ public class PlayerOne extends Player
 			  getAnimations(),5, 0.10f);
 	}
 	
-	private static PlayerControls getPlayerControls()
+	private static Player.Controls getPlayerControls()
 	{
-		return new PlayerControls(
+		return new Player.Controls(
 				Input.KEY_W,
 				Input.KEY_A,
 				Input.KEY_S,

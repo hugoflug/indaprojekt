@@ -1,6 +1,7 @@
 package indaprojekt;
 
 import java.awt.geom.Rectangle2D;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,6 +19,29 @@ import org.newdawn.slick.Sound;
  */
 public class Player extends ConstantMover
 {
+	public static class Controls
+	{
+		public final Map<Direction, Integer> directionMap;
+		public final int keyThrow;
+		public final int keyBomb;
+		
+		public Controls(int keyUp,
+							  int keyLeft,
+							  int keyDown,
+							  int keyRight,
+							  int keyThrow,
+							  int keyBomb)
+		{
+			directionMap = new HashMap<Direction, Integer>();
+			directionMap.put(Direction.UP, keyUp);
+			directionMap.put(Direction.LEFT, keyLeft);
+			directionMap.put(Direction.RIGHT, keyRight);
+			directionMap.put(Direction.DOWN, keyDown);
+			this.keyThrow = keyThrow;
+			this.keyBomb = keyBomb;
+		}
+	}
+	
 	private static final float PLAYER_FRICTION = 0.85f;
 	private static final int BOMB_TIME = 500;
 	private static final float BOMB_SPEED = 1.5f;
@@ -26,7 +50,7 @@ public class Player extends ConstantMover
 	private Map<Direction, Animation> animations;
 	private List<Effect> effects;
 	private List<Explosion> explosionImmunity;
-	private PlayerControls controls;
+	private Player.Controls controls;
 	private Projectile projectile;
 	private Direction direction;
 	private int lives;
@@ -35,7 +59,7 @@ public class Player extends ConstantMover
 	private Sound hitSound;
 	private Sound deadSound;
 	
-	public Player(float x, float y, PlayerControls controls, Rectangle2D.Float hitBox, 
+	public Player(float x, float y, Player.Controls controls, Rectangle2D.Float hitBox, 
 						Map<Direction, Animation> animations, int lives, float speed) throws SlickException
 	{
 		super(x, y, hitBox, 0, 0, PLAYER_FRICTION); 

@@ -10,7 +10,8 @@ import org.newdawn.slick.state.StateBasedGame;
  * the different states of the game.
  *
  */
-public class IceIceBabyGame extends StateBasedGame{
+public class IceIceBabyGame extends StateBasedGame
+{
 	public static final int MAIN_MENU_STATE = 0;
 	public static final int GAME_PLAY_STATE = 1;
 	public static final int GAME_OVER_STATE = 2;
