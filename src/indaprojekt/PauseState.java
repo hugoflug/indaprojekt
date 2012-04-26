@@ -56,7 +56,7 @@ public class PauseState extends ButtonMenuState {
 		Button mainMenuButton = new Button(mainMenuImage, mainMenuImageH,
 				new Rectangle2D.Float(mainMenuX, mainMenuY,
 						mainMenuImage.getWidth(), mainMenuImage.getHeight()));
-		resumeButton.setAction(new ActionPerformer() {
+		mainMenuButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() {
 				game.enterState(IceIceBabyGame.MAIN_MENU_STATE);
