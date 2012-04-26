@@ -12,12 +12,12 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class MainMenuState extends ButtonMenuState 
 {
-	private final int START_GAME_X = 400; 
-	private final int START_GAME_Y = 250;
-	private final int EXIT_GAME_X = 0;
-	private final int EXIT_GAME_Y = 0;
-	private final float BUTTON_ENDSCALE = 1.3f;
-	private final int BUTTON_SCALEMILLIS = 75;
+	private final static int START_GAME_X = 400; 
+	private final static int START_GAME_Y = 250;
+	private final static int EXIT_GAME_X = 0;
+	private final static int EXIT_GAME_Y = 0;
+	public final static float BUTTON_ENDSCALE = 1.3f;
+	public final static int BUTTON_SCALEMILLIS = 75;
 	
 	public MainMenuState(int stateID) throws SlickException
 	{

@@ -31,8 +31,9 @@ public class PauseState extends ButtonMenuState {
 		int resumeGameX = MIDDLE_X - (resumeOption.getWidth()/2);
 		int resumeW = resumeOption.getWidth();
 		int resumeH = resumeOption.getHeight();
-		Button resumeButton = new Button(resumeOption, resumeOption,
-				new Rectangle2D.Float(resumeGameX, resumeGameY, resumeW, resumeH));
+		Button resumeButton = new GrowButton(resumeOption, resumeOption,
+				new Rectangle2D.Float(resumeGameX, resumeGameY, resumeW, resumeH),
+				MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS);
 		
 		resumeButton.setAction(new ActionPerformer() {
 			@Override
@@ -44,18 +45,20 @@ public class PauseState extends ButtonMenuState {
 
 		Image pauseImage = new Image("res//images//pause.png");
 		int pauseTextX = MIDDLE_X - (pauseImage.getWidth()/2);
-		Button pauseText = new Button(pauseImage, pauseImage, 
+		Button pauseText = new GrowButton(pauseImage, pauseImage, 
 				new Rectangle2D.Float(pauseTextX, pauseTextY, 
-						pauseImage.getWidth(), pauseImage.getHeight()));
+						pauseImage.getWidth(), pauseImage.getHeight()),
+						MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS);
 		addButton(pauseText);
 		
 		// Main menu button.
 		Image mainMenuImage = new Image("res//images//mainMenu.png");
 		Image mainMenuImageH = new Image("res//images//mainMenu.png");
 		int mainMenuX = MIDDLE_X - (mainMenuImage.getWidth()/2);
-		Button mainMenuButton = new Button(mainMenuImage, mainMenuImageH,
+		Button mainMenuButton = new GrowButton(mainMenuImage, mainMenuImageH,
 				new Rectangle2D.Float(mainMenuX, mainMenuY,
-						mainMenuImage.getWidth(), mainMenuImage.getHeight()));
+						mainMenuImage.getWidth(), mainMenuImage.getHeight()),
+						MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS);
 		mainMenuButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() {
