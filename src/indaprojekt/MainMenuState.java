@@ -1,5 +1,9 @@
 package indaprojekt;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.geom.Rectangle2D;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -13,13 +17,14 @@ public class MainMenuState extends BasicGameState {
 	
 	private Image background;
 
-	private Image startGameOption;
 	private final float startGameOptionLeftBorderX = 400;
 	private final float startGameOptionTopBorderY = 250;
-	
-	private Image exitGameOption;
 	private final float exitGameOptionLeftBorderX = 0;
 	private final float exitGameOptionTopBorderY = 0;
+	
+	private List<Button> buttons;
+	private Button startGameButton;
+	private Button exitGameButton;
 	
 	public MainMenuState(int stateID) {
 		this.stateID = stateID;
@@ -28,21 +33,37 @@ public class MainMenuState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame game)
 			throws SlickException {
-		background = new Image("res//images//bakgrund.png");
-		startGameOption = new Image("res//images//play.png");
-		exitGameOption = new Image("res//images//exit.png");
 		
+		buttons = new ArrayList<Button>();
+		
+		Image background = new Image("res//images//bakgrund.png");
+		Image startGameOption = new Image("res//images//play.png");
+		Image exitGameOption = new Image("res//images//exit.png");
+		
+		int startW = startGameOption.getWidth();
+		int startH = startGameOption.getHeight();
+		startGameButton = new Button(startGameOption, 
+								     startGameOption, 
+								     new Rectangle2D.Float(400, 250, startW, startH));
+		buttons.add(startGameButton);
+		
+		int exitW = exitGameOption.getWidth();
+		int exitH = exitGameOption.getHeight();
+		exitGameButton = new Button(exitGameOption, 
+								    exitGameOption, 
+								    new Rectangle2D.Float(0, 0, exitW, exitH));
+		buttons.add(exitGameButton);
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g)
-			throws SlickException {
+			throws SlickException 
+	{
 		background.draw(0, 0);
-		startGameOption.draw(startGameOptionLeftBorderX,
-				startGameOptionTopBorderY);
-		exitGameOption.draw(exitGameOptionLeftBorderX,
-				exitGameOptionTopBorderY);
 		
+		for (Button button : buttons) {
+			button.draw();
+		}
 	}
 
 	@Override
@@ -50,41 +71,15 @@ public class MainMenuState extends BasicGameState {
 			throws SlickException {
 		Input input = gc.getInput();
 
-		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-			float mouseX = input.getMouseX();
-			float mouseY = input.getMouseY();
-
-			if (startIsClicked(mouseX, mouseY)) {
-				game.enterState(IceIceBabyGame.GAME_PLAY_STATE);
-			} else if (exitGameOptionIsClicked(mouseX, mouseY)) {
-				gc.exit();
-			}
+		for (Button button : buttons) {
+			button.doLogic(delta, input);
 		}
-	}
-	
-	/**
-	 * 
-	 * @param mouseX the x-coordinate for the mouse click.
-	 * @param mouseY the y-coordinate for the mouse click.
-	 * @return true if the mouse click was on the play button.
-	 */
-	private boolean startIsClicked(float mouseX, float mouseY) {
-		return (mouseX > startGameOptionLeftBorderX && 
-				mouseX < startGameOptionLeftBorderX+startGameOption.getWidth() &&
-				mouseY > startGameOptionTopBorderY &&
-				mouseY < startGameOptionTopBorderY+startGameOption.getHeight());
-	}
-	
-	/**
-	 * @param mouseX the x-coordinate for the mouse click.
-	 * @param mouseY the y-coordinate for the mouse click.
-	 * @return true if the mouse click was on the exit button.
-	 */
-	private boolean exitGameOptionIsClicked(float mouseX, float mouseY) {
-		return (mouseX > exitGameOptionLeftBorderX && 
-				mouseX < exitGameOptionLeftBorderX+exitGameOption.getWidth() &&
-				mouseY > exitGameOptionTopBorderY &&
-				mouseY < exitGameOptionTopBorderY+exitGameOption.getHeight());
+		
+		if (startGameButton.isPressed()) {
+			game.enterState(IceIceBabyGame.GAME_PLAY_STATE);
+		} else if (exitGameButton.isPressed()) {
+			gc.exit();
+		}
 	}
 
 	@Override
