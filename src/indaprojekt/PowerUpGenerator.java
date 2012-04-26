@@ -28,7 +28,7 @@ public class PowerUpGenerator {
 			// obstacle, they will dissappear immediately, but will be 
 			// visible for 1/FPS seconds.
 			int choosePower = rand.nextInt(2);
-			System.out.println(choosePower);
+
 			switch(choosePower) {
 			case 0:
 				power = new SpeedUp(rand.nextFloat()*Game.WINDOW_WIDTH,
