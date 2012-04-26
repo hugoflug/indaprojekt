@@ -34,7 +34,6 @@ public class Button
 			activeImage = mouseOverImage;
 			if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
 				action.doAction();
-		//		pressed = true;
 			}
 		} else {
 			activeImage = image;
