@@ -31,7 +31,7 @@ public class Player extends ConstantMover
 	private Direction direction;
 	private int lives;
 	private float speed;
-	private Sound throwSound;
+//	private Sound throwSound;
 	private Sound hitSound;
 	private Sound deadSound;
 	
@@ -47,7 +47,7 @@ public class Player extends ConstantMover
 		this.controls = controls;
 		this.lives = lives; 
 		this.speed = speed; 
-		throwSound = new Sound("res//sounds//gunfire.ogg");
+//		throwSound = new Sound("res//sounds//gunfire.ogg");
 		hitSound = new Sound("res//sounds//hitSound.ogg");
 		deadSound = new Sound("res//sounds//Dead.ogg");
 		dx = 0;
@@ -97,7 +97,6 @@ public class Player extends ConstantMover
 		//			move(dir.getNormalizedDX()*(delta/2), dir.getNormalizedDY()*(delta/2));
 					dx += dir.getNormalizedDX()*speed;
 					dy += dir.getNormalizedDY()*speed;
-		//			break;
 				}
 			}
     	} 
