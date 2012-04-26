@@ -71,6 +71,14 @@ public abstract class ButtonMenuState extends BasicGameState
 	}
 
 	@Override
+	public void leave(GameContainer gc, StateBasedGame game)
+	{
+		if (theme != null) {
+			theme.stop();
+		}
+	}
+	
+	@Override
 	public void update(GameContainer gc, StateBasedGame game, int delta)
 			throws SlickException 
 	{

@@ -8,6 +8,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
@@ -93,7 +94,7 @@ public class MainMenuState extends ButtonMenuState
 			}
 		});
 		
-	//	this.setTheme(new Sound("res//sounds//speedup.ogg"));
+		this.setTheme(new Sound("res//sounds//theme.ogg"));
 	}
 
 }
