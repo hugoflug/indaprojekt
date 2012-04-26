@@ -16,6 +16,8 @@ public class MainMenuState extends ButtonMenuState
 	private final int START_GAME_Y = 250;
 	private final int EXIT_GAME_X = 0;
 	private final int EXIT_GAME_Y = 0;
+	private final float BUTTON_ENDSCALE = 1.3f;
+	private final int BUTTON_SCALEMILLIS = 75;
 	
 	public MainMenuState(int stateID) throws SlickException
 	{
@@ -34,7 +36,7 @@ public class MainMenuState extends ButtonMenuState
 		Button startGameButton = new GrowButton(startGameOption, 
 								     startGameOption, 
 								     new Rectangle2D.Float(START_GAME_X, START_GAME_Y, startW, startH),
-								     1.3f, 75);
+								     BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
 		
 		startGameButton.setAction(new ActionPerformer() {
 			@Override
@@ -53,9 +55,10 @@ public class MainMenuState extends ButtonMenuState
 		Image exitGameOption = new Image("res//images//exit.png");
 		int exitW = exitGameOption.getWidth();
 		int exitH = exitGameOption.getHeight();
-		Button exitGameButton = new Button(exitGameOption, 
+		Button exitGameButton = new GrowButton(exitGameOption, 
 								    exitGameOption, 
-								    new Rectangle2D.Float(EXIT_GAME_X, EXIT_GAME_Y, exitW, exitH));
+								    new Rectangle2D.Float(EXIT_GAME_X, EXIT_GAME_Y, exitW, exitH),
+								    BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
 		exitGameButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() {
