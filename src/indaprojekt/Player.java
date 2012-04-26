@@ -150,6 +150,15 @@ public class Player extends ConstantMover
 		this.direction = direction;
 	}
 
+	private void playHurtSound()
+	{
+		if (lives > 0){
+			hitSound.play();
+		} else {
+			deadSound.play();
+		}
+	}
+	
 	@Override
 	public void handleCollision(Entity entity) 
 	{
@@ -159,19 +168,11 @@ public class Player extends ConstantMover
 			if (!explosionImmunity.contains(entity)) {
 				explosionImmunity.add((Explosion)entity);
 				lives -= 2;
-				if (lives > 0){
-					hitSound.play();
-				} else {
-					deadSound.play();
-				}
+				playHurtSound();
 			}
 	    } else if (entity instanceof Projectile) {
 			lives--;
-			if (lives > 0){
-				hitSound.play();
-			} else {
-				deadSound.play();
-			}
+			playHurtSound();
 			
 		} else if (entity instanceof PowerUp) {
 			effects.add(((PowerUp)entity).getEffect());

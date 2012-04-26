@@ -1,7 +1,11 @@
 package indaprojekt;
 
+import indaprojekt.Button.ActionPerformer;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -16,11 +20,13 @@ public class ButtonMenuState extends BasicGameState {
 	
 	protected Image background;
 	private List<Button> buttons;
+	private Map<Integer, ActionPerformer> keyMap;
 	
 	public ButtonMenuState(int stateID) 
 	{
 		this.stateID = stateID;
 		buttons = new ArrayList<Button>();
+		keyMap = new HashMap<Integer, ActionPerformer>();
 	}
 	
 	protected void addButton(Button button)
@@ -28,12 +34,17 @@ public class ButtonMenuState extends BasicGameState {
 		buttons.add(button);
 	}
 	
+	protected void mapKey(int key, ActionPerformer action)
+	{
+		keyMap.put(key, action);
+	}
+	
 	@Override
 	public void init(final GameContainer gc, final StateBasedGame game)
 			throws SlickException 
 	{
 		
-		buttons = new ArrayList<Button>();
+	//	buttons = new ArrayList<Button>();
 		background = new Image("res//images//bakgrund.png");
 	}
 
@@ -56,6 +67,12 @@ public class ButtonMenuState extends BasicGameState {
 
 		for (Button button : buttons) {
 			button.doLogic(delta, input);
+		}
+		
+		for (Integer i : keyMap.keySet()) {
+			if (input.isKeyPressed(i)) {
+				keyMap.get(i).doAction();
+			}
 		}
 	}
 

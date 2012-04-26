@@ -44,7 +44,7 @@ public class Explosion extends Mover
 		if (lifetime.hasExpired()) {
 			remove = true;
 		}
-		scale += 0.005f*delta;
+		scale += 0.003f*delta; //0.005f
 
 		hitBox = new Rectangle2D.Float(hitBox.x, hitBox.y, ogWidth*scale, ogHeight*scale);
 		

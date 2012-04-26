@@ -6,6 +6,7 @@ import java.awt.geom.Rectangle2D;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -60,6 +61,26 @@ public class MainMenuState extends ButtonMenuState {
 			}
 		});
 		addButton(exitGameButton);
+		
+		mapKey(Input.KEY_ENTER, new ActionPerformer() {
+			@Override
+			public void doAction() {
+				game.addState(new Game(IceIceBabyGame.GAME_PLAY_STATE));
+				try {
+					game.getState(IceIceBabyGame.GAME_PLAY_STATE).init(gc, game);
+				} catch (SlickException e) {
+					System.err.println("Error on init new game.");
+				}
+				game.enterState(IceIceBabyGame.GAME_PLAY_STATE);
+			}
+		});
+		
+		mapKey(Input.KEY_ESCAPE, new ActionPerformer() {
+			@Override
+			public void doAction() {
+				gc.exit();
+			}
+		});
 	}
 
 }

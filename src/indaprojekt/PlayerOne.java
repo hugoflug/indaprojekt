@@ -18,7 +18,7 @@ public class PlayerOne extends Player
 		super(x, y, 
 			  getPlayerControls(), 
 			  new Rectangle2D.Float(0, 0, 48, 48), 
-			  getAnimations(),5, 0.15f);
+			  getAnimations(),5, 0.10f);
 	}
 	
 	private static PlayerControls getPlayerControls()
