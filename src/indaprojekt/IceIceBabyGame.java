@@ -8,12 +8,14 @@ import org.newdawn.slick.state.StateBasedGame;
 public class IceIceBabyGame extends StateBasedGame{
 	public static final int MAIN_MENU_STATE = 0;
 	public static final int GAME_PLAY_STATE = 1;
+	public static final int GAME_OVER_STATE = 2;
 	
 	public IceIceBabyGame() {
 		super("Ice Ice Baby");
 		
 		this.addState(new MainMenuState(MAIN_MENU_STATE));
 		this.addState(new Game(GAME_PLAY_STATE));
+		this.addState(new GameOverState(GAME_OVER_STATE));
 		this.enterState(MAIN_MENU_STATE);
 	}
 
@@ -21,6 +23,7 @@ public class IceIceBabyGame extends StateBasedGame{
 	public void initStatesList(GameContainer container) throws SlickException {
 		this.getState(MAIN_MENU_STATE).init(container, this);
 		this.getState(GAME_PLAY_STATE).init(container, this);
+		this.getState(GAME_OVER_STATE).init(container, this);
 	}
 	
     public static void main(String[] args) throws SlickException
