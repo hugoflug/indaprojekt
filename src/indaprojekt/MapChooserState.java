@@ -11,6 +11,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class MapChooserState extends ButtonMenuState 
 {
+	private static float BUTTON_ENDSCALE = 1.2f;
+	private static int BUTTON_SCALEMILLIS = 70;
 
 	public MapChooserState(int stateID) 
 	{
@@ -30,7 +32,7 @@ public class MapChooserState extends ButtonMenuState
 				Rectangle2D.Float area = new Rectangle2D.Float(i*333, j*200, 333, 200);
 				
 				Button levelButton = new GrowButton(levelImage, levelImage, area, //levelImageHover second arg?
-									MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS);
+									 BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
 				final int x = j;
 				final int y = i;
 				levelButton.setAction(new ActionPerformer() {
