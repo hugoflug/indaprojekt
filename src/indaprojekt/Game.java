@@ -135,6 +135,10 @@ public class Game extends BasicGameState
     	if (powerUp != null) {
     		entities.add(powerUp);
     	}
+    	
+    	if (gc.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
+    		game.enterState(IceIceBabyGame.PAUSE_STATE);
+    	}
     }
  
     @Override

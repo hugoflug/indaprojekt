@@ -9,6 +9,7 @@ public class IceIceBabyGame extends StateBasedGame{
 	public static final int MAIN_MENU_STATE = 0;
 	public static final int GAME_PLAY_STATE = 1;
 	public static final int GAME_OVER_STATE = 2;
+	public static final int     PAUSE_STATE = 3;
 	
 	public IceIceBabyGame() throws SlickException 
 	{
@@ -17,6 +18,7 @@ public class IceIceBabyGame extends StateBasedGame{
 		this.addState(new MainMenuState(MAIN_MENU_STATE));
 		this.addState(new Game(GAME_PLAY_STATE));
 		this.addState(new GameOverState(GAME_OVER_STATE));
+		this.addState(new PauseState(PAUSE_STATE));
 		this.enterState(MAIN_MENU_STATE);
 	}
 
@@ -26,6 +28,7 @@ public class IceIceBabyGame extends StateBasedGame{
 		this.getState(MAIN_MENU_STATE).init(container, this);
 		this.getState(GAME_PLAY_STATE).init(container, this);
 		this.getState(GAME_OVER_STATE).init(container, this);
+		this.getState(PAUSE_STATE).init(container, this);
 	}
 	
     public static void main(String[] args) throws SlickException
