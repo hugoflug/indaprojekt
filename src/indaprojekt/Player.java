@@ -167,7 +167,7 @@ public class Player extends ConstantMover
 		} else if (entity instanceof Explosion) {
 			if (!explosionImmunity.contains(entity)) {
 				explosionImmunity.add((Explosion)entity);
-				lives -= 2;
+				lives--;
 				playHurtSound();
 			}
 	    } else if (entity instanceof Projectile) {
