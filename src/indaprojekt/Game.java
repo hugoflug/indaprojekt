@@ -90,6 +90,7 @@ public class Game extends BasicGameState
 	    		if (player.isDead()) {
 	    			iterator.remove();
 	    			entities.remove(player);
+	    //			game.enterState(IceIceBabyGame.GAME_OVER_STATE);
 	    		}
 	    	}
     	}

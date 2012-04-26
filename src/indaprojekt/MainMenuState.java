@@ -17,10 +17,10 @@ public class MainMenuState extends BasicGameState {
 	
 	private Image background;
 
-	private final float startGameOptionLeftBorderX = 400;
-	private final float startGameOptionTopBorderY = 250;
-	private final float exitGameOptionLeftBorderX = 0;
-	private final float exitGameOptionTopBorderY = 0;
+	private final int START_GAME_X = 400; 
+	private final int START_GAME_Y = 250;
+	private final int EXIT_GAME_X = 0;
+	private final int EXIT_GAME_Y = 0;
 	
 	private List<Button> buttons;
 	private Button startGameButton;
@@ -36,22 +36,22 @@ public class MainMenuState extends BasicGameState {
 		
 		buttons = new ArrayList<Button>();
 		
-		Image background = new Image("res//images//bakgrund.png");
-		Image startGameOption = new Image("res//images//play.png");
-		Image exitGameOption = new Image("res//images//exit.png");
+		background = new Image("res//images//bakgrund.png");
 		
+		Image startGameOption = new Image("res//images//play.png");
 		int startW = startGameOption.getWidth();
 		int startH = startGameOption.getHeight();
 		startGameButton = new Button(startGameOption, 
 								     startGameOption, 
-								     new Rectangle2D.Float(400, 250, startW, startH));
+								     new Rectangle2D.Float(START_GAME_X, START_GAME_Y, startW, startH));
 		buttons.add(startGameButton);
 		
+		Image exitGameOption = new Image("res//images//exit.png");
 		int exitW = exitGameOption.getWidth();
 		int exitH = exitGameOption.getHeight();
 		exitGameButton = new Button(exitGameOption, 
 								    exitGameOption, 
-								    new Rectangle2D.Float(0, 0, exitW, exitH));
+								    new Rectangle2D.Float(EXIT_GAME_X, EXIT_GAME_Y, exitW, exitH));
 		buttons.add(exitGameButton);
 	}
 

@@ -21,7 +21,7 @@ public class GameOverState extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame game)
 			throws SlickException {
 		background = new Image("res//images//bakgrund.png");
-		information = new Image("res//images//gameOverInformation");
+//		information = new Image("res//images//gameOverInformation");
 	}
 
 	@Override
