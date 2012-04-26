@@ -12,6 +12,8 @@ public class GameOverState extends BasicGameState {
 	private int stateID;
 	Image background;
 	Image information;
+	int informationLeftBorderX;
+	int informationTopBorderY;
 	
 	public GameOverState(int stateID) {
 		this.stateID = stateID;
@@ -21,14 +23,16 @@ public class GameOverState extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame game)
 			throws SlickException {
 		background = new Image("res//images//bakgrund.png");
-//		information = new Image("res//images//gameOverInformation");
+		information = new Image("res//images//gameOverInformation.png");
+		informationLeftBorderX = (Game.WINDOW_WIDTH/2)-(information.getWidth()/2);
+		informationTopBorderY = (Game.WINDOW_HEIGHT/2)-(information.getHeight()/2);
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g)
 			throws SlickException {
 		background.draw(0, 0);
-		information.draw(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
+		information.draw(informationLeftBorderX, informationTopBorderY);
 		
 	}
 
