@@ -13,7 +13,7 @@ import org.newdawn.slick.Sound;
 public class Bomb extends Projectile 
 {
 	private static final float BOMB_FRICTION = 0.9f;
-	private static final int EXPLOSION_TIME = 500;
+	private static final int EXPLOSION_TIME = 700;
 	
 	private Expirer lifetime;
 	private Sound sound;
@@ -58,7 +58,9 @@ public class Bomb extends Projectile
 	@Override
 	public void handleCollision(Entity entity) 
 	{	
-		moveBack();
+		if (!(entity instanceof Explosion)) {
+			moveBack();
+		}
 		
 		dx = -dx;
 		dy = -dy;

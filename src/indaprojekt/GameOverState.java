@@ -10,12 +10,14 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class GameOverState extends BasicGameState {
 	private int stateID;
-	Image background;
-	Image information;
-	int informationLeftBorderX;
-	int informationTopBorderY;
+	private Image background;
+	private Image information;
+	private int informationLeftBorderX;
+	private int informationTopBorderY;
+	private int playerWon;
 	
-	public GameOverState(int stateID) {
+	public GameOverState(int stateID) 
+	{
 		this.stateID = stateID;
 	}
 	
@@ -27,12 +29,20 @@ public class GameOverState extends BasicGameState {
 		informationLeftBorderX = (Game.WINDOW_WIDTH/2)-(information.getWidth()/2);
 		informationTopBorderY = (Game.WINDOW_HEIGHT/2)-(information.getHeight()/2);
 	}
+	
+	public void setPlayerWon(int playerWon) 
+	{
+		this.playerWon = playerWon;
+	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame game, Graphics g)
-			throws SlickException {
+			throws SlickException 
+	{
 		background.draw(0, 0);
 		information.draw(informationLeftBorderX, informationTopBorderY);
+		
+		g.drawString("Player " + playerWon + " won!!!!!1", 0, 0);
 		
 	}
 
@@ -41,7 +51,7 @@ public class GameOverState extends BasicGameState {
 			throws SlickException {
 		Input input = gc.getInput();
 		if (input.isKeyPressed(Input.KEY_ENTER)) {
-			game.addState(new Game(IceIceBabyGame.GAME_PLAY_STATE));
+			game.addState(new Game(IceIceBabyGame.GAME_PLAY_STATE, "res//maps//map1.txt"));
 			game.getState(IceIceBabyGame.GAME_PLAY_STATE).init(gc, game);
 			game.enterState(IceIceBabyGame.GAME_PLAY_STATE);
 		} else if (input.isKeyPressed(Input.KEY_ESCAPE)) {
