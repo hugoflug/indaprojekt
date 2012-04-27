@@ -88,7 +88,8 @@ public class MainMenuState extends ButtonMenuState
 		howToPlayButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() throws SlickException {
-				gc.getInput().clearMousePressedRecord();
+				game.addState(new HowToPlayState(IceIceBabyGame.HOW_TO_PLAY_STATE, getID()));
+				game.getState(IceIceBabyGame.HOW_TO_PLAY_STATE).init(gc, game);
 				game.enterState(IceIceBabyGame.HOW_TO_PLAY_STATE);
 			}
 		});
