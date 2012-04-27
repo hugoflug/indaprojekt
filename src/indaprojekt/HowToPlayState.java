@@ -21,6 +21,8 @@ public class HowToPlayState extends ButtonMenuState
 		this.previousStateID = previousStateID;
 	}
 	
+	
+	
 	@Override
 	public void init(final GameContainer gc, final StateBasedGame game)
 			throws SlickException {
