@@ -24,9 +24,10 @@ public class MainMenuState extends ButtonMenuState
 	private final static int EXIT_GAME_X = Game.WINDOW_WIDTH-150;
 	private final static int EXIT_GAME_Y = Game.WINDOW_HEIGHT-100;
 //	private final static int HOW_TO_PLAY_X = 450;
-	private final static int HOW_TO_PLAY_Y = 400;
+	private final static int HOW_TO_PLAY_Y = 500;
 	private final static int SOUND_X = 50;
 	private final static int SOUND_Y = Game.WINDOW_HEIGHT-100;
+	private final static int CHOOSE_MAP_Y = 400;
 	public final static float BUTTON_ENDSCALE = 1.3f;
 	public final static int BUTTON_SCALEMILLIS = 75;
 	
@@ -126,6 +127,24 @@ public class MainMenuState extends ButtonMenuState
 			}
 		});
 		addButton(soundGameButton);
+		
+		//choose map
+		Image chooseMap = new Image("res//images//howToPlay.png");
+		int chooseW = chooseMap.getWidth();
+		int chooseH = soundOption.getHeight();
+		int chooseMapX = MIDDLE_X - (chooseMap.getWidth()/2);
+		Button chooseMapButton = new GrowButton(chooseMap, 
+								    	    	chooseMap, 
+								    	    	new Rectangle2D.Float(chooseMapX, CHOOSE_MAP_Y, chooseW, chooseH),
+								    	    	BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
+		
+		chooseMapButton.setAction(new ActionPerformer() {
+			@Override
+			public void doAction() {
+				game.enterState(IceIceBabyGame.MAP_CHOOSER_STATE);
+			}
+		});
+		addButton(chooseMapButton);
 
 		// Pressed key
 		mapKey(Input.KEY_ENTER, new ActionPerformer() {
@@ -141,13 +160,6 @@ public class MainMenuState extends ButtonMenuState
 			@Override
 			public void doAction() {
 				gc.exit();
-			}
-		});
-		
-		mapKey(Input.KEY_V, new ActionPerformer() {
-			@Override
-			public void doAction() throws SlickException {
-				game.enterState(IceIceBabyGame.MAP_CHOOSER_STATE);
 			}
 		});
 
