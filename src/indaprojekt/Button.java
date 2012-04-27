@@ -69,6 +69,7 @@ public class Button implements Comparable<Button>
 	
 	public void draw()
 	{
+		System.out.println(activeImage);
 		activeImage.draw((float)area.getX(), (float)area.getY(), scale);
 	}
 	

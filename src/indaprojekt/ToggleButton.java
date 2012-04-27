@@ -22,9 +22,7 @@ public class ToggleButton extends Button
 	
 	@Override
 	protected void buttonPressed()
-	{
-		System.out.println("button pressed");
-		
+	{	
 		toggled = !toggled;
 		if (toggled) {
 			image = toggledImage;
