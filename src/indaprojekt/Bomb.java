@@ -24,8 +24,8 @@ public class Bomb extends Projectile
 	private Sound sound;
 	private Explosion explosion;
 	
-	public Bomb(float x, float y, float dx, float dy, Float hitBox,
-			Animation animation, int millis) throws SlickException 
+	public Bomb(float x, float y, float dx, float dy,
+			Float hitBox, Animation animation, int millis) throws SlickException 
 	{
 		super(x, y, dx, dy, hitBox, animation, BOMB_FRICTION);
 		lifetime = new Expirer(millis);
