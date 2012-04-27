@@ -11,7 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class HowToPlayState extends ButtonMenuState
 {
-	private final static int BACK_X = 50;
+	private final static int BACK_X = Game.WINDOW_WIDTH-230;
 	private final static int BACK_Y = 50;
 
 	private int previousStateID = 0;
@@ -29,6 +29,7 @@ public class HowToPlayState extends ButtonMenuState
 		
 		super.init(gc, game);
 		
+		// Back
 		Image backOption = new Image("res//images//back.png");
 		int backW = backOption.getWidth();
 		int backH = backOption.getHeight();
@@ -42,5 +43,12 @@ public class HowToPlayState extends ButtonMenuState
 			}
 		});
 		addButton(backButton);
+		
+		// ControllerText
+		Image controllers = new Image("res//images//howToPlayControllers.png");
+		Button controllerText = new Button(controllers, controllers,
+				new Rectangle2D.Float(0, 0, controllers.getWidth(),
+						controllers.getHeight()));
+		addButton(controllerText);
 	}
 }
