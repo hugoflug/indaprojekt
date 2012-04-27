@@ -60,11 +60,11 @@ public class HowToPlay2State extends ButtonMenuState {
 		addButton(nextButton);
 
 		// ControllerText
-//		Image controllers = new Image("res//images//HowToPlayControllers.png");
-//		Button controllerText = new Button(controllers, controllers,
-//				new Rectangle2D.Float(0, 0, controllers.getWidth(),
-//						controllers.getHeight()));
-//		addButton(controllerText);
+		Image goalPowerUps = new Image("res//images//HowToPlayPowerUps.png");
+		Button goalPowerUpsText = new Button(goalPowerUps, goalPowerUps,
+				new Rectangle2D.Float(0, 0, goalPowerUps.getWidth(),
+						goalPowerUps.getHeight()));
+		addButton(goalPowerUpsText);
 	}
 
 

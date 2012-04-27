@@ -56,7 +56,9 @@ public class HowToPlayState extends ButtonMenuState
 				MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS);
 		nextButton.setAction(new ActionPerformer() {
 			@Override
-			public void doAction() {
+			public void doAction() throws SlickException {
+				game.addState(new HowToPlay2State(IceIceBabyGame.HOW_TO_PLAY_2_STATE, previousStateID));
+				game.getState(IceIceBabyGame.HOW_TO_PLAY_2_STATE).init(gc, game);
 				game.enterState(IceIceBabyGame.HOW_TO_PLAY_2_STATE);
 			}
 		});
