@@ -34,6 +34,7 @@ public class Game extends AdvancedGameState
 	
     public Game(int stateID, String filename)
     {
+    	super(stateID);
         this.stateID = stateID;
         this.mapFilename = filename;
     }
