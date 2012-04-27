@@ -27,7 +27,7 @@ public class Explosion extends Mover
 		lifetime = new Expirer(duration);
 		this.animation = animation;
 		
-		scale = 0.1f;
+		scale = 0.005f;
 		
 		this.centerX = centerX;
 		this.centerY = centerY;
@@ -48,7 +48,7 @@ public class Explosion extends Mover
 		if (lifetime.hasExpired()) {
 			remove = true;
 		}
-		scale += 0.003f*delta; //0.005f
+		scale += 0.001f*delta; //0.005f
 
 		hitBox = new Rectangle2D.Float(hitBox.x, hitBox.y, ogWidth*scale, ogHeight*scale);
 		
