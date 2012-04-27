@@ -45,7 +45,7 @@ public class HowToPlayState extends ButtonMenuState
 		addButton(backButton);
 		
 		// ControllerText
-		Image controllers = new Image("res//images//howToPlayControllers.png");
+		Image controllers = new Image("res//images//HowToPlayControllers.png");
 		Button controllerText = new Button(controllers, controllers,
 				new Rectangle2D.Float(0, 0, controllers.getWidth(),
 						controllers.getHeight()));
