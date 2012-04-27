@@ -45,10 +45,11 @@ public class Button implements Comparable<Button>
 		if (area.contains(input.getMouseX(), input.getMouseY())) {
 			orderingValue = -1;
 			activeImage = mouseOverImage;
-			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON) && 
-					action != null) {
+			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 				buttonPressed();
-				action.doAction();
+				if (action != null) {
+					action.doAction();
+				}
 			}
 		} else {
 			orderingValue = ogOrderingValue;
