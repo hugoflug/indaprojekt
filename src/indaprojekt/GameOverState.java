@@ -1,11 +1,13 @@
 package indaprojekt;
 
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -47,6 +49,11 @@ public class GameOverState extends BasicGameState {
 	{
 		background.draw(0, 0);
 		information.draw(informationLeftBorderX, informationTopBorderY);
+		
+		//TEMP
+//		java.awt.Font font = new java.awt.Font("Verdana", java.awt.Font.PLAIN, 20);
+//      Font unicodeFont = new UnicodeFont(font, 36, false, false);
+//      g.setFont(unicodeFont);
 		
 		g.setColor(Color.red);
 		g.drawString("Player " + playerWon + " won!!!", 430, 100);

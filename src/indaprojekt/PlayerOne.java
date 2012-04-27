@@ -29,7 +29,7 @@ public class PlayerOne extends Player
 				Input.KEY_S,
 				Input.KEY_D,
 				Input.KEY_LCONTROL,
-				Input.KEY_LSHIFT);
+				Input.KEY_LCONTROL);
 	}
 	
 	private static Map<Direction, Animation> getAnimations() throws SlickException
