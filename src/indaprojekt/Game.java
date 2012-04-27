@@ -70,6 +70,8 @@ public class Game extends AdvancedGameState
     	
     	input = gc.getInput();
     	
+    	
+    	gc.setSoundVolume(0.5f);
 		this.setTheme(new Music("res//sounds//iceiceend.ogg", true));
     }
  
