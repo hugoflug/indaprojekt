@@ -20,14 +20,14 @@ public class MainMenuState extends ButtonMenuState
 {
 	private final static int MIDDLE_X = Game.WINDOW_WIDTH/2;
 //	private final static int START_GAME_X = 400; 
-	private final static int START_GAME_Y = 250;
+	private final static int START_GAME_Y = 200;
 	private final static int EXIT_GAME_X = Game.WINDOW_WIDTH-150;
 	private final static int EXIT_GAME_Y = Game.WINDOW_HEIGHT-100;
 //	private final static int HOW_TO_PLAY_X = 450;
-	private final static int HOW_TO_PLAY_Y = 500;
+	private final static int HOW_TO_PLAY_Y = 450;
 	private final static int SOUND_X = 50;
 	private final static int SOUND_Y = Game.WINDOW_HEIGHT-100;
-	private final static int CHOOSE_MAP_Y = 400;
+	private final static int CHOOSE_MAP_Y = 350;
 	public final static float BUTTON_ENDSCALE = 1.3f;
 	public final static int BUTTON_SCALEMILLIS = 75;
 	
@@ -129,7 +129,7 @@ public class MainMenuState extends ButtonMenuState
 		addButton(soundGameButton);
 		
 		//choose map
-		Image chooseMap = new Image("res//images//howToPlay.png");
+		Image chooseMap = new Image("res//images//chooseLevel.png");
 		int chooseW = chooseMap.getWidth();
 		int chooseH = soundOption.getHeight();
 		int chooseMapX = MIDDLE_X - (chooseMap.getWidth()/2);
