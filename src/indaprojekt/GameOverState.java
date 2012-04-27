@@ -1,5 +1,6 @@
 package indaprojekt;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -47,7 +48,8 @@ public class GameOverState extends BasicGameState {
 		background.draw(0, 0);
 		information.draw(informationLeftBorderX, informationTopBorderY);
 		
-		g.drawString("Player " + playerWon + " won!!!!!1", 0, 0);
+		g.setColor(Color.red);
+		g.drawString("Player " + playerWon + " won!!!", 430, 100);
 		
 	}
 

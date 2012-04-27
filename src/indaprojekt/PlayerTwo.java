@@ -16,7 +16,7 @@ public class PlayerTwo extends Player
 	public PlayerTwo(float x, float y) throws SlickException 
 	{
 		super(x, y, getPlayerControls(), 
-					new Rectangle2D.Float(0, 0, 48, 48),
+					new Rectangle2D.Float(0, 0, 46, 46),
 					getAnimations(),
 					5,
 					0.10f); //0.15f
