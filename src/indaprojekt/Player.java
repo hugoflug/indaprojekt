@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
@@ -141,7 +142,7 @@ public class Player extends ConstantMover
 //    				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim, 1); 
 //    	} 
     	if (input.isKeyPressed(controls.keyBomb)) { 
-    		Image image = new Image("res//images//bomb.png");
+    		Image image = new Image("res//images//bomb.png", Color.white);
     		
     		//TEMP
     		Animation anim = new Animation(new Image[]{image}, 1);

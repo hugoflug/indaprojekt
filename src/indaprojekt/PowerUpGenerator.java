@@ -32,7 +32,7 @@ public class PowerUpGenerator {
 			switch(choosePower) {
 			case 0:
 				power = new SpeedUp(rand.nextFloat()*Game.WINDOW_WIDTH,
-						rand.nextFloat()*Game.WINDOW_HEIGHT, 0.3f, 4000);
+						rand.nextFloat()*Game.WINDOW_HEIGHT, 0.2f, 4000);
 				break;
 			default:
 				power = new LifeUp(rand.nextFloat()*Game.WINDOW_WIDTH,
