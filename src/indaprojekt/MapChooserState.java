@@ -65,8 +65,8 @@ public class MapChooserState extends ButtonMenuState
 	
 	private int getMap(int x, int y, int width) 
 	{
-		return 1;
-	//	return y + x*width + 1;
+//		return 1;
+		return y + x*width + 1;
 	}
 	
 }
