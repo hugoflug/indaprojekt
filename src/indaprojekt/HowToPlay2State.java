@@ -9,22 +9,19 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class HowToPlayState extends ButtonMenuState
-{
+public class HowToPlay2State extends ButtonMenuState {
+	
 	private final static int BACK_X = Game.WINDOW_WIDTH-230;
 	private final static int BACK_Y = 50;
 	private final static int NEXT_X = Game.WINDOW_WIDTH-170;
 	private final static int NEXT_Y = 50;
-	
 
 	private int previousStateID;
 	
-	public HowToPlayState(int stateID, int previousStateID) {
+	public HowToPlay2State(int stateID, int previousStateID) {
 		super(stateID);
 		this.previousStateID = previousStateID;
 	}
-	
-	
 	
 	@Override
 	public void init(final GameContainer gc, final StateBasedGame game)
@@ -42,7 +39,7 @@ public class HowToPlayState extends ButtonMenuState
 		backButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() {
-				game.enterState(previousStateID);
+				game.enterState(IceIceBabyGame.HOW_TO_PLAY_STATE);
 			}
 		});
 		addButton(backButton);
@@ -57,16 +54,18 @@ public class HowToPlayState extends ButtonMenuState
 		nextButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() {
-				game.enterState(IceIceBabyGame.HOW_TO_PLAY_2_STATE);
+				game.enterState(previousStateID);
 			}
 		});
 		addButton(nextButton);
 
 		// ControllerText
-		Image controllers = new Image("res//images//HowToPlayControllers.png");
-		Button controllerText = new Button(controllers, controllers,
-				new Rectangle2D.Float(0, 0, controllers.getWidth(),
-						controllers.getHeight()));
-		addButton(controllerText);
+//		Image controllers = new Image("res//images//HowToPlayControllers.png");
+//		Button controllerText = new Button(controllers, controllers,
+//				new Rectangle2D.Float(0, 0, controllers.getWidth(),
+//						controllers.getHeight()));
+//		addButton(controllerText);
 	}
+
+
 }

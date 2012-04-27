@@ -18,6 +18,7 @@ public class IceIceBabyGame extends StateBasedGame
 	public static final int     PAUSE_STATE = 3;
 	public static final int MAP_CHOOSER_STATE = 4;
 	public static final int HOW_TO_PLAY_STATE = 5;
+	public static final int HOW_TO_PLAY_2_STATE = 6;
 	
 	public IceIceBabyGame() throws SlickException 
 	{
@@ -29,6 +30,7 @@ public class IceIceBabyGame extends StateBasedGame
 		this.addState(new PauseState(PAUSE_STATE));
 		this.addState(new MapChooserState(MAP_CHOOSER_STATE));
 		this.addState(new HowToPlayState(HOW_TO_PLAY_STATE, MAIN_MENU_STATE));
+		this.addState(new HowToPlay2State(HOW_TO_PLAY_2_STATE, MAIN_MENU_STATE));
 		this.enterState(MAIN_MENU_STATE);
 	}
 
