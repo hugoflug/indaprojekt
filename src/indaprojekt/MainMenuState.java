@@ -18,14 +18,16 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class MainMenuState extends ButtonMenuState 
 {
-	private final static int START_GAME_X = 400; 
-	private final static int START_GAME_Y = 250;
-	private final static int EXIT_GAME_X = 50;
-	private final static int EXIT_GAME_Y = 50;
-	private final static int HOW_TO_PLAY_X = 450;
-	private final static int HOW_TO_PLAY_Y = 400;
-	private final static int SOUND_X = 800;
-	private final static int SOUND_Y = 500;
+	private final static int MIDDLE_X = Game.WINDOW_WIDTH/2;
+//	private final static int START_GAME_X = 400; 
+	private final static int START_GAME_Y = 200;
+	private final static int EXIT_GAME_X = Game.WINDOW_WIDTH-150;
+	private final static int EXIT_GAME_Y = Game.WINDOW_HEIGHT-100;
+//	private final static int HOW_TO_PLAY_X = 450;
+	private final static int HOW_TO_PLAY_Y = 450;
+	private final static int SOUND_X = 50;
+	private final static int SOUND_Y = Game.WINDOW_HEIGHT-100;
+	private final static int CHOOSE_MAP_Y = 350;
 	public final static float BUTTON_ENDSCALE = 1.3f;
 	public final static int BUTTON_SCALEMILLIS = 75;
 	
@@ -41,13 +43,22 @@ public class MainMenuState extends ButtonMenuState
 	{
 		background = new Image("res//images//bakgrund.png");
 		
+		// Ice Ice Baby Text
+		Image iceIceBaby = new Image("res//images//iceIceBaby.png");
+		Button iceIceBabyText = new Button(iceIceBaby, iceIceBaby,
+				new Rectangle2D.Float(0, 0, iceIceBaby.getWidth(),
+						iceIceBaby.getHeight()));
+		addButton(iceIceBabyText);
+		
+		
 		// Play
 		Image startGameOption = new Image("res//images//play.png");
 		int startW = startGameOption.getWidth();
 		int startH = startGameOption.getHeight();
+		int startGameX = MIDDLE_X - (startGameOption.getWidth()/2);
 		Button startGameButton = new GrowButton(startGameOption, 
 								     			startGameOption, 
-								     			new Rectangle2D.Float(START_GAME_X, START_GAME_Y, startW, startH),
+								     			new Rectangle2D.Float(startGameX, START_GAME_Y, startW, startH),
 								     			BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
 		
 		startGameButton.setAction(new ActionPerformer() {
@@ -80,15 +91,17 @@ public class MainMenuState extends ButtonMenuState
 		Image howToPlayOption = new Image("res//images//howToPlay.png");
 		int howToW = howToPlayOption.getWidth();
 		int howToH = howToPlayOption.getHeight();
+		int howToPlayX = MIDDLE_X - (howToPlayOption.getWidth()/2);
 		Button howToPlayButton = new GrowButton(howToPlayOption, 
 								     howToPlayOption, 
-								     new Rectangle2D.Float(HOW_TO_PLAY_X, HOW_TO_PLAY_Y, howToW, howToH),
+								     new Rectangle2D.Float(howToPlayX, HOW_TO_PLAY_Y, howToW, howToH),
 								     BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
 		
 		howToPlayButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() throws SlickException {
-				gc.getInput().clearMousePressedRecord();
+				game.addState(new HowToPlayState(IceIceBabyGame.HOW_TO_PLAY_STATE, getID()));
+				game.getState(IceIceBabyGame.HOW_TO_PLAY_STATE).init(gc, game);
 				game.enterState(IceIceBabyGame.HOW_TO_PLAY_STATE);
 			}
 		});
@@ -114,6 +127,24 @@ public class MainMenuState extends ButtonMenuState
 			}
 		});
 		addButton(soundGameButton);
+		
+		//choose map
+		Image chooseMap = new Image("res//images//chooseLevel.png");
+		int chooseW = chooseMap.getWidth();
+		int chooseH = soundOption.getHeight();
+		int chooseMapX = MIDDLE_X - (chooseMap.getWidth()/2);
+		Button chooseMapButton = new GrowButton(chooseMap, 
+								    	    	chooseMap, 
+								    	    	new Rectangle2D.Float(chooseMapX, CHOOSE_MAP_Y, chooseW, chooseH),
+								    	    	BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
+		
+		chooseMapButton.setAction(new ActionPerformer() {
+			@Override
+			public void doAction() {
+				game.enterState(IceIceBabyGame.MAP_CHOOSER_STATE);
+			}
+		});
+		addButton(chooseMapButton);
 
 		// Pressed key
 		mapKey(Input.KEY_ENTER, new ActionPerformer() {
@@ -129,13 +160,6 @@ public class MainMenuState extends ButtonMenuState
 			@Override
 			public void doAction() {
 				gc.exit();
-			}
-		});
-		
-		mapKey(Input.KEY_V, new ActionPerformer() {
-			@Override
-			public void doAction() throws SlickException {
-				game.enterState(IceIceBabyGame.MAP_CHOOSER_STATE);
 			}
 		});
 

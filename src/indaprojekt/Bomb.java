@@ -23,14 +23,18 @@ public class Bomb extends Projectile
 	private Expirer lifetime;
 	private Sound sound;
 	private Explosion explosion;
+	private Sound fuseSound;
 	
-	public Bomb(float x, float y, float dx, float dy, Float hitBox,
-			Animation animation, int millis) throws SlickException 
+	public Bomb(float x, float y, float dx, float dy,
+			Float hitBox, Animation animation, int millis) throws SlickException 
 	{
 		super(x, y, dx, dy, hitBox, animation, BOMB_FRICTION);
 		lifetime = new Expirer(millis);
 		sound = new Sound("res//sounds//bomb.ogg");
+		fuseSound = new Sound("res//sounds//fuse.ogg");
 		remove = false;
+		
+		fuseSound.play();
 	}
 	
 	public void doLogic(Input input, int delta) throws SlickException 

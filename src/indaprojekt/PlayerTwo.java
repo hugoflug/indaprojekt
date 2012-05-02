@@ -16,7 +16,7 @@ public class PlayerTwo extends Player
 	public PlayerTwo(float x, float y) throws SlickException 
 	{
 		super(x, y, getPlayerControls(), 
-					new Rectangle2D.Float(0, 0, 48, 48),
+					new Rectangle2D.Float(0, 0, 46, 46),
 					getAnimations(),
 					5,
 					0.10f); //0.15f
@@ -37,10 +37,10 @@ public class PlayerTwo extends Player
 	{
 		Map<Direction, Animation> animMap = new HashMap<Direction, Animation>();
 		Color transp = Color.white;
-		animMap.put(Direction.UP, new Animation(new Image[]{new Image("res//images//up1.png",transp),new Image("res//images//up2.png",transp) }, 200));
-		animMap.put(Direction.RIGHT, new Animation(new Image[]{new Image("res//images//right1.png",transp),new Image("res//images//right2.png",transp)}, 200));
-		animMap.put(Direction.DOWN, new Animation(new Image[]{new Image("res//images//down1.png",transp), new Image("res//images//down2.png",transp)}, 200));
-		animMap.put(Direction.LEFT, new Animation(new Image[]{new Image("res//images//left1.png",transp), new Image("res//images//left2.png",transp)}, 200));
+		animMap.put(Direction.UP, new Animation(new Image[]{new Image("res//images//man2-up-leftFoot.png",transp),new Image("res//images//man2-up-rightFoot.png",transp) }, 200));
+		animMap.put(Direction.RIGHT, new Animation(new Image[]{new Image("res//images//man2-right-leftFoot.png",transp),new Image("res//images//man2-right-rightFoot.png",transp)}, 200));
+		animMap.put(Direction.DOWN, new Animation(new Image[]{new Image("res//images//man2-down-leftFoot.png",transp), new Image("res//images//man2-down-rightFoot.png",transp)}, 200));
+		animMap.put(Direction.LEFT, new Animation(new Image[]{new Image("res//images//man2-left-leftFoot.png",transp), new Image("res//images//man2-left-rightFoot.png",transp)}, 200));
 		
 		return animMap;
 	}

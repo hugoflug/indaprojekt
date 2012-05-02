@@ -39,7 +39,7 @@ public class MapChooserState extends ButtonMenuState
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				Image levelImage = new Image("res//images//map" + getMap(j, i, 3) + ".png");
-				Image levelImageHover = new Image("res//images//map" + getMap(j, i, 3) + "h" + ".png");
+				Image levelImageHover = new Image("res//images//map" + getMap(j, i, 3) + ".png");
 				Rectangle2D.Float area = new Rectangle2D.Float(i*333, j*200, 333, 200);
 				
 				int centerX = centralize(i, 2, levelImage.getWidth());
@@ -65,8 +65,8 @@ public class MapChooserState extends ButtonMenuState
 	
 	private int getMap(int x, int y, int width) 
 	{
-		return 1;
-	//	return y + x*width + 1;
+//		return 1;
+		return y + x*width + 1;
 	}
 	
 }

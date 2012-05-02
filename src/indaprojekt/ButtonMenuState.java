@@ -12,10 +12,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
-import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
@@ -23,16 +20,14 @@ import org.newdawn.slick.state.StateBasedGame;
  *
  */
 public abstract class ButtonMenuState extends AdvancedGameState
-{
-	private int stateID;
-	
+{	
 	protected Image background;
 	private List<Button> buttons;
 	private Map<Integer, ActionPerformer> keyMap;
 	
 	public ButtonMenuState(int stateID) 
 	{
-		this.stateID = stateID;
+		super(stateID);
 		buttons = new ArrayList<Button>();
 		keyMap = new HashMap<Integer, ActionPerformer>();
 	}
@@ -83,12 +78,6 @@ public abstract class ButtonMenuState extends AdvancedGameState
 				keyMap.get(i).doAction();
 			}
 		}
-	}
-
-	@Override
-	public int getID() 
-	{
-		return stateID;
 	}
 
 }

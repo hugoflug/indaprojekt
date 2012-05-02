@@ -34,6 +34,7 @@ public class Game extends AdvancedGameState
 	
     public Game(int stateID, String filename)
     {
+    	super(stateID);
         this.stateID = stateID;
         this.mapFilename = filename;
     }
@@ -54,16 +55,6 @@ public class Game extends AdvancedGameState
 		entities.add(player2);
 		
 		background = new Image("res//images//bakgrund.png");
-		
-		Image itemImage = new Image("res//images//bomb2.png");
-		Item item = new Item(itemImage, 250, 250, new Rectangle2D.Float(0, 0, 25, 25));
-		entities.add(item);
-		
-		SpeedUp spdUp = new SpeedUp(300, 300, 0.3f, 4000);
-		entities.add(spdUp);
-		
-		LifeUp lifeUp = new LifeUp(350, 300);
-		entities.add(lifeUp);
     }
  
     @Override
@@ -79,6 +70,8 @@ public class Game extends AdvancedGameState
     	
     	input = gc.getInput();
     	
+    	
+    	gc.setSoundVolume(0.5f);
 		this.setTheme(new Music("res//sounds//iceiceend.ogg", true));
     }
  

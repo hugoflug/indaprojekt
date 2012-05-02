@@ -13,8 +13,9 @@ public class PauseState extends ButtonMenuState {
 
 	private final int MIDDLE_X = Game.WINDOW_WIDTH/2;
 	private int pauseTextY = 50;
-	private int resumeGameY = 250;
-	private int mainMenuY = 400;
+	private int resumeGameY = 200;
+	private int mainMenuY = 300;
+	private int howToPlayY = 400;
 		
 	public PauseState(int stateID) {
 		super(stateID);
@@ -64,5 +65,22 @@ public class PauseState extends ButtonMenuState {
 			}
 		});
 		addButton(mainMenuButton);
+		
+		// How-to-play button
+		Image howToPlayImage = new Image("res//images//howToPlay.png");
+		int howToPlayX = MIDDLE_X - (howToPlayImage.getWidth()/2);
+		Button howToPlayButton = new GrowButton(howToPlayImage, howToPlayImage,
+						new Rectangle2D.Float(howToPlayX, howToPlayY, 
+						howToPlayImage.getWidth(), howToPlayImage.getHeight()), 
+						MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS);
+		howToPlayButton.setAction(new ActionPerformer() {
+			@Override
+			public void doAction() throws SlickException {
+				game.addState(new HowToPlayState(IceIceBabyGame.HOW_TO_PLAY_STATE, getID()));
+				game.getState(IceIceBabyGame.HOW_TO_PLAY_STATE).init(gc, game);
+				game.enterState(IceIceBabyGame.HOW_TO_PLAY_STATE);
+			}
+		});
+		addButton(howToPlayButton);
 	}
 }
