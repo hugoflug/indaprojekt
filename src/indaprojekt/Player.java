@@ -44,7 +44,6 @@ public class Player extends ConstantMover
 	}
 	
 	private static final float PLAYER_FRICTION = 0.85f;
-	private static final int BOMB_TIME = 500;
 	private static final float BOMB_SPEED = 1.5f;
 	
 	private Animation activeAnimation;
@@ -142,17 +141,13 @@ public class Player extends ConstantMover
 //    				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim, 1); 
 //    	} 
     	if (input.isKeyPressed(controls.keyBomb)) { 
-    		Image image = new Image("res//images//bomb.png", Color.white);
-    		
-    		//TEMP
-    		Animation anim = new Animation(new Image[]{image}, 1);
     		
     		float dx = direction.getNormalizedDX()*BOMB_SPEED;
     		float dy = direction.getNormalizedDY()*BOMB_SPEED; 
-    		
-    		Rectangle2D.Float bombRect = new Rectangle2D.Float(0, 0, 32, 32);
-    		projectile = new Bomb(projectileOriginX((float)bombRect.getWidth()), 
-    				projectileOriginY((float)bombRect.getWidth()), dx, dy, bombRect, anim, BOMB_TIME);
+
+    		projectile = new DefaultBomb(projectileOriginX(DefaultBomb.getHitBox().width), 
+    							  projectileOriginY(DefaultBomb.getHitBox().height), 
+    							  dx, dy);
     	}
     	
 		limitEffects();

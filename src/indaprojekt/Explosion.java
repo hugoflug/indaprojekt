@@ -19,9 +19,9 @@ public class Explosion extends Mover
 	private float scale;
 	private final float centerX, centerY;
 	private final float ogWidth, ogHeight;
-	private float startScale, scalePerDelta;
+	private float scalePerDelta;
 	
-	public Explosion(float x, float y, Float hitBox, Animation animation, int duration, 
+	public Explosion(float x, float y, Rectangle2D.Float hitBox, Animation animation, int duration, 
 					float centerX, float centerY, float startScale, float scalePerDelta) 
 	{
 		super(x, y, hitBox);
@@ -33,7 +33,6 @@ public class Explosion extends Mover
 		this.centerX = centerX;
 		this.centerY = centerY;
 		
-		this.startScale = startScale;
 		this.scalePerDelta = scalePerDelta;
 		
 		ogWidth = (float)hitBox.getWidth();
@@ -78,7 +77,8 @@ public class Explosion extends Mover
 	}
 
 	@Override
-	public Entity spawnEntity() {	
+	public Entity spawnEntity() 
+	{	
 		return null;
 	}
 	

@@ -15,11 +15,11 @@ public class DefaultExplosion extends Explosion
 {
 	private static final int EXPLOSION_TIME = 700;
 	private static final float START_SCALE = 0.1f;
-	private static final float SCALE_PER_DELTA = 0.003f;
+	private static final float SCALE_PER_DELTA = 0.001f;
 
 	public DefaultExplosion(float x, float y, float centerX, float centerY) throws SlickException 
 	{
-		super(x, y, getHitBox(getAnimation().getWidth(), getAnimation().getHeight()), 
+		super(x, y, getHitBox(getWidth(), getHeight()), 
 				    getAnimation(), EXPLOSION_TIME, centerX, centerY,
 				    START_SCALE, SCALE_PER_DELTA);
 	}
@@ -40,7 +40,7 @@ public class DefaultExplosion extends Explosion
 	 */
 	public static int getWidth() throws SlickException
 	{
-		return getAnimation().getWidth();
+		return getAnimation().getCurrentFrame().getWidth();
 	}
 	
 	/**
@@ -48,6 +48,6 @@ public class DefaultExplosion extends Explosion
 	 */
 	public static int getHeight() throws SlickException
 	{
-		return getAnimation().getHeight();
+		return getAnimation().getCurrentFrame().getHeight();
 	}
 }

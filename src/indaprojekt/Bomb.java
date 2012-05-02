@@ -43,6 +43,8 @@ public class Bomb extends Projectile
 		
 		if (lifetime.hasExpired()) {
 			sound.play();
+			
+
 			int explW = DefaultExplosion.getWidth();
 			int explH = DefaultExplosion.getHeight();
 			int bombW = animation.getWidth();
