@@ -2,6 +2,7 @@ package indaprojekt.entities;
 
 import indaprojekt.Direction;
 import indaprojekt.effects.Effect;
+import indaprojekt.general.Timer;
 
 import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
@@ -47,7 +48,9 @@ public class Player extends ConstantMover
 	}
 	
 	private static final float PLAYER_FRICTION = 0.85f;
-	private static final float BOMB_SPEED = 1.5f;
+	private static final float BOMB_BASE_SPEED = 0.4f;
+	private static final float BOMB_SPEED_BONUS = 0.007f;
+	private static final float BOMB_MAX_SPEED = 4f;
 	
 	private Animation activeAnimation;
 	private Map<Direction, Animation> animations;
@@ -61,6 +64,8 @@ public class Player extends ConstantMover
 //	private Sound throwSound;
 	private Sound hitSound;
 	private Sound deadSound;
+	private Timer throwTimer;
+	private boolean throwKeyDown; //fulhack
 	
 	public Player(float x, float y, Player.Controls controls, Rectangle2D.Float hitBox, 
 						Map<Direction, Animation> animations, int lives, float speed) throws SlickException
@@ -79,6 +84,7 @@ public class Player extends ConstantMover
 		deadSound = new Sound("res//sounds//Dead.ogg");
 		dx = 0;
 		dy = 0;
+		throwKeyDown = false;
 	}
 
 	@Override
@@ -144,9 +150,28 @@ public class Player extends ConstantMover
 //    				projectileOriginY((float)projRect.getWidth()), dx, dy, projRect, anim, 1); 
 //    	} 
     	if (input.isKeyPressed(controls.keyBomb)) { 
+    		throwKeyDown = true;
+    		throwTimer = new Timer();
+    		throwTimer.start();
     		
-    		float dx = direction.getNormalizedDX()*BOMB_SPEED;
-    		float dy = direction.getNormalizedDY()*BOMB_SPEED; 
+//    		float dx = direction.getNormalizedDX()*BOMB_SPEED;
+//    		float dy = direction.getNormalizedDY()*BOMB_SPEED; 
+//
+//    		projectile = new DefaultBomb(projectileOriginX(DefaultBomb.getHitBox().width), 
+//    							  projectileOriginY(DefaultBomb.getHitBox().height), 
+//    							  dx, dy);
+    		
+    	} else if (!input.isKeyDown(controls.keyBomb) && throwKeyDown) { //isKeyReleased
+    		throwKeyDown = false;
+    		
+    		float speed = BOMB_BASE_SPEED + throwTimer.milliseconds()*BOMB_SPEED_BONUS;
+    		
+    		if (speed > BOMB_MAX_SPEED) {
+    			speed = BOMB_MAX_SPEED;
+    		}
+    		
+    		float dx = direction.getNormalizedDX()*speed;
+    		float dy = direction.getNormalizedDY()*speed; 
 
     		projectile = new DefaultBomb(projectileOriginX(DefaultBomb.getHitBox().width), 
     							  projectileOriginY(DefaultBomb.getHitBox().height), 
