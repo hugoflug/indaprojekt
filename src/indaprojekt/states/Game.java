@@ -2,7 +2,7 @@ package indaprojekt.states;
 
 import indaprojekt.IceIceBabyGame;
 import indaprojekt.MapLoader;
-import indaprojekt.PowerUpGenerator;
+import indaprojekt.EntityGenerator;
 import indaprojekt.entities.Entity;
 import indaprojekt.entities.Player;
 import indaprojekt.entities.PlayerOne;
@@ -39,7 +39,7 @@ public class Game extends AdvancedGameState
 	private UserInterface ui;
 	private Input input;
 	private Image background;
-	private PowerUpGenerator powerUpGenerator;
+	private EntityGenerator entityGenerator;
 	private int stateID;
 	private String mapFilename;
 	
@@ -73,7 +73,7 @@ public class Game extends AdvancedGameState
     {
     	players = new ArrayList<Player>(2);
     	entities = new LinkedList<Entity>();
-    	powerUpGenerator = new PowerUpGenerator();
+    	entityGenerator = new EntityGenerator();
 
     	ui = new DefaultUserInterface(gc.getWidth(), gc.getHeight());
     	
@@ -143,9 +143,9 @@ public class Game extends AdvancedGameState
     		ui.setPlayer2Lives(players.get(1).getLives());
     	}
     	
-    	PowerUp powerUp = powerUpGenerator.generatePowerUp();
-    	if (powerUp != null) {
-    		entities.add(powerUp);
+    	Entity entity = entityGenerator.generateEntity();
+    	if (entity != null) {
+    		entities.add(entity);
     	}
     	
     	if (gc.getInput().isKeyPressed(Input.KEY_ESCAPE)) {

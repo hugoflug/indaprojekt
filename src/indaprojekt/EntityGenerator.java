@@ -1,5 +1,7 @@
 package indaprojekt;
 
+import indaprojekt.entities.DefaultBomb;
+import indaprojekt.entities.Entity;
 import indaprojekt.entities.LifeUp;
 import indaprojekt.entities.PowerUp;
 import indaprojekt.entities.SpeedUp;
@@ -10,14 +12,15 @@ import java.util.Random;
 
 import org.newdawn.slick.SlickException;
 
-public class PowerUpGenerator {
+public class EntityGenerator {
 	private final int MIN_TIME = 2000; // ms
 	private final int MAX_TIME = 10000; // ms
+	private final boolean GENERATE_BOMBS = false;
 	
 	private Expirer expirer;
 	private Random rand;
 	
-	public PowerUpGenerator() 
+	public EntityGenerator() 
 	{
 		rand = new Random();
 		expirer = new Expirer(5000);
@@ -29,28 +32,37 @@ public class PowerUpGenerator {
 		
 	}
 	
-	public PowerUp generatePowerUp() throws SlickException 
+	public Entity generateEntity() throws SlickException 
 	{
-		PowerUp power = null;
+		Entity entity = null;
 		if (expirer.hasExpired()) {
-			// TODO - the powerUps can end up anywhere, but if they hit an 
-			// obstacle, they will disappear immediately, but will be 
-			// visible for 1/FPS seconds.
-			int choosePower = rand.nextInt(2);
+			
+			int entities;
+			if (GENERATE_BOMBS) {
+				entities = 3;
+			} else {
+				entities = 2;
+			}
+			int chooseEntity = rand.nextInt(entities);
 
-			switch(choosePower) {
+			switch(chooseEntity) {
 			case 0:
-				power = new SpeedUp(rand.nextFloat()*Game.WINDOW_WIDTH,
+				entity = new SpeedUp(rand.nextFloat()*Game.WINDOW_WIDTH,
 						rand.nextFloat()*Game.WINDOW_HEIGHT, 0.2f, 4000);
 				break;
-			default:
-				power = new LifeUp(rand.nextFloat()*Game.WINDOW_WIDTH,
+			case 1:
+				entity = new LifeUp(rand.nextFloat()*Game.WINDOW_WIDTH,
 						rand.nextFloat()*Game.WINDOW_HEIGHT);
 				break;
+			case 2:
+				entity = new DefaultBomb(rand.nextFloat()*Game.WINDOW_WIDTH,
+										 rand.nextFloat()*Game.WINDOW_HEIGHT,
+										 0,
+										 0);
 				
 			}
 			expirer = generatePowerUpTime();
 		}
-		return power;
+		return entity;
 	}
 }
