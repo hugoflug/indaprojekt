@@ -1,5 +1,11 @@
 package indaprojekt;
 
+import indaprojekt.entities.LifeUp;
+import indaprojekt.entities.PowerUp;
+import indaprojekt.entities.SpeedUp;
+import indaprojekt.general.Expirer;
+import indaprojekt.states.Game;
+
 import java.util.Random;
 
 import org.newdawn.slick.SlickException;

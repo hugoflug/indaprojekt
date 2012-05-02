@@ -1,5 +1,8 @@
 package indaprojekt;
 
+import indaprojekt.entities.Entity;
+import indaprojekt.entities.Obstacle;
+
 import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
 import java.io.FileReader;

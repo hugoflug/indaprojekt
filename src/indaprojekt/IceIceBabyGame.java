@@ -1,5 +1,13 @@
 package indaprojekt;
 
+import indaprojekt.states.Game;
+import indaprojekt.states.GameOverState;
+import indaprojekt.states.HowToPlay2State;
+import indaprojekt.states.HowToPlayState;
+import indaprojekt.states.MainMenuState;
+import indaprojekt.states.MapChooserState;
+import indaprojekt.states.PauseState;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
