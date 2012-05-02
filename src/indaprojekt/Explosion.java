@@ -37,6 +37,8 @@ public class Explosion extends Mover
 		
 		ogWidth = (float)hitBox.getWidth();
 		ogHeight = (float)hitBox.getHeight();
+		
+		center();
 	}
 
 	@Override
