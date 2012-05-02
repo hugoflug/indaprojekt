@@ -39,15 +39,12 @@ public class Bomb extends Projectile
 		
 		if (lifetime.hasExpired()) {
 			sound.play();
-			Image explImage = new Image("res//images//explosion.png", Color.white);
-			Animation explAnim = new Animation(new Image[]{explImage}, 1);
-			int explW = explImage.getWidth();
-			int explH = explImage.getHeight();
+			int explW = DefaultExplosion.getWidth();
+			int explH = DefaultExplosion.getHeight();
 			int bombW = animation.getWidth();
 			int bombH = animation.getHeight();
-			explosion = new Explosion(x - explW/2 + bombW/2, y - explH/2 + bombH/2, 
-									  new Rectangle2D.Float(0, 0, explImage.getWidth(), 
-									  explImage.getHeight()), explAnim, EXPLOSION_TIME, x + bombW/2, y + bombH/2); 
+			explosion = new DefaultExplosion(x - explW/2 + bombW/2, y - explH/2 + bombH/2, 
+											 x + bombW/2, y + bombH/2); 
 		}
 	}
 	

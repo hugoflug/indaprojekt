@@ -19,18 +19,22 @@ public class Explosion extends Mover
 	private float scale;
 	private final float centerX, centerY;
 	private final float ogWidth, ogHeight;
+	private float startScale, scalePerDelta;
 	
 	public Explosion(float x, float y, Float hitBox, Animation animation, int duration, 
-					float centerX, float centerY) 
+					float centerX, float centerY, float startScale, float scalePerDelta) 
 	{
 		super(x, y, hitBox);
 		lifetime = new Expirer(duration);
 		this.animation = animation;
 		
-		scale = 0.1f;
+		scale = startScale; //0.1f
 		
 		this.centerX = centerX;
 		this.centerY = centerY;
+		
+		this.startScale = startScale;
+		this.scalePerDelta = scalePerDelta;
 		
 		ogWidth = (float)hitBox.getWidth();
 		ogHeight = (float)hitBox.getHeight();
@@ -48,7 +52,7 @@ public class Explosion extends Mover
 		if (lifetime.hasExpired()) {
 			remove = true;
 		}
-		scale += 0.003f*delta; //0.005f
+		scale += scalePerDelta*delta; //0.003f
 
 		hitBox = new Rectangle2D.Float(hitBox.x, hitBox.y, ogWidth*scale, ogHeight*scale);
 		

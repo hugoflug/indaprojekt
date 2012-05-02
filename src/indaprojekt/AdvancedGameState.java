@@ -7,6 +7,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * A game state with some more advanced features
+ *
+ */
+
 public abstract class AdvancedGameState extends BasicGameState
 {
 	private Music theme;
@@ -27,6 +32,10 @@ public abstract class AdvancedGameState extends BasicGameState
 		}
 	}
 	
+	/**
+	 * Sets the theme song of this game state
+	 * @param theme
+	 */
 	protected void setTheme(Music theme)
 	{
 		this.theme = theme;
