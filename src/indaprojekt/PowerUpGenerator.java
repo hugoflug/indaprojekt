@@ -17,17 +17,20 @@ public class PowerUpGenerator {
 	private Expirer expirer;
 	private Random rand;
 	
-	public PowerUpGenerator() {
+	public PowerUpGenerator() 
+	{
 		rand = new Random();
 		expirer = new Expirer(5000);
 	}
 	
-	private Expirer generatePowerUpTime() {
+	private Expirer generatePowerUpTime() 
+	{
 		return new Expirer(MIN_TIME + rand.nextInt(MAX_TIME-MIN_TIME));
 		
 	}
 	
-	public PowerUp generatePowerUp() throws SlickException {
+	public PowerUp generatePowerUp() throws SlickException 
+	{
 		PowerUp power = null;
 		if (expirer.hasExpired()) {
 			// TODO - the powerUps can end up anywhere, but if they hit an 
