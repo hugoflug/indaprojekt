@@ -20,7 +20,7 @@ public class PlayerOne extends Player
 		super(x, y, 
 			  getPlayerControls(), 
 			  new Rectangle2D.Float(0, 0, 46, 46), 
-			  getAnimations(),5, 0.10f);
+			  getAnimations(),5, 0.10f, 1);
 	}
 	
 	private static Player.Controls getPlayerControls()
@@ -30,8 +30,8 @@ public class PlayerOne extends Player
 				Input.KEY_A,
 				Input.KEY_S,
 				Input.KEY_D,
-				Input.KEY_LCONTROL,
-				Input.KEY_LCONTROL);
+				Input.KEY_Q,
+				Input.KEY_Q);
 	}
 	
 	private static Map<Direction, Animation> getAnimations() throws SlickException

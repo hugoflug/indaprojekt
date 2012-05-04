@@ -60,6 +60,7 @@ public class Player extends ConstantMover
 	private Projectile projectile;
 	private Direction direction;
 	private int lives;
+	private final int number;
 	private float speed;
 //	private Sound throwSound;
 	private Sound hitSound;
@@ -68,7 +69,7 @@ public class Player extends ConstantMover
 	private boolean throwKeyDown; //fulhack
 	
 	public Player(float x, float y, Player.Controls controls, Rectangle2D.Float hitBox, 
-						Map<Direction, Animation> animations, int lives, float speed) throws SlickException
+						Map<Direction, Animation> animations, int lives, float speed, int number) throws SlickException
 	{
 		super(x, y, hitBox, 0, 0, PLAYER_FRICTION); 
 		this.animations = animations;
@@ -85,12 +86,18 @@ public class Player extends ConstantMover
 		dx = 0;
 		dy = 0;
 		throwKeyDown = false;
+		this.number = number;
 	}
 
 	@Override
 	public void draw() throws SlickException 
 	{
 		activeAnimation.draw(x, y);
+	}
+	
+	public int getNumber()
+	{
+		return number;
 	}
 
 	@Override

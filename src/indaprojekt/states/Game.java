@@ -93,16 +93,17 @@ public class Game extends AdvancedGameState
     	}
     	
     	{
-    		int i = 0;
 	    	Iterator<Player> iterator = players.iterator();
 	    	while (iterator.hasNext()) {
-	    		i++;
 	    		Player player = iterator.next();
 	    		if (player.isDead()) {
 	    			iterator.remove();
 	    			entities.remove(player);
-					game.getState(IceIceBabyGame.GAME_PLAY_STATE).init(gc, game);
-					((GameOverState)(game.getState(IceIceBabyGame.GAME_OVER_STATE))).setPlayerWon(i);
+	    			int playerWon = 2;
+	    			if (player.getNumber() == 2) {
+	    				playerWon = 1;
+	    			}
+					((GameOverState)(game.getState(IceIceBabyGame.GAME_OVER_STATE))).setPlayerWon(playerWon);
 	    			game.enterState(IceIceBabyGame.GAME_OVER_STATE);
 	    		}
 	    	}
