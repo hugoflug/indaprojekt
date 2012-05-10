@@ -1,6 +1,10 @@
 package indaprojekt.states;
 
+import java.awt.geom.Rectangle2D;
+
 import indaprojekt.IceIceBabyGame;
+import indaprojekt.ui.Button;
+import indaprojekt.ui.Button.ActionPerformer;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
@@ -18,7 +22,8 @@ import org.newdawn.slick.state.StateBasedGame;
  * can play again or go to the main menu.
  *
  */
-public class GameOverState extends BasicGameState {
+public class GameOverState extends ButtonMenuState 
+{
 	private int stateID;
 	private Image background;
 	private Image information;
@@ -28,16 +33,40 @@ public class GameOverState extends BasicGameState {
 	
 	public GameOverState(int stateID) 
 	{
-		this.stateID = stateID;
+		super(stateID);
 	}
 	
 	@Override
-	public void init(GameContainer gc, StateBasedGame game)
+	public void init(final GameContainer gc, final StateBasedGame game)
 			throws SlickException {
 		background = new Image("res//images//bakgrund.png");
 		information = new Image("res//images//gameOverInformation.png");
 		informationLeftBorderX = (Game.WINDOW_WIDTH/2)-(information.getWidth()/2);
 		informationTopBorderY = (Game.WINDOW_HEIGHT/2)-(information.getHeight()/2);
+		
+//		// Information
+//		Image information = new Image("res//images//gameOverInformation.png");
+//		Button infoText = new Button(information, information,
+//									 new Rectangle2D.Float((Game.WINDOW_WIDTH/2)-(information.getWidth()/2), (Game.WINDOW_HEIGHT/2)-(information.getHeight()/2), 
+//									 information.getWidth(), information.getHeight()),
+//									 null, null);
+//		addButton(infoText);
+//		
+//		mapKey(Input.KEY_ENTER, new ActionPerformer() {
+//			@Override
+//			public void doAction() throws SlickException {
+//				game.addState(new Game(IceIceBabyGame.GAME_PLAY_STATE, "res//maps//map1.txt"));
+//				game.getState(IceIceBabyGame.GAME_PLAY_STATE).init(gc, game);
+//				game.enterState(IceIceBabyGame.GAME_PLAY_STATE);
+//			}
+//		});
+//		
+//		mapKey(Input.KEY_ESCAPE, new ActionPerformer() {
+//			@Override
+//			public void doAction() throws SlickException {
+//				game.enterState(IceIceBabyGame.MAIN_MENU_STATE);
+//			}
+//		});
 	}
 	
 	public void setPlayerWon(int playerWon) 
@@ -74,10 +103,5 @@ public class GameOverState extends BasicGameState {
 			game.enterState(IceIceBabyGame.MAIN_MENU_STATE);
 		}
 		
-	}
-
-	@Override
-	public int getID() {
-		return stateID;
 	}
 }
