@@ -3,6 +3,7 @@ package indaprojekt.states;
 import indaprojekt.IceIceBabyGame;
 import indaprojekt.ui.Button;
 import indaprojekt.ui.GrowButton;
+import indaprojekt.ui.ToggleButton;
 import indaprojekt.ui.Button.ActionPerformer;
 
 import java.awt.geom.Rectangle2D;
@@ -85,5 +86,26 @@ public class PauseState extends ButtonMenuState {
 			}
 		});
 		addButton(howToPlayButton);
+		
+		// Sound on/off
+		Image soundOption = new Image("res//images//sound.gif");
+		Image soundOffOption = new Image("res//images//soundoff.png");
+		int soundW = soundOption.getWidth();
+		int soundH = soundOption.getHeight();
+		Button soundGameButton = new ToggleButton(soundOption, 
+								    	    soundOption, 
+								    	    soundOffOption,
+								    	    soundOffOption,
+								    	    new Rectangle2D.Float(MainMenuState.SOUND_X, MainMenuState.SOUND_Y, soundW, soundH));
+		
+		soundGameButton.setAction(new ActionPerformer() {
+			@Override
+			public void doAction() {
+				boolean soundsOn = gc.isSoundOn() && gc.isMusicOn();
+				gc.setMusicOn(!soundsOn);
+				gc.setSoundOn(!soundsOn);
+			}
+		});
+		addButton(soundGameButton);
 	}
 }

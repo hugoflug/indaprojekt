@@ -29,8 +29,8 @@ public class MainMenuState extends ButtonMenuState
 	private final static int EXIT_GAME_Y = Game.WINDOW_HEIGHT-100;
 //	private final static int HOW_TO_PLAY_X = 450;
 	private final static int HOW_TO_PLAY_Y = 450;
-	private final static int SOUND_X = 50;
-	private final static int SOUND_Y = Game.WINDOW_HEIGHT-100;
+	public final static int SOUND_X = 50;
+	public final static int SOUND_Y = Game.WINDOW_HEIGHT-100;
 	private final static int CHOOSE_MAP_Y = 350;
 	public final static float BUTTON_ENDSCALE = 1.3f;
 	public final static int BUTTON_SCALEMILLIS = 75;
