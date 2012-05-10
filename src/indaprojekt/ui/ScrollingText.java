@@ -26,12 +26,12 @@ public class ScrollingText
 		this.scrollSpeed = scrollSpeed;
 		this.font = font;
 		lines = text.split("\n");
-		yPos = -font.getLineHeight()*lines.length;
+		yPos = area.y + area.height;
 	}
 	
 	public void doLogic(int delta) throws SlickException 
 	{
-		yPos += scrollSpeed*delta;
+		yPos -= scrollSpeed*delta;
 	}
 	
 	public void draw(Graphics g)
