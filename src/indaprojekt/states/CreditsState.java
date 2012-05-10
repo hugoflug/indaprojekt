@@ -28,11 +28,20 @@ public class CreditsState extends ButtonMenuState
 									 getCreditsString(),
 									 gc.getGraphics().getFont(),
 									 true,
-									 0.1f);
+									 0.075f);
 		
 		mapKey(Input.KEY_ESCAPE, new ActionPerformer() {
 			@Override
 			public void doAction() {
+				((AdvancedGameState)game.getState(IceIceBabyGame.MAIN_MENU_STATE)).setStartPlayingTheme(false);
+				game.enterState(IceIceBabyGame.MAIN_MENU_STATE);
+			}
+		});
+		
+		scroller.setFinishAction(new ActionPerformer() {
+			@Override
+			public void doAction() throws SlickException {
+				((AdvancedGameState)game.getState(IceIceBabyGame.MAIN_MENU_STATE)).setStartPlayingTheme(false);
 				game.enterState(IceIceBabyGame.MAIN_MENU_STATE);
 			}
 		});
@@ -73,12 +82,13 @@ public class CreditsState extends ButtonMenuState
 		   	   "\n\n" +
 			   "Music\n" +
 			   "-----\n" +
-			   "Robert Matthew \"Vanilla Ice\" Van Winkle" +
+			   "Robert Matthew \"Vanilla Ice\" Van Winkle\n" +
 		   	   "\n\n" +
-			   "Special thanks to:\n" +
+			   "Special thanks\n" +
 			   "-----\n" +
-		   	   "Slick game library";
-			   
+		   	   "Slick game library" +
+			   "\n\n\n\n" +
+			   "This was a 2012 project at KTH.";
 			
 	}
 	

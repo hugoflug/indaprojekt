@@ -28,7 +28,7 @@ public class IceIceBabyGame extends StateBasedGame
 	public static final int MAP_CHOOSER_STATE = 4;
 	public static final int HOW_TO_PLAY_STATE = 5;
 	public static final int HOW_TO_PLAY_2_STATE = 6;
-	public static final int CREDITS_STATE = 6;
+	public static final int CREDITS_STATE = 7;
 	
 	public IceIceBabyGame() throws SlickException 
 	{

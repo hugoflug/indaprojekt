@@ -17,12 +17,16 @@ public abstract class AdvancedGameState extends BasicGameState
 {
 	private Music theme;
 	private int stateID, previousStateID, nextStateID;
+	private boolean stopPlayingTheme;
+	private boolean startPlayingTheme;
 	
 	public AdvancedGameState(int stateID) 
 	{
 		this.stateID = stateID;
 		previousStateID = -1;
 		nextStateID = -1;
+		stopPlayingTheme = true;
+		startPlayingTheme = true;
 	}
 	
 	public AdvancedGameState(int stateID, int previousStateID, int nextStateID) 
@@ -32,10 +36,20 @@ public abstract class AdvancedGameState extends BasicGameState
 		this.nextStateID = nextStateID;
 	}
 	
+	public void setStopPlayingTheme(boolean stopPlaying)
+	{
+		stopPlayingTheme = stopPlaying;
+	}
+	
+	public void setStartPlayingTheme(boolean startPlaying)
+	{
+		startPlayingTheme = startPlaying;
+	}
+	
 	@Override
 	public void leave(GameContainer gc, StateBasedGame game)
 	{
-		if (theme != null) {
+		if (theme != null && stopPlayingTheme) {
 			theme.stop();
 		}
 	}
@@ -43,7 +57,7 @@ public abstract class AdvancedGameState extends BasicGameState
 	@Override
 	public void enter(GameContainer gc, StateBasedGame game)
 	{
-		if (theme != null) {
+		if (theme != null && startPlayingTheme) {
 			theme.loop();
 		}
 	}

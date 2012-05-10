@@ -1,10 +1,13 @@
 package indaprojekt.ui;
 
+import indaprojekt.general.Expirer;
+
 import java.awt.geom.Rectangle2D;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 /**
  * A button that performs an action when you click on 
@@ -26,8 +29,10 @@ public class Button implements Comparable<Button>
 	protected float scale;
 	private int orderingValue;
 	private int ogOrderingValue;
+	private Sound hoverSound, clickSound;
+	private boolean alreadyInArea;
 	
-	public Button(Image image, Image mouseOverImage, Rectangle2D.Float area)
+	public Button(Image image, Image mouseOverImage, Rectangle2D.Float area, Sound hoverSound, Sound clickSound)
 	{
 		this.ogArea = new Rectangle2D.Float(area.x, area.y, area.width, area.height);
 		this.area = area;
@@ -37,6 +42,8 @@ public class Button implements Comparable<Button>
 		activeImage = image;
 		scale = 1.0f;
 		setOrderingValue(0);
+		this.hoverSound = hoverSound;
+		this.clickSound = clickSound;
 	}
 	
 	public void doLogic(int delta, Input input) throws SlickException 
@@ -45,13 +52,23 @@ public class Button implements Comparable<Button>
 		if (area.contains(input.getMouseX(), input.getMouseY())) {
 			orderingValue = -1;
 			activeImage = mouseOverImage;
+			if (!alreadyInArea) {
+				if (hoverSound != null) {
+					hoverSound.play();
+				}
+				alreadyInArea = true;
+			}
 			if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
+				if (clickSound != null) {
+					clickSound.play();
+				}
 				buttonPressed();
 				if (action != null) {
 					action.doAction();
 				}
 			}
 		} else {
+			alreadyInArea = false;
 			orderingValue = ogOrderingValue;
 			activeImage = image;
 		}
