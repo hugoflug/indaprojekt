@@ -37,6 +37,11 @@ public abstract class ButtonMenuState extends AdvancedGameState
 	{
 		buttons.add(button);
 	}
+	
+	protected void removeButton(Button button)
+	{
+		buttons.remove(button);
+	}
 
 	
 	protected void mapKey(int key, ActionPerformer action)
