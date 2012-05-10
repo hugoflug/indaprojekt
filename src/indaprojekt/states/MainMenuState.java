@@ -23,7 +23,7 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class MainMenuState extends ButtonMenuState 
 {
-	private final static int MIDDLE_X = Game.WINDOW_WIDTH/2;
+	public final static int MIDDLE_X = Game.WINDOW_WIDTH/2;
 //	private final static int START_GAME_X = 400; 
 	private final static int START_GAME_Y = 170;
 	private final static int EXIT_GAME_X = Game.WINDOW_WIDTH-150;
