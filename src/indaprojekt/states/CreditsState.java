@@ -69,7 +69,17 @@ public class CreditsState extends ButtonMenuState
 			   "Art\n" +
 			   "-----\n" +
 			   "Johan Bissmark\n" +
-			   "Katja Röös\n";
+			   "Katja Röös\n" +
+		   	   "\n\n" +
+			   "Music\n" +
+			   "-----\n" +
+			   "Robert Matthew \"Vanilla Ice\" Van Winkle" +
+		   	   "\n\n" +
+			   "Special thanks to:\n" +
+			   "-----\n" +
+		   	   "Slick game library";
+			   
+			
 	}
 	
 }
