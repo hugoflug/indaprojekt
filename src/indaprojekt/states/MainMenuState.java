@@ -135,6 +135,7 @@ public class MainMenuState extends ButtonMenuState
 		creditsButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() throws SlickException {
+				game.getState(IceIceBabyGame.CREDITS_STATE).init(gc, game);
 				game.enterState(IceIceBabyGame.CREDITS_STATE);
 			}
 		});
