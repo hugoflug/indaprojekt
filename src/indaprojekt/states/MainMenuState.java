@@ -166,6 +166,13 @@ public class MainMenuState extends ButtonMenuState
 				gc.exit();
 			}
 		});
+		
+		mapKey(Input.KEY_F, new ActionPerformer() {
+			@Override
+			public void doAction() {
+				game.enterState(IceIceBabyGame.CREDITS_STATE);
+			}
+		});
 
 		this.setTheme(new Music("res//sounds//iceicebegin.ogg", true));
 	}

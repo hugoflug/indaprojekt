@@ -1,5 +1,6 @@
 package indaprojekt;
 
+import indaprojekt.states.CreditsState;
 import indaprojekt.states.Game;
 import indaprojekt.states.GameOverState;
 import indaprojekt.states.HowToPlay2State;
@@ -27,6 +28,7 @@ public class IceIceBabyGame extends StateBasedGame
 	public static final int MAP_CHOOSER_STATE = 4;
 	public static final int HOW_TO_PLAY_STATE = 5;
 	public static final int HOW_TO_PLAY_2_STATE = 6;
+	public static final int CREDITS_STATE = 6;
 	
 	public IceIceBabyGame() throws SlickException 
 	{
@@ -39,6 +41,7 @@ public class IceIceBabyGame extends StateBasedGame
 		this.addState(new MapChooserState(MAP_CHOOSER_STATE));
 		this.addState(new HowToPlayState(HOW_TO_PLAY_STATE, MAIN_MENU_STATE));
 		this.addState(new HowToPlay2State(HOW_TO_PLAY_2_STATE, MAIN_MENU_STATE));
+		this.addState(new CreditsState(CREDITS_STATE));
 		this.enterState(MAIN_MENU_STATE);
 	}
 
