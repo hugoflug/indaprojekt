@@ -14,7 +14,7 @@ import org.newdawn.slick.SlickException;
 
 public class EntityGenerator {
 	private final int MIN_TIME = 2000; // ms
-	private final int MAX_TIME = 10000; // ms
+	private final int MAX_TIME = 6000; // ms
 	private final boolean GENERATE_BOMBS = false;
 	
 	private Expirer expirer;

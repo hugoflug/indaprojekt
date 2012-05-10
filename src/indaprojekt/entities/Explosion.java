@@ -30,7 +30,7 @@ public class Explosion extends Mover
 		lifetime = new Expirer(duration);
 		this.animation = animation;
 		
-		scale = startScale; //0.1f
+		scale = startScale; 
 		
 		this.centerX = centerX;
 		this.centerY = centerY;

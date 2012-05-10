@@ -60,7 +60,7 @@ public class IceIceBabyGame extends StateBasedGame
          app.setVSync(true);
          app.setFullscreen(false);
          app.setShowFPS(false);
-         app.setIcon("res//images//icon.png");
+  //       app.setIcon("res//images//icon.png");
          app.start();
     }
 
