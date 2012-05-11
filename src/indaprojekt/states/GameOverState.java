@@ -25,6 +25,7 @@ public class GameOverState extends BasicGameState {
 	private int informationLeftBorderX;
 	private int informationTopBorderY;
 	private int playerWon;
+	private UnicodeFont gameOverFont;
 	
 	public GameOverState(int stateID) 
 	{
@@ -38,6 +39,11 @@ public class GameOverState extends BasicGameState {
 		information = new Image("res//images//gameOverInformation.png");
 		informationLeftBorderX = (Game.WINDOW_WIDTH/2)-(information.getWidth()/2);
 		informationTopBorderY = (Game.WINDOW_HEIGHT/2)-(information.getHeight()/2);
+		
+		java.awt.Font font = new java.awt.Font("Verdana", java.awt.Font.PLAIN, 24);
+        gameOverFont = new UnicodeFont(font);
+//        gameOverFont.addAsciiGlyphs();
+//        gameOverFont.loadGlyphs();
 	}
 	
 	public void setPlayerWon(int playerWon) 
@@ -52,12 +58,9 @@ public class GameOverState extends BasicGameState {
 		background.draw(0, 0);
 		information.draw(informationLeftBorderX, informationTopBorderY);
 		
-		//TEMP
-//		java.awt.Font font = new java.awt.Font("Verdana", java.awt.Font.PLAIN, 20);
-//      Font unicodeFont = new UnicodeFont(font, 36, false, false);
-//      g.setFont(unicodeFont);
+//        g.setFont(gameOverFont);
 		
-		g.setColor(Color.red);
+//		g.setColor(Color.red);
 		g.drawString("Player " + playerWon + " won!!!", 430, 100);
 		
 	}

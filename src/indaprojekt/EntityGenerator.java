@@ -29,7 +29,6 @@ public class EntityGenerator {
 	private Expirer generatePowerUpTime() 
 	{
 		return new Expirer(MIN_TIME + rand.nextInt(MAX_TIME-MIN_TIME));
-		
 	}
 	
 	public Entity generateEntity() throws SlickException 
