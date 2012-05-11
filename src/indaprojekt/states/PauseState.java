@@ -3,6 +3,7 @@ package indaprojekt.states;
 import indaprojekt.IceIceBabyGame;
 import indaprojekt.ui.Button;
 import indaprojekt.ui.GrowButton;
+import indaprojekt.ui.ToggleButton;
 import indaprojekt.ui.Button.ActionPerformer;
 
 import java.awt.geom.Rectangle2D;
@@ -10,6 +11,7 @@ import java.awt.geom.Rectangle2D;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class PauseState extends ButtonMenuState {
@@ -26,7 +28,12 @@ public class PauseState extends ButtonMenuState {
 
 	@Override
 	public void init(final GameContainer gc, final StateBasedGame game)
-			throws SlickException {
+			throws SlickException 
+	{
+		
+		Sound hoverSound = new Sound("res//sounds//click.ogg");
+		Sound clickSound = new Sound("res//sounds//click.ogg");
+		
 		//background is in ButtonMenuState
 		background = new Image("res//images//bakgrund.png");
 		
@@ -37,7 +44,8 @@ public class PauseState extends ButtonMenuState {
 		int resumeH = resumeOption.getHeight();
 		Button resumeButton = new GrowButton(resumeOption, resumeOption,
 				new Rectangle2D.Float(resumeGameX, resumeGameY, resumeW, resumeH),
-				MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS);
+				MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS,
+				hoverSound, clickSound);
 		
 		resumeButton.setAction(new ActionPerformer() {
 			@Override
@@ -51,7 +59,7 @@ public class PauseState extends ButtonMenuState {
 		int pauseTextX = MIDDLE_X - (pauseImage.getWidth()/2);
 		Button pauseText = new Button(pauseImage, pauseImage, 
 				new Rectangle2D.Float(pauseTextX, pauseTextY, 
-						pauseImage.getWidth(), pauseImage.getHeight()));
+						pauseImage.getWidth(), pauseImage.getHeight()), hoverSound, clickSound);
 		addButton(pauseText);
 		
 		// Main menu button.
@@ -60,7 +68,8 @@ public class PauseState extends ButtonMenuState {
 		Button mainMenuButton = new GrowButton(mainMenuImage, mainMenuImage,
 				new Rectangle2D.Float(mainMenuX, mainMenuY,
 						mainMenuImage.getWidth(), mainMenuImage.getHeight()),
-						MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS);
+						MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS,
+						hoverSound, clickSound);
 		mainMenuButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() {
@@ -75,7 +84,8 @@ public class PauseState extends ButtonMenuState {
 		Button howToPlayButton = new GrowButton(howToPlayImage, howToPlayImage,
 						new Rectangle2D.Float(howToPlayX, howToPlayY, 
 						howToPlayImage.getWidth(), howToPlayImage.getHeight()), 
-						MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS);
+						MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS,
+						hoverSound, clickSound);
 		howToPlayButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() throws SlickException {
@@ -85,5 +95,27 @@ public class PauseState extends ButtonMenuState {
 			}
 		});
 		addButton(howToPlayButton);
+		
+		// Sound on/off
+		Image soundOption = new Image("res//images//sound.gif");
+		Image soundOffOption = new Image("res//images//soundoff.png");
+		int soundW = soundOption.getWidth();
+		int soundH = soundOption.getHeight();
+		Button soundGameButton = new ToggleButton(soundOption, 
+								    	    soundOption, 
+								    	    soundOffOption,
+								    	    soundOffOption,
+								    	    new Rectangle2D.Float(MainMenuState.SOUND_X, MainMenuState.SOUND_Y, soundW, soundH),
+								    	    hoverSound, clickSound);
+		
+		soundGameButton.setAction(new ActionPerformer() {
+			@Override
+			public void doAction() {
+				boolean soundsOn = gc.isSoundOn() && gc.isMusicOn();
+				gc.setMusicOn(!soundsOn);
+				gc.setSoundOn(!soundsOn);
+			}
+		});
+		addButton(soundGameButton);
 	}
 }

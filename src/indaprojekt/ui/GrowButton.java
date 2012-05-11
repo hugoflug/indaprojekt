@@ -7,6 +7,7 @@ import java.awt.geom.Rectangle2D.Float;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 /**
  * A button that grows a little bit when you hover over 
@@ -21,14 +22,15 @@ public class GrowButton extends Button
 	private int scaleMillis;
 	private int centerX, centerY;
 	
-	public GrowButton(Image image, Image mouseOverImage, Float area, float endScale, int scaleMillis) 
+	public GrowButton(Image image, Image mouseOverImage, Float area, float endScale, int scaleMillis, Sound hoverSound, Sound clickSound) 
 	{
-		this(image, mouseOverImage, area, endScale, scaleMillis, (int)(area.width/2), (int)(area.height/2));
+		this(image, mouseOverImage, area, endScale, scaleMillis, (int)(area.width/2), (int)(area.height/2), hoverSound, clickSound);
 	}
 	
-	public GrowButton(Image image, Image mouseOverImage, Float area, float endScale, int scaleMillis, int centerX, int centerY) 
+	public GrowButton(Image image, Image mouseOverImage, Float area, float endScale, int scaleMillis, int centerX, int centerY,
+					  Sound hoverSound, Sound clickSound) 
 	{
-		super(image, mouseOverImage, area);
+		super(image, mouseOverImage, area, hoverSound, clickSound);
 		this.centerX = centerX;
 		this.centerY = centerY;
 		this.scaleMillis = scaleMillis;

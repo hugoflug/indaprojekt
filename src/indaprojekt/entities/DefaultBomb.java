@@ -14,9 +14,7 @@ public class DefaultBomb extends Bomb
 	
 	public DefaultBomb(float x, float y, float dx, float dy) throws SlickException 
 	{
-		super(x, y, dx, dy, getHitBox(), getAnimation(), BOMB_TIME);
-		// TODO Auto-generated constructor stub
-	}
+		super(x, y, dx, dy, getHitBox(), getAnimation(), BOMB_TIME);	}
 	
 	public static Rectangle2D.Float getHitBox()
 	{

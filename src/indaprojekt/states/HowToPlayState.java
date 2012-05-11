@@ -10,6 +10,7 @@ import java.awt.geom.Rectangle2D;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class HowToPlayState extends ButtonMenuState
@@ -31,7 +32,10 @@ public class HowToPlayState extends ButtonMenuState
 	
 	@Override
 	public void init(final GameContainer gc, final StateBasedGame game)
-			throws SlickException {
+			throws SlickException 
+	{
+		Sound hoverSound = new Sound("res//sounds//click.ogg");
+		Sound clickSound = new Sound("res//sounds//click.ogg");
 		
 		super.init(gc, game);
 		
@@ -41,7 +45,8 @@ public class HowToPlayState extends ButtonMenuState
 		int backH = backOption.getHeight();
 		Button backButton = new GrowButton(backOption, backOption, 
 				new Rectangle2D.Float(BACK_X, BACK_Y, backW, backH), 
-				MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS);
+				MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS,
+				hoverSound, clickSound);
 		backButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() {
@@ -56,7 +61,8 @@ public class HowToPlayState extends ButtonMenuState
 		int nextH = nextOption.getHeight();
 		Button nextButton = new GrowButton(nextOption, nextOption, 
 				new Rectangle2D.Float(NEXT_X, NEXT_Y, nextW, nextH), 
-				MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS);
+				MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS,
+				hoverSound, clickSound);
 		nextButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() throws SlickException {
@@ -71,7 +77,7 @@ public class HowToPlayState extends ButtonMenuState
 		Image controllers = new Image("res//images//HowToPlayControllers.png");
 		Button controllerText = new Button(controllers, controllers,
 				new Rectangle2D.Float(0, 0, controllers.getWidth(),
-						controllers.getHeight()));
+						controllers.getHeight()), null, null);
 		addButton(controllerText);
 	}
 }

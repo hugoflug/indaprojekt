@@ -1,6 +1,10 @@
 package indaprojekt.states;
 
+import java.awt.geom.Rectangle2D;
+
 import indaprojekt.IceIceBabyGame;
+import indaprojekt.ui.Button;
+import indaprojekt.ui.Button.ActionPerformer;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
@@ -18,69 +22,57 @@ import org.newdawn.slick.state.StateBasedGame;
  * can play again or go to the main menu.
  *
  */
-public class GameOverState extends BasicGameState {
-	private int stateID;
-	private Image background;
-	private Image information;
-	private int informationLeftBorderX;
-	private int informationTopBorderY;
-	private int playerWon;
-	private UnicodeFont gameOverFont;
+
+public class GameOverState extends ButtonMenuState 
+{
+	private final float PLAYER_WON_Y = 80;
+	private final float INFORMATION_Y = 170;
+	private Button playerWonButton;
 	
 	public GameOverState(int stateID) 
 	{
-		this.stateID = stateID;
-	}
-	
-	@Override
-	public void init(GameContainer gc, StateBasedGame game)
-			throws SlickException {
-		background = new Image("res//images//bakgrund.png");
-		information = new Image("res//images//gameOverInformation.png");
-		informationLeftBorderX = (Game.WINDOW_WIDTH/2)-(information.getWidth()/2);
-		informationTopBorderY = (Game.WINDOW_HEIGHT/2)-(information.getHeight()/2);
-		
-		java.awt.Font font = new java.awt.Font("Verdana", java.awt.Font.PLAIN, 24);
-        gameOverFont = new UnicodeFont(font);
-//        gameOverFont.addAsciiGlyphs();
-//        gameOverFont.loadGlyphs();
-	}
-	
-	public void setPlayerWon(int playerWon) 
-	{
-		this.playerWon = playerWon;
+		super(stateID);
 	}
 
 	@Override
-	public void render(GameContainer gc, StateBasedGame game, Graphics g)
+	public void init(final GameContainer gc, final StateBasedGame game)
 			throws SlickException 
 	{
-		background.draw(0, 0);
-		information.draw(informationLeftBorderX, informationTopBorderY);
+		background = new Image("res//images//bakgrund.png");
+		mapKey(Input.KEY_ENTER, new ActionPerformer() {
+			@Override
+			public void doAction() throws SlickException {
+				game.addState(new Game(IceIceBabyGame.GAME_PLAY_STATE, "res//maps//map1.txt"));
+				game.getState(IceIceBabyGame.GAME_PLAY_STATE).init(gc, game);
+				game.enterState(IceIceBabyGame.GAME_PLAY_STATE);
+			}
+		});
 		
-//        g.setFont(gameOverFont);
-		
-//		g.setColor(Color.red);
-		g.drawString("Player " + playerWon + " won!!!", 430, 100);
-		
+		mapKey(Input.KEY_ESCAPE, new ActionPerformer() {
+			@Override
+			public void doAction() throws SlickException {
+				game.enterState(IceIceBabyGame.MAIN_MENU_STATE);
+			}
+		});
 	}
-
-	@Override
-	public void update(GameContainer gc, StateBasedGame game, int delta)
-			throws SlickException {
-		Input input = gc.getInput();
-		if (input.isKeyPressed(Input.KEY_ENTER)) {
-			game.addState(new Game(IceIceBabyGame.GAME_PLAY_STATE, "res//maps//map1.txt"));
-			game.getState(IceIceBabyGame.GAME_PLAY_STATE).init(gc, game);
-			game.enterState(IceIceBabyGame.GAME_PLAY_STATE);
-		} else if (input.isKeyPressed(Input.KEY_ESCAPE)) {
-			game.enterState(IceIceBabyGame.MAIN_MENU_STATE);
+	
+	public void setPlayerWon(int playerWon) throws SlickException 
+	{
+		if (playerWonButton != null) {
+			removeButton(playerWonButton);
 		}
 		
-	}
-
-	@Override
-	public int getID() {
-		return stateID;
+		// Information
+		Image playerWonImage;
+		if (playerWon == 1) {
+			playerWonImage = new Image("res//images//player1won.png");
+		} else {
+			playerWonImage = new Image("res//images//player2won.png");
+		}
+		playerWonButton = new Button(playerWonImage, playerWonImage,
+									 		new Rectangle2D.Float(MainMenuState.MIDDLE_X-(playerWonImage.getWidth()/2), PLAYER_WON_Y, 
+									 		playerWonImage.getWidth(), playerWonImage.getHeight()),
+									 		null, null);
+		addButton(playerWonButton);
 	}
 }

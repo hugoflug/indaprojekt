@@ -3,6 +3,7 @@ package indaprojekt.ui;
 import java.awt.geom.Rectangle2D.Float;
 
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Sound;
 
 public class ToggleButton extends Button 
 {
@@ -11,9 +12,10 @@ public class ToggleButton extends Button
 	private Image internalImage, internalMouseOverImage;
 	
 	public ToggleButton(Image image, Image mouseOverImage,
-						Image toggledImage, Image toggledMouseOverImage, Float area) 
+						Image toggledImage, Image toggledMouseOverImage, Float area,
+						Sound hoverSound, Sound clickSound) 
 	{
-		super(image, mouseOverImage, area);
+		super(image, mouseOverImage, area, hoverSound, clickSound);
 		this.toggledImage = toggledImage;
 		this.toggledMouseOverImage = toggledMouseOverImage;
 		this.internalImage = image;

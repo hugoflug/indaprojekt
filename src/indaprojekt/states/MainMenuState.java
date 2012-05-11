@@ -13,6 +13,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
@@ -22,16 +23,17 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class MainMenuState extends ButtonMenuState 
 {
-	private final static int MIDDLE_X = Game.WINDOW_WIDTH/2;
+	public final static int MIDDLE_X = Game.WINDOW_WIDTH/2;
 //	private final static int START_GAME_X = 400; 
-	private final static int START_GAME_Y = 200;
+	private final static int START_GAME_Y = 170;
 	private final static int EXIT_GAME_X = Game.WINDOW_WIDTH-150;
 	private final static int EXIT_GAME_Y = Game.WINDOW_HEIGHT-100;
 //	private final static int HOW_TO_PLAY_X = 450;
-	private final static int HOW_TO_PLAY_Y = 450;
-	private final static int SOUND_X = 50;
-	private final static int SOUND_Y = Game.WINDOW_HEIGHT-100;
-	private final static int CHOOSE_MAP_Y = 350;
+	private final static int HOW_TO_PLAY_Y = 400;
+	public final static int SOUND_X = 50;
+	public final static int SOUND_Y = Game.WINDOW_HEIGHT-100;
+	public final static int CREDITS_Y = 500;
+	private final static int CHOOSE_MAP_Y = 300;
 	public final static float BUTTON_ENDSCALE = 1.3f;
 	public final static int BUTTON_SCALEMILLIS = 75;
 	
@@ -45,13 +47,18 @@ public class MainMenuState extends ButtonMenuState
 	public void init(final GameContainer gc, final StateBasedGame game)
 			throws SlickException 
 	{
+		setStopPlayingTheme(false);
+		
+		Sound hoverSound = new Sound("res//sounds//click.ogg");
+		Sound clickSound = new Sound("res//sounds//click.ogg");
+		
 		background = new Image("res//images//bakgrund.png");
 		
 		// Ice Ice Baby Text
 		Image iceIceBaby = new Image("res//images//iceIceBaby.png");
 		Button iceIceBabyText = new Button(iceIceBaby, iceIceBaby,
 				new Rectangle2D.Float(0, 0, iceIceBaby.getWidth(),
-						iceIceBaby.getHeight()));
+						iceIceBaby.getHeight()), null, null);
 		addButton(iceIceBabyText);
 		
 		
@@ -63,7 +70,8 @@ public class MainMenuState extends ButtonMenuState
 		Button startGameButton = new GrowButton(startGameOption, 
 								     			startGameOption, 
 								     			new Rectangle2D.Float(startGameX, START_GAME_Y, startW, startH),
-								     			BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
+								     			BUTTON_ENDSCALE, BUTTON_SCALEMILLIS,
+												hoverSound, clickSound);
 		
 		startGameButton.setAction(new ActionPerformer() {
 			@Override
@@ -82,7 +90,8 @@ public class MainMenuState extends ButtonMenuState
 		Button exitGameButton = new GrowButton(exitGameOption, 
 								    exitGameOption, 
 								    new Rectangle2D.Float(EXIT_GAME_X, EXIT_GAME_Y, exitW, exitH),
-								    BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
+								    BUTTON_ENDSCALE, BUTTON_SCALEMILLIS,
+									hoverSound, clickSound);
 		exitGameButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() {
@@ -99,7 +108,8 @@ public class MainMenuState extends ButtonMenuState
 		Button howToPlayButton = new GrowButton(howToPlayOption, 
 								     howToPlayOption, 
 								     new Rectangle2D.Float(howToPlayX, HOW_TO_PLAY_Y, howToW, howToH),
-								     BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
+								     BUTTON_ENDSCALE, BUTTON_SCALEMILLIS,
+									 hoverSound, clickSound);
 		
 		howToPlayButton.setAction(new ActionPerformer() {
 			@Override
@@ -110,6 +120,26 @@ public class MainMenuState extends ButtonMenuState
 			}
 		});
 		addButton(howToPlayButton);
+		
+		// Credits
+		Image creditsImage = new Image("res//images//credits.png");
+		int creditsW = howToPlayOption.getWidth();
+		int creditsH = howToPlayOption.getHeight();
+		int creditsX = MIDDLE_X - (creditsImage.getWidth()/2);
+		Button creditsButton = new GrowButton(creditsImage, 
+								     		  creditsImage, 
+								     		  new Rectangle2D.Float(creditsX, CREDITS_Y, creditsW, creditsH),
+								     		  BUTTON_ENDSCALE, BUTTON_SCALEMILLIS,
+											  hoverSound, clickSound);
+		
+		creditsButton.setAction(new ActionPerformer() {
+			@Override
+			public void doAction() throws SlickException {
+				game.getState(IceIceBabyGame.CREDITS_STATE).init(gc, game);
+				game.enterState(IceIceBabyGame.CREDITS_STATE);
+			}
+		});
+		addButton(creditsButton);
 
 		// Sound on/off
 		Image soundOption = new Image("res//images//sound.gif");
@@ -120,7 +150,8 @@ public class MainMenuState extends ButtonMenuState
 								    	    soundOption, 
 								    	    soundOffOption,
 								    	    soundOffOption,
-								    	    new Rectangle2D.Float(SOUND_X, SOUND_Y, soundW, soundH));
+								    	    new Rectangle2D.Float(SOUND_X, SOUND_Y, soundW, soundH),
+								    	    hoverSound, clickSound);
 		
 		soundGameButton.setAction(new ActionPerformer() {
 			@Override
@@ -140,7 +171,8 @@ public class MainMenuState extends ButtonMenuState
 		Button chooseMapButton = new GrowButton(chooseMap, 
 								    	    	chooseMap, 
 								    	    	new Rectangle2D.Float(chooseMapX, CHOOSE_MAP_Y, chooseW, chooseH),
-								    	    	BUTTON_ENDSCALE, BUTTON_SCALEMILLIS);
+								    	    	BUTTON_ENDSCALE, BUTTON_SCALEMILLIS,
+												hoverSound, clickSound);
 		
 		chooseMapButton.setAction(new ActionPerformer() {
 			@Override

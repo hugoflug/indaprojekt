@@ -10,6 +10,7 @@ import java.awt.geom.Rectangle2D;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class MapChooserState extends ButtonMenuState 
@@ -38,6 +39,8 @@ public class MapChooserState extends ButtonMenuState
 			throws SlickException
 	{
 		background = new Image("res//images//bakgrund.png");
+		Sound hoverSound = new Sound("res//sounds//click.ogg");
+		Sound clickSound = new Sound("res//sounds//click.ogg");
 		
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -49,7 +52,7 @@ public class MapChooserState extends ButtonMenuState
 				int centerY = centralize(j, 2, levelImage.getHeight());
 				
 				Button levelButton = new GrowButton(levelImage, levelImage, area, //levelImageHover second arg?
-									 BUTTON_ENDSCALE, BUTTON_SCALEMILLIS, centerX, centerY);
+									 BUTTON_ENDSCALE, BUTTON_SCALEMILLIS, centerX, centerY, hoverSound, clickSound);
 				final int x = j;
 				final int y = i;
 				levelButton.setAction(new ActionPerformer() {

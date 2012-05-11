@@ -10,6 +10,7 @@ import java.awt.geom.Rectangle2D;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class HowToPlay2State extends ButtonMenuState {
@@ -32,13 +33,17 @@ public class HowToPlay2State extends ButtonMenuState {
 		
 		super.init(gc, game);
 		
+		Sound hoverSound = new Sound("res//sounds//click.ogg");
+		Sound clickSound = new Sound("res//sounds//click.ogg");
+		
 		// Back/previous
 		Image backOption = new Image("res//images//prevArrow.png");
 		int backW = backOption.getWidth();
 		int backH = backOption.getHeight();
 		Button backButton = new GrowButton(backOption, backOption, 
 				new Rectangle2D.Float(BACK_X, BACK_Y, backW, backH), 
-				MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS);
+				MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS,
+				hoverSound, clickSound);
 		backButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() {
@@ -53,7 +58,8 @@ public class HowToPlay2State extends ButtonMenuState {
 		int nextH = nextOption.getHeight();
 		Button nextButton = new GrowButton(nextOption, nextOption, 
 				new Rectangle2D.Float(NEXT_X, NEXT_Y, nextW, nextH), 
-				MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS);
+				MainMenuState.BUTTON_ENDSCALE, MainMenuState.BUTTON_SCALEMILLIS,
+				hoverSound, clickSound);
 		nextButton.setAction(new ActionPerformer() {
 			@Override
 			public void doAction() {
@@ -66,7 +72,7 @@ public class HowToPlay2State extends ButtonMenuState {
 		Image goalPowerUps = new Image("res//images//HowToPlayPowerUps.png");
 		Button goalPowerUpsText = new Button(goalPowerUps, goalPowerUps,
 				new Rectangle2D.Float(0, 0, goalPowerUps.getWidth(),
-						goalPowerUps.getHeight()));
+						goalPowerUps.getHeight()), null, null);
 		addButton(goalPowerUpsText);
 	}
 

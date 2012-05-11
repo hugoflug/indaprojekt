@@ -47,7 +47,7 @@ public class Player extends ConstantMover
 		}
 	}
 	
-	private static final float PLAYER_FRICTION = 0.85f;
+	private static final float PLAYER_FRICTION = 0.92f; //0.85f
 	private static final float BOMB_BASE_SPEED = 0.4f;
 	private static final float BOMB_SPEED_BONUS = 0.007f;
 	private static final float BOMB_MAX_SPEED = 4f;

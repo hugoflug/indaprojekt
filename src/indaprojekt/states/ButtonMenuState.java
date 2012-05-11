@@ -37,6 +37,11 @@ public abstract class ButtonMenuState extends AdvancedGameState
 	{
 		buttons.add(button);
 	}
+	
+	protected void removeButton(Button button)
+	{
+		buttons.remove(button);
+	}
 
 	
 	protected void mapKey(int key, ActionPerformer action)
@@ -55,7 +60,9 @@ public abstract class ButtonMenuState extends AdvancedGameState
 	public void render(GameContainer gc, StateBasedGame game, Graphics g)
 			throws SlickException 
 	{
-		background.draw(0, 0);
+		if (background != null) {
+			background.draw(0, 0);
+		}
 		
 		Collections.sort(buttons);
 		
